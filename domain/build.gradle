@@ -17,8 +17,8 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.annimon:stream:' + $streamVersion
-    implementation 'io.reactivex:rxjava:' + $rxJavaVersion
+    apiElements 'com.annimon:stream:' + $streamVersion
+    apiElements 'io.reactivex:rxjava:' + $rxJavaVersion
 
     testImplementation "junit:junit:" + $jUnitVersion
 }

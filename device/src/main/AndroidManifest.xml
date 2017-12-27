@@ -1,2 +1,3 @@
-<manifest package="template.android.com.device"
-          xmlns:android="http://schemas.android.com/apk/res/android"/>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.undabot.babic.device"/>

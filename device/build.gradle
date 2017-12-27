@@ -47,7 +47,7 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(':domain')
+    api project(':domain')
 
     implementation 'com.android.support:appcompat-v7:' + $supportLibVersion
 

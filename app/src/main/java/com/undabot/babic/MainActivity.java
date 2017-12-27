@@ -5,8 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.android.template.R;
-
+import com.undabot.babic.app.R;
 import com.undabot.babic.data.DataJavaInvoker;
 import com.undabot.babic.device.DeviceJavaInvoker;
 import com.undabot.babic.domain.DomainJavaInvoker;
