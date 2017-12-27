@@ -11,7 +11,7 @@ public final class GithubApplication extends Application {
     private ApplicationComponent applicationComponent;
 
     public static GithubApplication from(final Context context) {
-        return (GithubApplication) context;
+        return (GithubApplication) context.getApplicationContext();
     }
 
     @Override
