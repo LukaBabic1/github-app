@@ -1,4 +1,4 @@
-apply plugin: 'java'
+apply plugin: 'java-library'
 apply plugin: 'me.tatarka.retrolambda'
 
 buildscript {
@@ -17,8 +17,8 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    apiElements 'com.annimon:stream:' + $streamVersion
-    apiElements 'io.reactivex:rxjava:' + $rxJavaVersion
+    api 'com.annimon:stream:' + $streamVersion
+    api 'io.reactivex:rxjava:' + $rxJavaVersion
 
     testImplementation "junit:junit:" + $jUnitVersion
 }
