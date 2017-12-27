@@ -1,7 +1,10 @@
 package com.undabot.babic.app.injection.application.module;
 
+import android.content.res.Resources;
+
 import com.undabot.babic.app.BuildConfig;
 import com.undabot.babic.data.network.configuration.Urls;
+import com.undabot.babic.data.network.configuration.UrlsImpl;
 import com.undabot.babic.data.network.converter.ApiConverter;
 import com.undabot.babic.data.network.converter.ApiConverterImpl;
 import com.undabot.babic.domain.utils.StringUtils;
@@ -34,6 +37,12 @@ public final class ApiModule {
         }
 
         return builder.build();
+    }
+
+    @Provides
+    @Singleton
+    Urls provideUrls(final Resources resources) {
+        return new UrlsImpl(resources);
     }
 
     @Provides

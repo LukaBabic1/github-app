@@ -18,10 +18,15 @@ public final class GithubApplication extends Application {
     public void onCreate() {
         super.onCreate();
         initApplicationComponent();
+        injectMe();
     }
 
     private void initApplicationComponent() {
         applicationComponent = ComponentFactory.createApplicationComponent(this);
+    }
+
+    private void injectMe() {
+        applicationComponent.inject(this);
     }
 
     public ApplicationComponent getApplicationComponent() {
