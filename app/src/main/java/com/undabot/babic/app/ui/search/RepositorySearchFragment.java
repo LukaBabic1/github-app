@@ -1,8 +1,10 @@
 package com.undabot.babic.app.ui.search;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.undabot.babic.app.R;
 import com.undabot.babic.app.base.BaseFragment;
@@ -26,6 +28,9 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
 
     @BindView(R.id.fragment_repository_search_recycler_view)
     RecyclerView recyclerView;
+
+    @BindView(R.id.fragment_repository_search_progress_bar)
+    ProgressBar progressBar;
 
     @Inject
     RepositorySearchContract.Presenter presenter;
@@ -51,12 +56,12 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
 
     @Override
     public void showLoading() {
-
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
-
+        progressBar.setVisibility(View.GONE);
     }
 
     @OnClick(R.id.fragment_repository_search_search_button)

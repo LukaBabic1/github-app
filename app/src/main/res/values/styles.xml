@@ -16,4 +16,24 @@
         <item name="android:text">@string/repository_search_screen_search_button_text</item>
     </style>
 
+    <style name="RepositorySearchScreenRadioGroupLabel">
+        <item name="android:text">@string/repository_search_screen_sort_by_label</item>
+    </style>
+
+    <style name="RepositorySearchScreenRadioButtonBaseStyle">
+
+    </style>
+
+    <style name="RepositorySearchScreenRadioButtonBaseStyle.Stars">
+        <item name="android:text">@string/repository_search_screen_radio_button_stars_text</item>
+    </style>
+
+    <style name="RepositorySearchScreenRadioButtonBaseStyle.Forks">
+        <item name="android:text">@string/repository_search_screen_radio_button_forks_text</item>
+    </style>
+
+    <style name="RepositorySearchScreenRadioButtonBaseStyle.Updated">
+        <item name="android:text">@string/repository_search_screen_radio_button_updated_text</item>
+    </style>
+
 </resources>

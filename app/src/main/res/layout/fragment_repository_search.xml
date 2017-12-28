@@ -25,6 +25,40 @@
 
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/RepositorySearchScreenRadioGroupLabel"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/repository_search_screen_radio_group_height"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/fragment_repository_search_stars_sort"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="@style/RepositorySearchScreenRadioButtonBaseStyle.Stars"/>
+
+        <RadioButton
+            android:id="@+id/fragment_repository_search_forks_sort"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="@style/RepositorySearchScreenRadioButtonBaseStyle.Forks"/>
+
+        <RadioButton
+            android:id="@+id/fragment_repository_search_updated_sort"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="@style/RepositorySearchScreenRadioButtonBaseStyle.Updated"/>
+
+    </RadioGroup>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
