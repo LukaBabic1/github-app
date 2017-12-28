@@ -24,7 +24,7 @@ public final class CodeRepositoryRepositoryImpl implements CodeRepositoryReposit
     }
 
     @Override
-    public Single<List<CodeRepository>> searchMoreRepositories(final String query, final SearchOrder searchOrder, final int page) {
+    public Single<List<CodeRepository>> searchRepositories(final String query, final SearchOrder searchOrder, final int page) {
         return codeRepositoryClient.searchRepositories(query, searchOrder, PER_PAGE_COUNT, page);
     }
 }

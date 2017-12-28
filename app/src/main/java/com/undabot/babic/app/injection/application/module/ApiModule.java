@@ -31,7 +31,10 @@ public final class ApiModule {
 
     @Provides
     HttpLoggingInterceptor provideHttpLoggingInterceptor() {
-        return new HttpLoggingInterceptor();
+        final HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        return interceptor;
     }
 
     @Provides

@@ -29,6 +29,6 @@ public final class CodeRepositoryClientImpl implements CodeRepositoryClient {
     @Override
     public Single<List<CodeRepository>> searchRepositories(final String query, final SearchOrder searchOrder, final int perPage, final int page) {
         return gitHubService.searchRepositories(query, searchOrder.value, perPage, page)
-                            .map(apiConverter::mapToCodeRepositoryList);
+                            .map(apiSearchRepositoriesResponse -> apiConverter.mapToCodeRepositoryList(apiSearchRepositoriesResponse.codeRepositories));
     }
 }

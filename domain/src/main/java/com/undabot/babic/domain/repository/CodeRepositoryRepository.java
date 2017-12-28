@@ -23,5 +23,5 @@ public interface CodeRepositoryRepository {
 
     Single<List<CodeRepository>> searchRepositories(String query, SearchOrder searchOrder);
 
-    Single<List<CodeRepository>> searchMoreRepositories(String query, SearchOrder searchOrder, int page);
+    Single<List<CodeRepository>> searchRepositories(String query, SearchOrder searchOrder, int page);
 }

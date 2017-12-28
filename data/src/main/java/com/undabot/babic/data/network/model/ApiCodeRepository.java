@@ -29,13 +29,13 @@ public final class ApiCodeRepository {
     public String language;
 
     @SerializedName("created_at")
-    public long createdAt;
+    public String createdAt;
 
     @SerializedName("updated_at")
-    public long updatedAt;
+    public String updatedAt;
 
     @SerializedName("pushed_at")
-    public long pushedAt;
+    public String pushedAt;
 
     @SerializedName("stargazers_count")
     public int stargazersCount;

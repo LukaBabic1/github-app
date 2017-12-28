@@ -7,7 +7,7 @@ public final class ApiUser {
     @SerializedName("id")
     public String id;
 
-    @SerializedName("username")
+    @SerializedName("login")
     public String username;
 
     @SerializedName("avatarUrl")
@@ -44,10 +44,10 @@ public final class ApiUser {
     public int following;
 
     @SerializedName("createdAt")
-    public long createdAt;
+    public String createdAt;
 
     @SerializedName("updatedAt")
-    public long updatedAt;
+    public String updatedAt;
 
     @SerializedName("privateGists")
     public int privateGists;
