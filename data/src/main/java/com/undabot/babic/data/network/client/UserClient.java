@@ -6,5 +6,5 @@ import rx.Single;
 
 public interface UserClient {
 
-    Single<User> fetchUser(String id);
+    Single<User> fetchUser(String username);
 }

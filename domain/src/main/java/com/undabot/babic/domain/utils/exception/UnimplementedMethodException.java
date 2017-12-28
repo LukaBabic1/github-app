@@ -1,4 +1,4 @@
-package com.undabot.babic.app.utils;
+package com.undabot.babic.domain.utils.exception;
 
 public final class UnimplementedMethodException extends RuntimeException {
 
