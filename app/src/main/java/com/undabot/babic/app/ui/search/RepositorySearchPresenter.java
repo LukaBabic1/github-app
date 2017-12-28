@@ -7,4 +7,9 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
     public RepositorySearchPresenter(final RepositorySearchContract.View view) {
         super(view);
     }
+
+    @Override
+    public void search(final String queryText) {
+        
+    }
 }

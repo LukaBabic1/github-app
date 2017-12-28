@@ -1,3 +1,13 @@
 <resources>
+
     <string name="app_name">data</string>
+
+    <!--Common texts -->
+    <string name="search">Search</string>
+    <string name="enter_search_text">Enter search text</string>
+
+    <!--Repository search screen-->
+    <string name="repository_search_screen_edit_text_hint">@string/enter_search_text</string>
+    <string name="repository_search_screen_search_button_text">@string/search</string>
+
 </resources>

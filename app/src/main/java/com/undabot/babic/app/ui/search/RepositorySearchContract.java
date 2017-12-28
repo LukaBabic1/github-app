@@ -11,9 +11,13 @@ public final class RepositorySearchContract {
 
     public interface View extends BaseView {
 
+        void showLoading();
+
+        void hideLoading();
     }
 
     public interface Presenter extends ScopedPresenter {
 
+        void search(String queryText);
     }
 }

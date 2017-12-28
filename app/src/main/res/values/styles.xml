@@ -8,4 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="RepositorySearchScreenEditTextStyle">
+        <item name="android:hint">@string/repository_search_screen_edit_text_hint</item>
+    </style>
+
+    <style name="RepositorySearchScreenSearchButtonStyle">
+        <item name="android:text">@string/repository_search_screen_search_button_text</item>
+    </style>
+
 </resources>

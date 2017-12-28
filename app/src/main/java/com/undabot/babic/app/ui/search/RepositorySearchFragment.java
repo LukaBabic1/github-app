@@ -1,5 +1,9 @@
 package com.undabot.babic.app.ui.search;
 
+import android.support.v7.widget.RecyclerView;
+import android.widget.Button;
+import android.widget.EditText;
+
 import com.undabot.babic.app.R;
 import com.undabot.babic.app.base.BaseFragment;
 import com.undabot.babic.app.base.ScopedPresenter;
@@ -7,9 +11,21 @@ import com.undabot.babic.app.injection.fragment.FragmentComponent;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.OnClick;
+
 public final class RepositorySearchFragment extends BaseFragment implements RepositorySearchContract.View {
 
     public static final String TAG = "SearchFragment";
+
+    @BindView(R.id.fragment_repository_search_edit_text)
+    EditText searchEditText;
+
+    @BindView(R.id.fragment_repository_search_search_button)
+    Button searchButton;
+
+    @BindView(R.id.fragment_repository_search_recycler_view)
+    RecyclerView recyclerView;
 
     @Inject
     RepositorySearchContract.Presenter presenter;
@@ -31,5 +47,20 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
     @Override
     public ScopedPresenter getPresenter() {
         return presenter;
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @OnClick(R.id.fragment_repository_search_search_button)
+    void onSearchButtonClicked() {
+        presenter.search(searchEditText.getText().toString());
     }
 }
