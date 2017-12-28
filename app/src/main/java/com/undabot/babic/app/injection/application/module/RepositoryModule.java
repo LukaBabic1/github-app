@@ -1,5 +1,6 @@
 package com.undabot.babic.app.injection.application.module;
 
+import com.undabot.babic.data.network.client.CodeRepositoryClient;
 import com.undabot.babic.data.network.client.UserClient;
 import com.undabot.babic.data.repository.CodeRepositoryRepositoryImpl;
 import com.undabot.babic.data.repository.UserRepositoryImpl;
@@ -16,8 +17,8 @@ public final class RepositoryModule {
 
     @Provides
     @Singleton
-    CodeRepositoryRepository provideCodeRepositoryRepository() {
-        return new CodeRepositoryRepositoryImpl();
+    CodeRepositoryRepository provideCodeRepositoryRepository(final CodeRepositoryClient codeRepositoryClient) {
+        return new CodeRepositoryRepositoryImpl(codeRepositoryClient);
     }
 
     @Provides

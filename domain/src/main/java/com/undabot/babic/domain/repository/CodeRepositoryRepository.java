@@ -1,12 +1,27 @@
 package com.undabot.babic.domain.repository;
 
-import com.undabot.babic.domain.model.User;
+import com.undabot.babic.domain.model.CodeRepository;
+
+import java.util.List;
 
 import rx.Single;
 
 public interface CodeRepositoryRepository {
 
-    Single<User> getUser(String username);
+    enum SearchOrder {
 
-    Single<User> fetchUser(String username);
+        STARS("stars"),
+        FORKS("forks"),
+        UPDATED("updated");
+
+        public final String value;
+
+        SearchOrder(final String value) {
+            this.value = value;
+        }
+    }
+
+    Single<List<CodeRepository>> searchRepositories(String query, SearchOrder searchOrder);
+
+    Single<List<CodeRepository>> searchMoreRepositories(String query, SearchOrder searchOrder, int page);
 }

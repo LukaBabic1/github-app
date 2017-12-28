@@ -1,10 +1,14 @@
 package com.undabot.babic.data.network.converter;
 
+import com.annimon.stream.Stream;
 import com.undabot.babic.data.network.model.ApiCodeRepository;
 import com.undabot.babic.data.network.model.ApiUser;
 import com.undabot.babic.domain.model.CodeRepository;
 import com.undabot.babic.domain.model.User;
 import com.undabot.babic.domain.utils.StringUtils;
+
+import java.util.Collections;
+import java.util.List;
 
 public final class ApiConverterImpl implements ApiConverter {
 
@@ -80,5 +84,24 @@ public final class ApiConverterImpl implements ApiConverter {
                                   apiCodeRepository.hasIssues,
                                   apiCodeRepository.hasProjects,
                                   apiCodeRepository.hasWiki);
+    }
+
+    @Override
+    public List<CodeRepository> mapToCodeRepositoryList(final List<ApiCodeRepository> apiCodeRepositories) {
+        if (apiCodeRepositories == null) {
+            throw new InvalidCodeRepositoryListPayloadException();
+        }
+
+        if (apiCodeRepositories.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        return mapToCodeRepositoryListInternal(apiCodeRepositories);
+    }
+
+    private List<CodeRepository> mapToCodeRepositoryListInternal(final List<ApiCodeRepository> apiCodeRepositories) {
+        return Stream.of(apiCodeRepositories)
+                     .map(this::mapToCodeRepository)
+                     .toList();
     }
 }
