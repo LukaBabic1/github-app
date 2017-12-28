@@ -1,6 +1,9 @@
 package com.undabot.babic.app.injection.application.module;
 
 import com.undabot.babic.domain.repository.CodeRepositoryRepository;
+import com.undabot.babic.domain.repository.UserRepository;
+import com.undabot.babic.domain.usecase.GetUserDataUseCase;
+import com.undabot.babic.domain.usecase.GetUserDataUseCaseImpl;
 import com.undabot.babic.domain.usecase.SearchMoreRepositoriesUseCase;
 import com.undabot.babic.domain.usecase.SearchMoreRepositoriesUseCaseImpl;
 import com.undabot.babic.domain.usecase.SearchRepositoriesUseCase;
@@ -13,7 +16,12 @@ import dagger.Provides;
 public final class UseCaseModule {
 
     @Provides
-    SearchRepositoriesUseCase provideSearchrRepositoriesUseCase(final CodeRepositoryRepository codeRepositoryRepository) {
+    GetUserDataUseCase provideGetUserDataUseCase(final UserRepository userRepository) {
+        return new GetUserDataUseCaseImpl(userRepository);
+    }
+
+    @Provides
+    SearchRepositoriesUseCase provideSearchRepositoriesUseCase(final CodeRepositoryRepository codeRepositoryRepository) {
         return new SearchRepositoriesUseCaseImpl(codeRepositoryRepository);
     }
 
@@ -23,6 +31,8 @@ public final class UseCaseModule {
     }
 
     public interface Exposes {
+
+        GetUserDataUseCase getUserDataUseCase();
 
         SearchRepositoriesUseCase searchRepositoriesUseCase();
 
