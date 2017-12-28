@@ -14,6 +14,10 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
     @Inject
     RepositorySearchContract.Presenter presenter;
 
+    public static RepositorySearchFragment newInstance() {
+        return new RepositorySearchFragment();
+    }
+
     @Override
     protected void inject(final FragmentComponent component) {
         component.inject(this);

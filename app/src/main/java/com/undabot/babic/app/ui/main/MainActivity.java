@@ -22,6 +22,10 @@ public final class MainActivity extends BaseActivity implements MainContract.Vie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bindViews();
+
+        if (savedInstanceState == null) {
+            presenter.showSearchScreen();
+        }
     }
 
     private void bindViews() {

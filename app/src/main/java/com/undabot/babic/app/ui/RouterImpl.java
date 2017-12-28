@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 
 import com.undabot.babic.app.R;
 import com.undabot.babic.app.ui.repositorydetail.RepositoryDetailFragment;
+import com.undabot.babic.app.ui.search.RepositorySearchFragment;
 import com.undabot.babic.app.ui.userdetails.UserDetailsFragment;
 
 public final class RouterImpl implements Router {
@@ -20,6 +21,13 @@ public final class RouterImpl implements Router {
     }
 
     @Override
+    public void showRepositorySearchScreen() {
+        fragmentManager.beginTransaction()
+                       .replace(CONTAINER_ID, RepositorySearchFragment.newInstance(), RepositorySearchFragment.TAG)
+                       .commit();
+    }
+
+    @Override
     public void showUserDetailsScreen() {
         fragmentManager.beginTransaction()
                        .replace(CONTAINER_ID, UserDetailsFragment.newInstance(), UserDetailsFragment.TAG)
@@ -29,7 +37,7 @@ public final class RouterImpl implements Router {
     @Override
     public void showRepositoryDetailsScreen() {
         fragmentManager.beginTransaction()
-                       .replace(CONTAINER_ID, RepositoryDetailFragment.newInstance(), UserDetailsFragment.TAG)
+                       .replace(CONTAINER_ID, RepositoryDetailFragment.newInstance(), RepositoryDetailFragment.TAG)
                        .commit();
     }
 

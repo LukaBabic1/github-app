@@ -15,5 +15,6 @@ public final class MainContract {
 
     public interface Presenter extends ScopedPresenter {
 
+        void showSearchScreen();
     }
 }

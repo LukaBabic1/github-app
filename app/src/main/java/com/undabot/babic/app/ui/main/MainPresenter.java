@@ -7,4 +7,9 @@ public final class MainPresenter extends BasePresenter<MainContract.View> implem
     public MainPresenter(final MainContract.View view) {
         super(view);
     }
+
+    @Override
+    public void showSearchScreen() {
+        router.showRepositorySearchScreen();
+    }
 }
