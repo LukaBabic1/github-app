@@ -1,6 +1,8 @@
 package com.undabot.babic.data.network.converter;
 
+import com.undabot.babic.data.network.model.ApiCodeRepository;
 import com.undabot.babic.data.network.model.ApiUser;
+import com.undabot.babic.domain.model.CodeRepository;
 import com.undabot.babic.domain.model.User;
 import com.undabot.babic.domain.utils.StringUtils;
 
@@ -45,5 +47,38 @@ public final class ApiConverterImpl implements ApiConverter {
                         apiUser.publicGists,
                         apiUser.totalPrivateRepos,
                         apiUser.ownedPrivateRepos);
+    }
+
+    @Override
+    public CodeRepository mapToCodeRepository(final ApiCodeRepository apiCodeRepository) {
+        if (apiCodeRepository == null) {
+            throw new InvalidCodeRepositoryPayloadException();
+        }
+
+        return mapToCodeRepositoryInternal(apiCodeRepository);
+    }
+
+    private CodeRepository mapToCodeRepositoryInternal(final ApiCodeRepository apiCodeRepository) {
+        return new CodeRepository(apiCodeRepository.id,
+                                  stringUtils.itOrDefault(apiCodeRepository.name, EMPTY),
+                                  stringUtils.itOrDefault(apiCodeRepository.fullName, EMPTY),
+                                  mapToUser(apiCodeRepository.owner),
+                                  stringUtils.itOrDefault(apiCodeRepository.description, EMPTY),
+                                  stringUtils.itOrDefault(apiCodeRepository.repositoryUrl, EMPTY),
+                                  stringUtils.itOrDefault(apiCodeRepository.homepageUrl, EMPTY),
+                                  stringUtils.itOrDefault(apiCodeRepository.language, EMPTY),
+                                  // TODO
+                                  0L,
+                                  0L,
+                                  0L,
+                                  apiCodeRepository.stargazersCount,
+                                  apiCodeRepository.watchersCount,
+                                  apiCodeRepository.forksCount,
+                                  apiCodeRepository.openIssuesCount,
+                                  apiCodeRepository.score,
+                                  apiCodeRepository.isPrivate,
+                                  apiCodeRepository.hasIssues,
+                                  apiCodeRepository.hasProjects,
+                                  apiCodeRepository.hasWiki);
     }
 }
