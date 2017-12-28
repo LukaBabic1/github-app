@@ -12,6 +12,7 @@ import rx.Single;
 public final class CodeRepositoryClientImpl implements CodeRepositoryClient {
 
     private static final int DEFAULT_PAGE = 1;
+    private static final int ZERO_BASED_OFFSET_FIX = 1;
 
     private final ApiConverter apiConverter;
     private final GitHubService gitHubService;
@@ -28,7 +29,7 @@ public final class CodeRepositoryClientImpl implements CodeRepositoryClient {
 
     @Override
     public Single<List<CodeRepository>> searchRepositories(final String query, final SearchOrder searchOrder, final int perPage, final int page) {
-        return gitHubService.searchRepositories(query, searchOrder.value, perPage, page)
+        return gitHubService.searchRepositories(query, searchOrder.value, perPage, page + ZERO_BASED_OFFSET_FIX)
                             .map(apiSearchRepositoriesResponse -> apiConverter.mapToCodeRepositoryList(apiSearchRepositoriesResponse.codeRepositories));
     }
 }
