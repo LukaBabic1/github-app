@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import com.annimon.stream.Optional;
 import com.undabot.babic.app.R;
 import com.undabot.babic.app.base.BaseFragment;
 import com.undabot.babic.app.base.ScopedPresenter;
@@ -35,6 +36,8 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
     @Inject
     RepositorySearchContract.Presenter presenter;
 
+    Optional<RepositorySearchScreenViewModel> repositorySearchScreenViewModel = Optional.empty();
+
     public static RepositorySearchFragment newInstance() {
         return new RepositorySearchFragment();
     }
@@ -52,6 +55,11 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
     @Override
     public ScopedPresenter getPresenter() {
         return presenter;
+    }
+
+    @Override
+    public void render(final RepositorySearchScreenViewModel viewModel) {
+        repositorySearchScreenViewModel = Optional.of(viewModel);
     }
 
     @Override

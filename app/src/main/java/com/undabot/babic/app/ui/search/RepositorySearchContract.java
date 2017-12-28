@@ -11,6 +11,8 @@ public final class RepositorySearchContract {
 
     public interface View extends BaseView {
 
+        void render(RepositorySearchScreenViewModel viewModel);
+
         void showLoading();
 
         void hideLoading();
