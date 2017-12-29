@@ -72,6 +72,8 @@ dependencies {
     implementation 'com.google.dagger:dagger:' + $daggerVersion
     annotationProcessor 'com.google.dagger:dagger-compiler:' + $daggerVersion
 
+    implementation 'com.github.bumptech.glide:glide:' + $glideVersion
+
     implementation 'io.reactivex:rxandroid:' + $rxAndroidVersion
 
     implementation 'com.google.firebase:firebase-core:' + $firebaseVersion
