@@ -10,10 +10,10 @@ public final class ApiUser {
     @SerializedName("login")
     public String username;
 
-    @SerializedName("avatarUrl")
+    @SerializedName("avatar_url")
     public String avatarUrl;
 
-    @SerializedName("siteHtmlUrl")
+    @SerializedName("html_url")
     public String siteHtmlUrl;
 
     @SerializedName("name")
@@ -43,30 +43,30 @@ public final class ApiUser {
     @SerializedName("following")
     public int following;
 
-    @SerializedName("createdAt")
+    @SerializedName("created_at")
     public String createdAt;
 
-    @SerializedName("updatedAt")
+    @SerializedName("updated_at")
     public String updatedAt;
 
-    @SerializedName("privateGists")
+    @SerializedName("private_gists")
     public int privateGists;
 
-    @SerializedName("publicRepos")
+    @SerializedName("public_repos")
     public int publicRepos;
 
-    @SerializedName("publicGists")
+    @SerializedName("public_gists")
     public int publicGists;
 
-    @SerializedName("totalPrivateRepos")
+    @SerializedName("total_private_repos")
     public int totalPrivateRepos;
 
-    @SerializedName("ownedPrivateRepos")
+    @SerializedName("owned_private_repos")
     public int ownedPrivateRepos;
 }
 
 /*
-    "login": "LukaBabic1",
+            "login": "LukaBabic1",
             "id": 4068512,
             "avatar_url": "https://avatars0.githubusercontent.com/u/4068512?v=4",
             "gravatar_id": "",
