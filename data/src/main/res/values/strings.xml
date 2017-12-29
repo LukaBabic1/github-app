@@ -20,4 +20,12 @@
     <string name="repository_search_screen_radio_button_updated_text">@string/updated</string>
     <string name="repository_search_screen_data_fetch_error_message">@string/oops_something_went_wrong_try_again</string>
 
+    <!-- Repository adapter -->
+    <string name="repository_adapter_author_name_template">Author: %s</string>
+    <string name="repository_adapter_stars_count">Stars: %d</string>
+    <string name="repository_adapter_watchers_count">Watchers: %d</string>
+    <string name="repository_adapter_forks_count_template">Forks: %d</string>
+    <string name="repository_adapter_open_issues_count_template">Open issues: %d</string>
+    <string name="repository_adapter_score_template">Score: %f</string>
+
 </resources>

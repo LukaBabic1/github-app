@@ -14,6 +14,7 @@ import com.undabot.babic.app.utils.ui.ImageLoader;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -80,6 +81,9 @@ public final class CodeRepositoriesAdapter extends RecyclerView.Adapter<CodeRepo
         @BindView(R.id.adapter_code_repository_row_item_author_name)
         TextView authorName;
 
+        @BindView(R.id.adapter_code_repository_row_item_stars_count)
+        TextView starsCount;
+
         @BindView(R.id.adapter_code_repository_row_item_followers_count)
         TextView followersCount;
 
@@ -88,6 +92,24 @@ public final class CodeRepositoriesAdapter extends RecyclerView.Adapter<CodeRepo
 
         @BindView(R.id.adapter_code_repository_row_item_issues_count)
         TextView issuesCount;
+
+        @BindString(R.string.repository_adapter_author_name_template)
+        String authorNameTemplate;
+
+        @BindString(R.string.repository_adapter_stars_count)
+        String starsCountTemplate;
+
+        @BindString(R.string.repository_adapter_watchers_count)
+        String watchersCountTemplate;
+
+        @BindString(R.string.repository_adapter_forks_count_template)
+        String forksCountTemplate;
+
+        @BindString(R.string.repository_adapter_open_issues_count_template)
+        String openIssuesCountTemplate;
+
+        @BindString(R.string.repository_adapter_score_template)
+        String scoreTemplate;
 
         private final ImageLoader imageLoader;
 
@@ -109,10 +131,11 @@ public final class CodeRepositoriesAdapter extends RecyclerView.Adapter<CodeRepo
             this.viewModel = Optional.of(viewModel);
 
             repositoryName.setText(viewModel.name);
-            authorName.setText(viewModel.repositoryOwnerViewModel.name);
-            followersCount.setText(String.valueOf(viewModel.watchersCount));
-            forksCount.setText(String.valueOf(viewModel.forksCount));
-            issuesCount.setText(String.valueOf(viewModel.openIssuesCount));
+            authorName.setText(String.format(authorNameTemplate, viewModel.repositoryOwnerViewModel.name));
+            starsCount.setText(String.format(starsCountTemplate, viewModel.stargazersCount));
+            followersCount.setText(String.format(watchersCountTemplate, viewModel.watchersCount));
+            forksCount.setText(String.format(forksCountTemplate, viewModel.forksCount));
+            issuesCount.setText(String.format(openIssuesCountTemplate, viewModel.openIssuesCount));
 
             imageLoader.loadImage(viewModel.repositoryOwnerViewModel.avatarUrl, authorAvatarImage);
         }
