@@ -1,5 +1,8 @@
 package com.undabot.babic.app.ui.search;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
@@ -12,13 +15,15 @@ import com.undabot.babic.app.R;
 import com.undabot.babic.app.base.BaseFragment;
 import com.undabot.babic.app.base.ScopedPresenter;
 import com.undabot.babic.app.injection.fragment.FragmentComponent;
+import com.undabot.babic.app.utils.ui.KeyboardUtils;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public final class RepositorySearchFragment extends BaseFragment implements RepositorySearchContract.View {
+public final class RepositorySearchFragment extends BaseFragment implements RepositorySearchContract.View,
+                                                                            CodeRepositoriesAdapter.CodeRepositoriesAdapterListener {
 
     public static final String TAG = "SearchFragment";
 
@@ -37,6 +42,12 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
     @Inject
     RepositorySearchContract.Presenter presenter;
 
+    @Inject
+    CodeRepositoriesAdapter codeRepositoriesAdapter;
+
+    @Inject
+    KeyboardUtils keyboardUtils;
+
     Optional<RepositorySearchScreenViewModel> repositorySearchScreenViewModel = Optional.empty();
 
     public static RepositorySearchFragment newInstance() {
@@ -54,6 +65,22 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
     }
 
     @Override
+    public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initAdapter();
+        initRecyclerView();
+    }
+
+    private void initAdapter() {
+        codeRepositoriesAdapter.setListener(this);
+    }
+
+    private void initRecyclerView() {
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        recyclerView.setAdapter(codeRepositoriesAdapter);
+    }
+
+    @Override
     public ScopedPresenter getPresenter() {
         return presenter;
     }
@@ -61,22 +88,40 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
     @Override
     public void render(final RepositorySearchScreenViewModel viewModel) {
         repositorySearchScreenViewModel = Optional.of(viewModel);
+        codeRepositoriesAdapter.setItems(viewModel.codeRepositoryViewModels);
     }
 
     @Override
     public void showLoading() {
+        searchButton.setEnabled(false);
         progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
+        searchButton.setEnabled(true);
         progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideKeyboard() {
+        keyboardUtils.hideSoftKeyboard(searchEditText);
     }
 
     @Override
     public void showErrorDialog() {
         Toast.makeText(getContext(), R.string.repository_search_screen_data_fetch_error_message, Toast.LENGTH_SHORT)
              .show();
+    }
+
+    @Override
+    public void onRepositoryClicked(final int id) {
+        presenter.showRepositoryDetails(id);
+    }
+
+    @Override
+    public void onUserAvatarClicked(final int id) {
+        presenter.showUserDetails(id);
     }
 
     @OnClick(R.id.fragment_repository_search_search_button)

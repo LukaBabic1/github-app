@@ -33,14 +33,15 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
             return;
         }
 
+        doIfViewNotNull(RepositorySearchContract.View::hideKeyboard);
         searchInternal(queryText);
     }
 
     private void searchInternal(final String queryText) {
         viewActionQueue.subscribeTo(searchRepositoriesUseCase.execute(new SearchRepositoriesUseCase.Request(queryText, CodeRepositoryRepository.SearchOrder.STARS))
-                                                             .observeOn(mainThreadScheduler)
                                                              .map(viewModelConverter::mapCodeRepositoriesToViewModels)
-                                                             .map(this::mapToViewAction),
+                                                             .map(this::mapToViewAction)
+                                                             .subscribeOn(backgroundScheduler),
                                     this::processSearchError);
     }
 
@@ -54,6 +55,16 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
     private void processSearchError(final Throwable throwable) {
         logError(throwable);
         doIfViewNotNull(RepositorySearchContract.View::hideLoading);
-        doIfViewNotNull(view -> view.showErrorDialog());
+        doIfViewNotNull(RepositorySearchContract.View::showErrorDialog);
+    }
+
+    @Override
+    public void showRepositoryDetails(final int id) {
+
+    }
+
+    @Override
+    public void showUserDetails(final int id) {
+
     }
 }

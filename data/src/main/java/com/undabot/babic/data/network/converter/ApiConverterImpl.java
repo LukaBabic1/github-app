@@ -37,7 +37,7 @@ public final class ApiConverterImpl implements ApiConverter {
                         stringUtils.itOrDefault(apiUser.name, EMPTY),
                         stringUtils.itOrDefault(apiUser.type, EMPTY),
                         stringUtils.itOrDefault(apiUser.companyName, EMPTY),
-                        stringUtils.itOrDefault(apiUser.companyName, EMPTY),
+                        stringUtils.itOrDefault(apiUser.location, EMPTY),
                         stringUtils.itOrDefault(apiUser.email, EMPTY),
                         apiUser.siteAdmin,
                         Boolean.TRUE.toString().equalsIgnoreCase(stringUtils.itOrDefault(apiUser.hireable, EMPTY)),

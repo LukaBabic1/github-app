@@ -17,11 +17,17 @@ public final class RepositorySearchContract {
 
         void hideLoading();
 
+        void hideKeyboard();
+
         void showErrorDialog();
     }
 
     public interface Presenter extends ScopedPresenter {
 
         void search(String queryText);
+
+        void showRepositoryDetails(int id);
+
+        void showUserDetails(int id);
     }
 }

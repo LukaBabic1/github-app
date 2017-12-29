@@ -3,7 +3,19 @@
 
     <dimen name="min_touchable_width">56dp</dimen>
     <dimen name="min_touchable_height">56dp</dimen>
+    <dimen name="baseline_distance">4dp</dimen>
+    <dimen name="content_area_distance">8dp</dimen>
+    <dimen name="screen_edge_distance">16dp</dimen>
 
+    <!-- Repository search screen -->
     <dimen name="repository_search_screen_radio_group_height">@dimen/min_touchable_height</dimen>
+
+    <!-- Repository adapter -->
+    <dimen name="repository_adapter_title_text_size">24sp</dimen>
+
+    <dimen name="repository_adapter_root_view_padding_start">@dimen/screen_edge_distance</dimen>
+    <dimen name="repository_adapter_root_view_padding_top">@dimen/baseline_distance</dimen>
+    <dimen name="repository_adapter_root_view_padding_end">@dimen/screen_edge_distance</dimen>
+    <dimen name="repository_adapter_root_view_padding_bottom">@dimen/baseline_distance</dimen>
 
 </resources>

@@ -8,6 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Repository search screen -->
+
     <style name="RepositorySearchScreenEditTextStyle">
         <item name="android:hint">@string/repository_search_screen_edit_text_hint</item>
     </style>
@@ -34,6 +36,19 @@
 
     <style name="RepositorySearchScreenRadioButtonBaseStyle.Updated">
         <item name="android:text">@string/repository_search_screen_radio_button_updated_text</item>
+    </style>
+
+    <!-- Repositories adapter -->
+    <style name="RepositoriesAdapterRootViewStyle">
+        <item name="android:paddingStart">@dimen/repository_adapter_root_view_padding_start</item>
+        <item name="android:paddingTop">@dimen/repository_adapter_root_view_padding_top</item>
+        <item name="android:paddingRight">@dimen/repository_adapter_root_view_padding_end</item>
+        <item name="android:paddingBottom">@dimen/repository_adapter_root_view_padding_bottom</item>
+    </style>
+
+    <style name="RepositoriesAdapterTitleStyle">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/repository_adapter_title_text_size</item>
     </style>
 
 </resources>
