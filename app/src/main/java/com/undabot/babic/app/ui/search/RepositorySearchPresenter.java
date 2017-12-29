@@ -33,7 +33,10 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
             return;
         }
 
-        doIfViewNotNull(RepositorySearchContract.View::hideKeyboard);
+        doIfViewNotNull(view -> {
+            view.hideKeyboard();
+            view.showLoading();
+        });
         searchInternal(queryText);
     }
 
