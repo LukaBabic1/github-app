@@ -39,6 +39,15 @@
     </style>
 
     <!-- Repositories adapter -->
+    <style name="RepositoriesAdapterRootCardViewStyle">
+        <item name="android:layout_marginStart">@dimen/repository_adapter_root_card_view_layout_margin_start</item>
+        <item name="android:layout_marginTop">@dimen/repository_adapter_root_card_view_layout_margin_top</item>
+        <item name="android:layout_marginEnd">@dimen/repository_adapter_root_card_view_layout_margin_end</item>
+        <item name="android:layout_marginBottom">@dimen/repository_adapter_root_card_view_layout_margin_bottom</item>
+        <item name="cardCornerRadius">@dimen/repository_adapter_root_card_view_corner_radius</item>
+        <item name="cardElevation">@dimen/repository_adapter_root_card_view_elevation</item>
+    </style>
+
     <style name="RepositoriesAdapterRootViewStyle">
         <item name="android:paddingStart">@dimen/repository_adapter_root_view_padding_start</item>
         <item name="android:paddingTop">@dimen/repository_adapter_root_view_padding_top</item>
