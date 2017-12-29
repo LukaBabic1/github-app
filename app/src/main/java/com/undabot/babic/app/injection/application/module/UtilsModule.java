@@ -15,8 +15,8 @@ public final class UtilsModule {
 
     @Provides
     @Singleton
-    ViewModelConverter provideViewModelConverter() {
-        return new ViewModelConverterImpl();
+    ViewModelConverter provideViewModelConverter(final StringUtils stringUtils) {
+        return new ViewModelConverterImpl(stringUtils);
     }
 
     @Provides

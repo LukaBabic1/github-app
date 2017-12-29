@@ -5,14 +5,21 @@ import com.undabot.babic.app.ui.search.CodeRepositoryViewModel;
 import com.undabot.babic.app.ui.search.RepositoryOwnerViewModel;
 import com.undabot.babic.domain.model.CodeRepository;
 import com.undabot.babic.domain.model.User;
+import com.undabot.babic.domain.utils.StringUtils;
 
 import java.util.List;
 
 public final class ViewModelConverterImpl implements ViewModelConverter {
 
+    private final StringUtils stringUtils;
+
+    public ViewModelConverterImpl(final StringUtils stringUtils) {
+        this.stringUtils = stringUtils;
+    }
+
     @Override
     public RepositoryOwnerViewModel mapUserToRepositoryOwnerViewModel(final User user) {
-        return new RepositoryOwnerViewModel(user.id, user.username, user.avatarUrl, user.name);
+        return new RepositoryOwnerViewModel(user.id, user.username, user.avatarUrl, stringUtils.itOrDefault(user.name, user.username));
     }
 
     @Override
