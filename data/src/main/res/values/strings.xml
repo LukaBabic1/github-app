@@ -9,6 +9,7 @@
     <string name="stars">Stars</string>
     <string name="forks">Forks</string>
     <string name="updated">Updated</string>
+    <string name="oops_something_went_wrong_try_again">Oops, something went wrong. Please try again.</string>
 
     <!--Repository search screen-->
     <string name="repository_search_screen_edit_text_hint">@string/enter_search_text</string>
@@ -17,5 +18,6 @@
     <string name="repository_search_screen_radio_button_stars_text">@string/stars</string>
     <string name="repository_search_screen_radio_button_forks_text">@string/forks</string>
     <string name="repository_search_screen_radio_button_updated_text">@string/updated</string>
+    <string name="repository_search_screen_data_fetch_error_message">@string/oops_something_went_wrong_try_again</string>
 
 </resources>

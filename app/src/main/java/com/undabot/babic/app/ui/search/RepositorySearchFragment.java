@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.annimon.stream.Optional;
 import com.undabot.babic.app.R;
@@ -70,6 +71,12 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
     @Override
     public void hideLoading() {
         progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showErrorDialog() {
+        Toast.makeText(getContext(), R.string.repository_search_screen_data_fetch_error_message, Toast.LENGTH_SHORT)
+             .show();
     }
 
     @OnClick(R.id.fragment_repository_search_search_button)

@@ -2,9 +2,9 @@ package com.undabot.babic.domain.model;
 
 public final class User {
 
-    public static final User EMPTY = new User("", "", "", "", "", "", "", "", "", false, false, 0, 0, 0L, 0L, 0, 0, 0, 0, 0);
+    public static final User EMPTY = new User(0, "", "", "", "", "", "", "", "", false, false, 0, 0, 0L, 0L, 0, 0, 0, 0, 0);
 
-    public final String id;
+    public final int id;
     public final String username;
     public final String avatarUrl;
     public final String siteHtmlUrl;
@@ -25,7 +25,7 @@ public final class User {
     public final int totalPrivateRepos;
     public final int ownedPrivateRepos;
 
-    public User(final String id, final String username, final String avatarUrl, final String siteHtmlUrl, final String name, final String type, final String companyName,
+    public User(final int id, final String username, final String avatarUrl, final String siteHtmlUrl, final String name, final String type, final String companyName,
                 final String location, final String email, final boolean siteAdmin, final boolean hireable, final int followers, final int following, final long createdAt,
                 final long updatedAt, final int privateGists, final int publicRepos, final int publicGists, final int totalPrivateRepos, final int ownedPrivateRepos) {
 
@@ -62,6 +62,9 @@ public final class User {
 
         final User user = (User) o;
 
+        if (id != user.id) {
+            return false;
+        }
         if (siteAdmin != user.siteAdmin) {
             return false;
         }
@@ -95,9 +98,6 @@ public final class User {
         if (ownedPrivateRepos != user.ownedPrivateRepos) {
             return false;
         }
-        if (id != null ? !id.equals(user.id) : user.id != null) {
-            return false;
-        }
         if (username != null ? !username.equals(user.username) : user.username != null) {
             return false;
         }
@@ -124,7 +124,7 @@ public final class User {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = id;
         result = 31 * result + (username != null ? username.hashCode() : 0);
         result = 31 * result + (avatarUrl != null ? avatarUrl.hashCode() : 0);
         result = 31 * result + (siteHtmlUrl != null ? siteHtmlUrl.hashCode() : 0);
@@ -150,7 +150,7 @@ public final class User {
     @Override
     public String toString() {
         return "User{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", username='" + username + '\'' +
                 ", avatarUrl='" + avatarUrl + '\'' +
                 ", siteHtmlUrl='" + siteHtmlUrl + '\'' +

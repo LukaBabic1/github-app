@@ -1,5 +1,7 @@
 package com.undabot.babic.app.injection.application.module;
 
+import com.undabot.babic.app.ui.ViewModelConverter;
+import com.undabot.babic.app.ui.ViewModelConverterImpl;
 import com.undabot.babic.domain.utils.StringUtils;
 import com.undabot.babic.domain.utils.StringUtilsImpl;
 
@@ -13,11 +15,19 @@ public final class UtilsModule {
 
     @Provides
     @Singleton
+    ViewModelConverter provideViewModelConverter() {
+        return new ViewModelConverterImpl();
+    }
+
+    @Provides
+    @Singleton
     StringUtils provideStringUtils() {
         return new StringUtilsImpl();
     }
 
     public interface Exposes {
+
+        ViewModelConverter viewModelConverter();
 
         StringUtils stringUtils();
     }

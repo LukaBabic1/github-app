@@ -16,7 +16,7 @@ public interface SearchRepositoriesUseCase {
         public final String searchText;
         public final SearchOrder searchOrder;
 
-        public Request(final String searchText, final SearchOrder searchOrder, final int page) {
+        public Request(final String searchText, final SearchOrder searchOrder) {
             this.searchText = searchText;
             this.searchOrder = searchOrder;
         }

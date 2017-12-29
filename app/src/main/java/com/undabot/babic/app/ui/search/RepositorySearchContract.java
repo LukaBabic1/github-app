@@ -16,6 +16,8 @@ public final class RepositorySearchContract {
         void showLoading();
 
         void hideLoading();
+
+        void showErrorDialog();
     }
 
     public interface Presenter extends ScopedPresenter {
