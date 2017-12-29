@@ -11,7 +11,7 @@ import rx.Single;
 
 public final class CodeRepositoryClientImpl implements CodeRepositoryClient {
 
-    private static final int DEFAULT_PAGE = 1;
+    private static final int DEFAULT_PAGE = 0;
     private static final int ZERO_BASED_OFFSET_FIX = 1;
 
     private final ApiConverter apiConverter;
