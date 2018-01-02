@@ -28,9 +28,9 @@ public final class RouterImpl implements Router {
     }
 
     @Override
-    public void showUserDetailsScreen(final int userId) {
+    public void showUserDetailsScreen(final String username) {
         fragmentManager.beginTransaction()
-                       .replace(CONTAINER_ID, UserDetailsFragment.newInstance(userId), UserDetailsFragment.TAG)
+                       .replace(CONTAINER_ID, UserDetailsFragment.newInstance(username), UserDetailsFragment.TAG)
                        .addToBackStack(null)
                        .commit();
     }

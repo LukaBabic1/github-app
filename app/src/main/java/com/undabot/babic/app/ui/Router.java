@@ -4,7 +4,7 @@ public interface Router {
 
     void showRepositorySearchScreen();
 
-    void showUserDetailsScreen(int userId);
+    void showUserDetailsScreen(String username);
 
     void showRepositoryDetailsScreen(int repositoryId);
 

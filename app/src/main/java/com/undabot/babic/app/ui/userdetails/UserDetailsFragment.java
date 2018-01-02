@@ -21,7 +21,7 @@ public final class UserDetailsFragment extends BaseFragment implements UserDetai
     @Inject
     UserDetailsContract.Presenter presenter;
 
-    public static UserDetailsFragment newInstance(final int userId) {
+    public static UserDetailsFragment newInstance(final String userId) {
         final Bundle bundle = new Bundle();
         bundle.putParcelable(KEY_EXTRAS, new Extras(userId));
 
@@ -40,7 +40,7 @@ public final class UserDetailsFragment extends BaseFragment implements UserDetai
     private void extractArguments() {
         Optional.ofNullable(getArguments())
                 .map(bundle -> (Extras) bundle.getParcelable(KEY_EXTRAS))
-                .map(extras -> extras.userId)
+                .map(extras -> extras.username)
                 .ifPresentOrElse(presenter::init,
                                  this::throwArgumentsMissingException);
     }
@@ -66,19 +66,19 @@ public final class UserDetailsFragment extends BaseFragment implements UserDetai
 
     static final class Extras implements Parcelable {
 
-        final int userId;
+        final String username;
 
-        Extras(final int userId) {
-            this.userId = userId;
+        public Extras(final String username) {
+            this.username = username;
         }
 
         @Override
         public int describeContents() { return 0; }
 
         @Override
-        public void writeToParcel(Parcel dest, int flags) {dest.writeInt(this.userId);}
+        public void writeToParcel(Parcel dest, int flags) {dest.writeString(this.username);}
 
-        protected Extras(Parcel in) {this.userId = in.readInt();}
+        protected Extras(Parcel in) {this.username = in.readString();}
 
         public static final Creator<Extras> CREATOR = new Creator<Extras>() {
 

@@ -175,8 +175,8 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
     }
 
     @Override
-    public void onUserAvatarClicked(final int id) {
-        presenter.showUserDetails(id);
+    public void onUserAvatarClicked(final String username) {
+        presenter.showUserDetails(username);
     }
 
     @OnClick(R.id.fragment_repository_search_search_button)

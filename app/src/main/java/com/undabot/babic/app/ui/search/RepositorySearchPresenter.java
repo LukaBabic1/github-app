@@ -108,7 +108,7 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
     }
 
     @Override
-    public void showUserDetails(final int userId) {
-        router.showUserDetailsScreen(userId);
+    public void showUserDetails(final String username) {
+        router.showUserDetailsScreen(username);
     }
 }

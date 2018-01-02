@@ -45,6 +45,6 @@ public final class RepositorySearchContract {
 
         void showRepositoryDetails(int id);
 
-        void showUserDetails(int id);
+        void showUserDetails(String username);
     }
 }
