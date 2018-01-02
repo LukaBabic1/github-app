@@ -1,5 +1,7 @@
 package com.undabot.babic.app.injection.application.module;
 
+import com.undabot.babic.data.cache.CodeRepositoryCache;
+import com.undabot.babic.data.cache.UserCache;
 import com.undabot.babic.data.network.client.CodeRepositoryClient;
 import com.undabot.babic.data.network.client.UserClient;
 import com.undabot.babic.data.repository.CodeRepositoryRepositoryImpl;
@@ -17,14 +19,14 @@ public final class RepositoryModule {
 
     @Provides
     @Singleton
-    CodeRepositoryRepository provideCodeRepositoryRepository(final CodeRepositoryClient codeRepositoryClient) {
-        return new CodeRepositoryRepositoryImpl(codeRepositoryClient);
+    CodeRepositoryRepository provideCodeRepositoryRepository(final CodeRepositoryClient codeRepositoryClient, final CodeRepositoryCache codeRepositoryCache) {
+        return new CodeRepositoryRepositoryImpl(codeRepositoryClient, codeRepositoryCache);
     }
 
     @Provides
     @Singleton
-    UserRepository provideUserRepository(final UserClient userClient) {
-        return new UserRepositoryImpl(userClient);
+    UserRepository provideUserRepository(final UserClient userClient, final UserCache userCache) {
+        return new UserRepositoryImpl(userClient, userCache);
     }
 
     public interface Exposes {
