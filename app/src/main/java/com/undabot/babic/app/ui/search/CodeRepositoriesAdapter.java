@@ -149,6 +149,7 @@ public final class CodeRepositoriesAdapter extends RecyclerView.Adapter<CodeRepo
             viewModel.ifPresent(viewModel -> listenerOptional.ifPresent(listener -> listener.onRepositoryClicked(viewModel.id)));
         }
 
+        @OnClick(R.id.adapter_code_repository_row_item_owner_avatar_image)
         void onUserAvatarClicked() {
             viewModel.ifPresent(viewModel -> listenerOptional.ifPresent(listener -> listener.onUserAvatarClicked(viewModel.repositoryOwnerViewModel.id)));
         }
