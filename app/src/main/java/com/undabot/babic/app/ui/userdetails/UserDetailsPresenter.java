@@ -7,4 +7,9 @@ public final class UserDetailsPresenter extends BasePresenter<UserDetailsContrac
     public UserDetailsPresenter(final UserDetailsContract.View view) {
         super(view);
     }
+
+    @Override
+    public void init(final int userId) {
+        // TODO
+    }
 }

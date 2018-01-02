@@ -28,16 +28,18 @@ public final class RouterImpl implements Router {
     }
 
     @Override
-    public void showUserDetailsScreen() {
+    public void showUserDetailsScreen(final int userId) {
         fragmentManager.beginTransaction()
-                       .replace(CONTAINER_ID, UserDetailsFragment.newInstance(), UserDetailsFragment.TAG)
+                       .replace(CONTAINER_ID, UserDetailsFragment.newInstance(userId), UserDetailsFragment.TAG)
+                       .addToBackStack(null)
                        .commit();
     }
 
     @Override
-    public void showRepositoryDetailsScreen() {
+    public void showRepositoryDetailsScreen(final int repositoryId) {
         fragmentManager.beginTransaction()
-                       .replace(CONTAINER_ID, RepositoryDetailFragment.newInstance(), RepositoryDetailFragment.TAG)
+                       .replace(CONTAINER_ID, RepositoryDetailFragment.newInstance(repositoryId), RepositoryDetailFragment.TAG)
+                       .addToBackStack(null)
                        .commit();
     }
 

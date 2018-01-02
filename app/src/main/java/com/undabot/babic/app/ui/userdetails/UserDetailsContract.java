@@ -15,5 +15,6 @@ public final class UserDetailsContract {
 
     public interface Presenter extends ScopedPresenter {
 
+        void init(int userId);
     }
 }

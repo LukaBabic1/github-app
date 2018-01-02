@@ -14,7 +14,7 @@ public final class RepositoryDetailFragment extends BaseFragment implements Repo
     @Inject
     RepositoryDetailContract.Presenter presenter;
 
-    public static RepositoryDetailFragment newInstance() {
+    public static RepositoryDetailFragment newInstance(final int repositoryId) {
         return new RepositoryDetailFragment();
     }
 

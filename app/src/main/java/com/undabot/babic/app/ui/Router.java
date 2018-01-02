@@ -4,9 +4,9 @@ public interface Router {
 
     void showRepositorySearchScreen();
 
-    void showUserDetailsScreen();
+    void showUserDetailsScreen(int userId);
 
-    void showRepositoryDetailsScreen();
+    void showRepositoryDetailsScreen(int repositoryId);
 
     void goBack();
 }
