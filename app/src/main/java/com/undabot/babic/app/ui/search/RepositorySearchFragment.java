@@ -4,10 +4,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.SparseIntArray;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.annimon.stream.Optional;
@@ -15,6 +18,7 @@ import com.undabot.babic.app.R;
 import com.undabot.babic.app.base.BaseFragment;
 import com.undabot.babic.app.base.ScopedPresenter;
 import com.undabot.babic.app.injection.fragment.FragmentComponent;
+import com.undabot.babic.app.ui.search.RepositorySearchContract.Presenter.SearchOrderInt;
 import com.undabot.babic.app.utils.ui.KeyboardUtils;
 
 import javax.inject.Inject;
@@ -22,10 +26,39 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.undabot.babic.app.ui.search.RepositorySearchContract.Presenter.FORKS_SORT;
+import static com.undabot.babic.app.ui.search.RepositorySearchContract.Presenter.STARS_SORT;
+import static com.undabot.babic.app.ui.search.RepositorySearchContract.Presenter.UPDATED_SORT;
+
 public final class RepositorySearchFragment extends BaseFragment implements RepositorySearchContract.View,
                                                                             CodeRepositoriesAdapter.CodeRepositoriesAdapterListener {
 
     public static final String TAG = "SearchFragment";
+
+    private static final int UNSELECTED_RADIO_BUTTON_ID = -1;
+    private static final int SPARSE_ARRAY_INIT_LENGTH = 3;
+
+    private static final SparseIntArray RADIO_BUTTON_ID_TO_SORT_ORDER;
+
+    static {
+        RADIO_BUTTON_ID_TO_SORT_ORDER = new SparseIntArray(SPARSE_ARRAY_INIT_LENGTH);
+
+        RADIO_BUTTON_ID_TO_SORT_ORDER.put(R.id.fragment_repository_search_stars_sort, STARS_SORT);
+        RADIO_BUTTON_ID_TO_SORT_ORDER.put(R.id.fragment_repository_search_forks_sort, FORKS_SORT);
+        RADIO_BUTTON_ID_TO_SORT_ORDER.put(R.id.fragment_repository_search_updated_sort, UPDATED_SORT);
+    }
+
+    @BindView(R.id.fragment_repository_search_radio_group)
+    RadioGroup radioGroup;
+
+    @BindView(R.id.fragment_repository_search_stars_sort)
+    RadioButton starsSortRadioButton;
+
+    @BindView(R.id.fragment_repository_search_forks_sort)
+    RadioButton forksSortRadioButton;
+
+    @BindView(R.id.fragment_repository_search_updated_sort)
+    RadioButton updatedSortRadioButton;
 
     @BindView(R.id.fragment_repository_search_edit_text)
     EditText searchEditText;
@@ -126,6 +159,19 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
 
     @OnClick(R.id.fragment_repository_search_search_button)
     void onSearchButtonClicked() {
-        presenter.search(searchEditText.getText().toString());
+        final int selectedRadioButtonId = radioGroup.getCheckedRadioButtonId();
+        if (selectedRadioButtonId == UNSELECTED_RADIO_BUTTON_ID) {
+            showSortOrderNotSelectedPrompt();
+            return;
+        }
+
+        @SearchOrderInt
+        final int searchOrder = RADIO_BUTTON_ID_TO_SORT_ORDER.get(selectedRadioButtonId);
+        presenter.search(searchEditText.getText().toString(), searchOrder);
+    }
+
+    private void showSortOrderNotSelectedPrompt() {
+        Toast.makeText(getContext(), R.string.repository_search_screen_sort_order_not_selected_text, Toast.LENGTH_SHORT)
+             .show();
     }
 }

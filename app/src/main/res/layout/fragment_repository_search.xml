@@ -31,6 +31,7 @@
         style="@style/RepositorySearchScreenRadioGroupLabel"/>
 
     <RadioGroup
+        android:id="@+id/fragment_repository_search_radio_group"
         android:layout_width="match_parent"
         android:layout_height="@dimen/repository_search_screen_radio_group_height"
         android:gravity="center_vertical"
