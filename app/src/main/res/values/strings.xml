@@ -1,3 +1,31 @@
 <resources>
+
     <string name="app_name">GitHub app</string>
+
+    <!--Common texts -->
+    <string name="search">Search</string>
+    <string name="enter_search_text">Enter search text</string>
+    <string name="sort_by">Sort by:</string>
+    <string name="stars">Stars</string>
+    <string name="forks">Forks</string>
+    <string name="updated">Updated</string>
+    <string name="oops_something_went_wrong_try_again">Oops, something went wrong. Please try again.</string>
+
+    <!--Repository search screen-->
+    <string name="repository_search_screen_edit_text_hint">@string/enter_search_text</string>
+    <string name="repository_search_screen_search_button_text">@string/search</string>
+    <string name="repository_search_screen_sort_by_label">@string/sort_by</string>
+    <string name="repository_search_screen_radio_button_stars_text">@string/stars</string>
+    <string name="repository_search_screen_radio_button_forks_text">@string/forks</string>
+    <string name="repository_search_screen_radio_button_updated_text">@string/updated</string>
+    <string name="repository_search_screen_data_fetch_error_message">@string/oops_something_went_wrong_try_again</string>
+
+    <!-- Repository adapter -->
+    <string name="repository_adapter_author_name_template">Author: %s</string>
+    <string name="repository_adapter_stars_count">Stars: %d</string>
+    <string name="repository_adapter_watchers_count">Watchers: %d</string>
+    <string name="repository_adapter_forks_count_template">Forks: %d</string>
+    <string name="repository_adapter_open_issues_count_template">Open issues: %d</string>
+    <string name="repository_adapter_score_template">Score: %f</string>
+
 </resources>
