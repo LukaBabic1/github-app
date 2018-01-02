@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.annimon.stream.Optional;
 import com.undabot.babic.app.R;
@@ -143,8 +142,7 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
 
     @Override
     public void showErrorDialog() {
-        Toast.makeText(getContext(), R.string.repository_search_screen_data_fetch_error_message, Toast.LENGTH_SHORT)
-             .show();
+        showShortToast(R.string.repository_search_screen_data_fetch_error_message);
     }
 
     @Override
@@ -171,7 +169,6 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
     }
 
     private void showSortOrderNotSelectedPrompt() {
-        Toast.makeText(getContext(), R.string.repository_search_screen_sort_order_not_selected_text, Toast.LENGTH_SHORT)
-             .show();
+        showShortToast(R.string.repository_search_screen_sort_order_not_selected_text);
     }
 }

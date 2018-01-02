@@ -79,7 +79,16 @@ public abstract class BaseFragment extends DaggerFragment implements BackPropaga
     }
 
     protected final void showShortToast(@StringRes final int stringResourceId) {
-        Toast.makeText(getContext(), stringResourceId, Toast.LENGTH_SHORT).show();
+        showToast(stringResourceId, Toast.LENGTH_LONG);
+    }
+
+    protected final void showLongToast(@StringRes final int stringResourceId) {
+        showToast(stringResourceId, Toast.LENGTH_LONG);
+    }
+
+    private void showToast(@StringRes final int stringResourceId, final int length) {
+        Optional.ofNullable(getContext())
+                .ifPresent(context -> Toast.makeText(context, stringResourceId, length).show());
     }
 
     public abstract ScopedPresenter getPresenter();
