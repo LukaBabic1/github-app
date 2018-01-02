@@ -8,8 +8,15 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <!-- Repository search screen -->
+    <!--Common layouts -->
+    <style name="NoInternetConnectionTextViewStyle">
+        <item name="android:background">@color/no_internet_connection_text_view_background_color</item>
+        <item name="android:gravity">center</item>
+        <item name="android:text">@string/no_internet_connection</item>
+        <item name="android:textColor">@color/no_internet_connection_text_view_text_color</item>
+    </style>
 
+    <!-- Repository search screen -->
     <style name="RepositorySearchScreenEditTextStyle">
         <item name="android:hint">@string/repository_search_screen_edit_text_hint</item>
     </style>

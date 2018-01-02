@@ -11,6 +11,7 @@
     <string name="updated">Updated</string>
     <string name="oops_something_went_wrong_try_again">Oops, something went wrong. Please try again.</string>
     <string name="please_select_search_sort">Please select search sort</string>
+    <string name="no_internet_connection">No internet connection</string>
 
     <!--Repository search screen-->
     <string name="repository_search_screen_edit_text_hint">@string/enter_search_text</string>

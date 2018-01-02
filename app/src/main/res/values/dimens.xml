@@ -7,6 +7,9 @@
     <dimen name="content_area_distance">8dp</dimen>
     <dimen name="screen_edge_distance">16dp</dimen>
 
+    <!--Common layouts-->
+    <dimen name="no_internet_connection_text_view_height">48dp</dimen>
+
     <!-- Repository search screen -->
     <dimen name="repository_search_screen_radio_group_height">@dimen/min_touchable_height</dimen>
 

@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.annimon.stream.Optional;
 import com.undabot.babic.app.R;
@@ -47,6 +48,15 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
         RADIO_BUTTON_ID_TO_SORT_ORDER.put(R.id.fragment_repository_search_updated_sort, UPDATED_SORT);
     }
 
+    @BindView(R.id.fragment_repository_search_no_internet_connection_text_view)
+    TextView noInternetConnectionTextView;
+
+    @BindView(R.id.fragment_repository_search_edit_text)
+    EditText searchEditText;
+
+    @BindView(R.id.fragment_repository_search_search_button)
+    Button searchButton;
+
     @BindView(R.id.fragment_repository_search_radio_group)
     RadioGroup radioGroup;
 
@@ -58,12 +68,6 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
 
     @BindView(R.id.fragment_repository_search_updated_sort)
     RadioButton updatedSortRadioButton;
-
-    @BindView(R.id.fragment_repository_search_edit_text)
-    EditText searchEditText;
-
-    @BindView(R.id.fragment_repository_search_search_button)
-    Button searchButton;
 
     @BindView(R.id.fragment_repository_search_recycler_view)
     RecyclerView recyclerView;
@@ -143,6 +147,26 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
     @Override
     public void showErrorDialog() {
         showShortToast(R.string.repository_search_screen_data_fetch_error_message);
+    }
+
+    @Override
+    public void showNoInternetConnection() {
+        noInternetConnectionTextView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideNoInternetConnection() {
+        noInternetConnectionTextView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void enableSearchButton() {
+        searchButton.setEnabled(true);
+    }
+
+    @Override
+    public void disableSearchButton() {
+        searchButton.setEnabled(false);
     }
 
     @Override

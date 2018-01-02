@@ -7,5 +7,10 @@
 
     <!--Common colors-->
     <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Common layouts -->
+    <color name="no_internet_connection_text_view_background_color">@android:color/holo_red_dark</color>
+    <color name="no_internet_connection_text_view_text_color">@color/white</color>
 
 </resources>

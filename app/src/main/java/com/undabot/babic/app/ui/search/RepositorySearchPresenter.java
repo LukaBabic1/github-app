@@ -43,6 +43,27 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
     }
 
     @Override
+    public void activate() {
+        super.activate();
+        observeInternetConnection(this::hideNoInternetConnection,
+                                  this::showNoInternetConnection);
+    }
+
+    private void hideNoInternetConnection() {
+        doIfViewNotNull(view -> {
+            view.hideNoInternetConnection();
+            view.enableSearchButton();
+        });
+    }
+
+    private void showNoInternetConnection() {
+        doIfViewNotNull(view -> {
+            view.showNoInternetConnection();
+            view.disableSearchButton();
+        });
+    }
+
+    @Override
     public void search(final String queryText, @SearchOrderInt final int searchOrder) {
         if (stringUtils.isEmpty(queryText)) {
             return;

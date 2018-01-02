@@ -22,6 +22,14 @@ public final class RepositorySearchContract {
         void hideKeyboard();
 
         void showErrorDialog();
+
+        void showNoInternetConnection();
+
+        void hideNoInternetConnection();
+
+        void enableSearchButton();
+
+        void disableSearchButton();
     }
 
     public interface Presenter extends ScopedPresenter {
