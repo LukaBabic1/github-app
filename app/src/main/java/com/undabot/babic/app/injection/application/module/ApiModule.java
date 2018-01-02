@@ -14,6 +14,7 @@ import com.undabot.babic.data.network.converter.ApiConverterImpl;
 import com.undabot.babic.data.network.service.ApiTokenProvider;
 import com.undabot.babic.data.network.service.ApiTokenProviderImpl;
 import com.undabot.babic.data.network.service.GitHubService;
+import com.undabot.babic.domain.utils.DateUtils;
 import com.undabot.babic.domain.utils.StringUtils;
 
 import javax.inject.Singleton;
@@ -91,8 +92,8 @@ public final class ApiModule {
 
     @Provides
     @Singleton
-    ApiConverter provideApiConverter(final StringUtils stringUtils) {
-        return new ApiConverterImpl(stringUtils);
+    ApiConverter provideApiConverter(final DateUtils dateUtils, final StringUtils stringUtils) {
+        return new ApiConverterImpl(dateUtils, stringUtils);
     }
 
     public interface Exposes {

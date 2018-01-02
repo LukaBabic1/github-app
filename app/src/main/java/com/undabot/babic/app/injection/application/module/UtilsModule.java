@@ -2,6 +2,8 @@ package com.undabot.babic.app.injection.application.module;
 
 import com.undabot.babic.app.ui.ViewModelConverter;
 import com.undabot.babic.app.ui.ViewModelConverterImpl;
+import com.undabot.babic.domain.utils.DateUtils;
+import com.undabot.babic.domain.utils.DateUtilsImpl;
 import com.undabot.babic.domain.utils.StringUtils;
 import com.undabot.babic.domain.utils.StringUtilsImpl;
 
@@ -15,8 +17,8 @@ public final class UtilsModule {
 
     @Provides
     @Singleton
-    ViewModelConverter provideViewModelConverter(final StringUtils stringUtils) {
-        return new ViewModelConverterImpl(stringUtils);
+    DateUtils provideDateUtils(final StringUtils stringUtils) {
+        return new DateUtilsImpl(stringUtils);
     }
 
     @Provides
@@ -25,10 +27,18 @@ public final class UtilsModule {
         return new StringUtilsImpl();
     }
 
+    @Provides
+    @Singleton
+    ViewModelConverter provideViewModelConverter(final StringUtils stringUtils) {
+        return new ViewModelConverterImpl(stringUtils);
+    }
+
     public interface Exposes {
 
-        ViewModelConverter viewModelConverter();
+        DateUtils dateUtils();
 
         StringUtils stringUtils();
+
+        ViewModelConverter viewModelConverter();
     }
 }

@@ -5,6 +5,7 @@ import com.undabot.babic.data.network.model.ApiCodeRepository;
 import com.undabot.babic.data.network.model.ApiUser;
 import com.undabot.babic.domain.model.CodeRepository;
 import com.undabot.babic.domain.model.User;
+import com.undabot.babic.domain.utils.DateUtils;
 import com.undabot.babic.domain.utils.StringUtils;
 
 import java.util.Collections;
@@ -14,9 +15,11 @@ public final class ApiConverterImpl implements ApiConverter {
 
     private static final String EMPTY = "";
 
+    private final DateUtils dateUtils;
     private final StringUtils stringUtils;
 
-    public ApiConverterImpl(final StringUtils stringUtils) {
+    public ApiConverterImpl(final DateUtils dateUtils, final StringUtils stringUtils) {
+        this.dateUtils = dateUtils;
         this.stringUtils = stringUtils;
     }
 
@@ -43,9 +46,8 @@ public final class ApiConverterImpl implements ApiConverter {
                         Boolean.TRUE.toString().equalsIgnoreCase(stringUtils.itOrDefault(apiUser.hireable, EMPTY)),
                         apiUser.followers,
                         apiUser.following,
-                        // TODO
-                        0L,
-                        0L,
+                        dateUtils.convertISO8601ToTimestamp(apiUser.createdAt),
+                        dateUtils.convertISO8601ToTimestamp(apiUser.updatedAt),
                         apiUser.privateGists,
                         apiUser.publicRepos,
                         apiUser.publicGists,
@@ -71,10 +73,9 @@ public final class ApiConverterImpl implements ApiConverter {
                                   stringUtils.itOrDefault(apiCodeRepository.repositoryUrl, EMPTY),
                                   stringUtils.itOrDefault(apiCodeRepository.homepageUrl, EMPTY),
                                   stringUtils.itOrDefault(apiCodeRepository.language, EMPTY),
-                                  // TODO
-                                  0L,
-                                  0L,
-                                  0L,
+                                  dateUtils.convertISO8601ToTimestamp(apiCodeRepository.createdAt),
+                                  dateUtils.convertISO8601ToTimestamp(apiCodeRepository.updatedAt),
+                                  dateUtils.convertISO8601ToTimestamp(apiCodeRepository.pushedAt),
                                   apiCodeRepository.stargazersCount,
                                   apiCodeRepository.watchersCount,
                                   apiCodeRepository.forksCount,
