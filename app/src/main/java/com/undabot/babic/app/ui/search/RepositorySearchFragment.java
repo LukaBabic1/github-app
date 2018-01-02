@@ -170,8 +170,8 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
     }
 
     @Override
-    public void onRepositoryClicked(final int id) {
-        presenter.showRepositoryDetails(id);
+    public void onRepositoryClicked(final String repositoryName, final String username) {
+        presenter.showRepositoryDetails(repositoryName, username);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.undabot.babic.data.network.service;
 
+import com.undabot.babic.data.network.model.ApiCodeRepository;
 import com.undabot.babic.data.network.model.ApiSearchRepositoriesResponse;
 import com.undabot.babic.data.network.model.ApiUser;
 
@@ -20,4 +21,7 @@ public interface GitHubService {
 
     @GET("/search/repositories")
     Single<ApiSearchRepositoriesResponse> searchRepositories(@Query("q") String query, @Query("sort") String sort, @Query("per_page") int perPage, @Query("page") int page);
+
+    @GET("/repos/{username}/{repositoryName}")
+    Single<ApiCodeRepository> getRepositoryDetails(@Path("username") String username, @Path("repositoryName") String repositoryName);
 }

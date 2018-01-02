@@ -45,12 +45,12 @@ public final class CodeRepositoryRepositoryImpl implements CodeRepositoryReposit
     }
 
     @Override
-    public Single<CodeRepository> getRepository(final int repositoryId) {
-        return codeRepositoryClient.fetchRepository(repositoryId);
+    public Single<CodeRepository> getRepository(final String repositoryName, final String username) {
+        return codeRepositoryClient.fetchRepository(repositoryName, username);
     }
 
     @Override
-    public Single<Optional<CodeRepository>> getCachedRepository(final int repositoryId) {
-        return codeRepositoryCache.getCachedRepository(repositoryId);
+    public Single<Optional<CodeRepository>> getCachedRepository(final String repositoryName, final String username) {
+        return codeRepositoryCache.getCachedRepository(repositoryName, username);
     }
 }

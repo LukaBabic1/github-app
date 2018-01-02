@@ -36,9 +36,9 @@ public final class RouterImpl implements Router {
     }
 
     @Override
-    public void showRepositoryDetailsScreen(final int repositoryId) {
+    public void showRepositoryDetailsScreen(final String repositoryName, final String username) {
         fragmentManager.beginTransaction()
-                       .replace(CONTAINER_ID, RepositoryDetailFragment.newInstance(repositoryId), RepositoryDetailFragment.TAG)
+                       .replace(CONTAINER_ID, RepositoryDetailFragment.newInstance(repositoryName, username), RepositoryDetailFragment.TAG)
                        .addToBackStack(null)
                        .commit();
     }

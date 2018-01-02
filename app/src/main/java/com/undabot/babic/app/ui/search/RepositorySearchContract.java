@@ -43,7 +43,7 @@ public final class RepositorySearchContract {
 
         void search(String queryText, @SearchOrderInt int searchOrder);
 
-        void showRepositoryDetails(int id);
+        void showRepositoryDetails(String repositoryName, String username);
 
         void showUserDetails(String username);
     }

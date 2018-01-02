@@ -16,19 +16,19 @@ public final class GetRepositoryByIdUseCaseImpl implements GetRepositoryByIdUseC
     }
 
     @Override
-    public Observable<CodeRepository> execute(final int id) {
-        return getCachedRepository(id).concatWith(fetchCodeRepository(id));
+    public Observable<CodeRepository> execute(final Request request) {
+        return getCachedRepository(request).concatWith(fetchCodeRepository(request));
     }
 
-    private Observable<CodeRepository> getCachedRepository(final int id) {
-        return codeRepositoryRepository.getCachedRepository(id)
+    private Observable<CodeRepository> getCachedRepository(final Request request) {
+        return codeRepositoryRepository.getCachedRepository(request.repositoryName, request.username)
                                        .toObservable()
                                        .filter(Optional::isPresent)
                                        .map(Optional::get);
     }
 
-    private Observable<CodeRepository> fetchCodeRepository(final int id) {
-        return codeRepositoryRepository.getRepository(id)
+    private Observable<CodeRepository> fetchCodeRepository(final Request request) {
+        return codeRepositoryRepository.getRepository(request.repositoryName, request.username)
                                        .flatMap(this::cacheRepository)
                                        .toObservable();
     }

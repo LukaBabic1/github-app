@@ -15,5 +15,6 @@ public final class RepositoryDetailContract {
 
     public interface Presenter extends ScopedPresenter {
 
+        void init(String repositoryName, String username);
     }
 }

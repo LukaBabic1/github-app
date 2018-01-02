@@ -6,7 +6,7 @@ public interface Router {
 
     void showUserDetailsScreen(String username);
 
-    void showRepositoryDetailsScreen(int repositoryId);
+    void showRepositoryDetailsScreen(String repositoryName, String username);
 
     void goBack();
 }

@@ -31,7 +31,7 @@ public interface CodeRepositoryRepository {
 
     Completable cacheRepositories(List<CodeRepository> codeRepositories);
 
-    Single<CodeRepository> getRepository(int repositoryId);
+    Single<CodeRepository> getRepository(String repositoryName, String username);
 
-    Single<Optional<CodeRepository>> getCachedRepository(int repositoryId);
+    Single<Optional<CodeRepository>> getCachedRepository(String repositoryName, String username);
 }

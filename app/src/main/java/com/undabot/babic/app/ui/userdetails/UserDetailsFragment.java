@@ -21,9 +21,9 @@ public final class UserDetailsFragment extends BaseFragment implements UserDetai
     @Inject
     UserDetailsContract.Presenter presenter;
 
-    public static UserDetailsFragment newInstance(final String userId) {
+    public static UserDetailsFragment newInstance(final String username) {
         final Bundle bundle = new Bundle();
-        bundle.putParcelable(KEY_EXTRAS, new Extras(userId));
+        bundle.putParcelable(KEY_EXTRAS, new Extras(username));
 
         final UserDetailsFragment fragment = new UserDetailsFragment();
         fragment.setArguments(bundle);

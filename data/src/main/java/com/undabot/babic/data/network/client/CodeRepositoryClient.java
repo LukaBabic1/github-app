@@ -30,5 +30,5 @@ public interface CodeRepositoryClient {
      */
     Single<List<CodeRepository>> searchRepositories(String query, SearchOrder searchOrder, int perPage, int page);
 
-    Single<CodeRepository> fetchRepository(int repositoryId);
+    Single<CodeRepository> fetchRepository(String repositoryName, String username);
 }

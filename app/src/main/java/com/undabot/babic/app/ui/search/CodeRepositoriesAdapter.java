@@ -23,9 +23,9 @@ public final class CodeRepositoriesAdapter extends RecyclerView.Adapter<CodeRepo
 
     public interface CodeRepositoriesAdapterListener {
 
-        void onRepositoryClicked(int id);
+        void onRepositoryClicked(String repositoryName, String username);
 
-        void onUserAvatarClicked(int id);
+        void onUserAvatarClicked(String username);
     }
 
     private final LayoutInflater inflater;
@@ -146,12 +146,13 @@ public final class CodeRepositoriesAdapter extends RecyclerView.Adapter<CodeRepo
 
         @OnClick(R.id.adapter_code_repository_row_item_root_view)
         void onRootViewClicked() {
-            viewModel.ifPresent(viewModel -> listenerOptional.ifPresent(listener -> listener.onRepositoryClicked(viewModel.id)));
+            viewModel.ifPresent(viewModel -> listenerOptional.ifPresent(listener -> listener.onRepositoryClicked(viewModel.name,
+                                                                                                                 viewModel.repositoryOwnerViewModel.username)));
         }
 
         @OnClick(R.id.adapter_code_repository_row_item_owner_avatar_image)
         void onUserAvatarClicked() {
-            viewModel.ifPresent(viewModel -> listenerOptional.ifPresent(listener -> listener.onUserAvatarClicked(viewModel.repositoryOwnerViewModel.id)));
+            viewModel.ifPresent(viewModel -> listenerOptional.ifPresent(listener -> listener.onUserAvatarClicked(viewModel.repositoryOwnerViewModel.username)));
         }
     }
 }

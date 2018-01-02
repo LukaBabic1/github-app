@@ -9,7 +9,7 @@ public final class UserDetailsPresenter extends BasePresenter<UserDetailsContrac
     }
 
     @Override
-    public void init(final int userId) {
-        // TODO
+    public void init(final String username) {
+
     }
 }

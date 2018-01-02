@@ -32,4 +32,10 @@ public final class CodeRepositoryClientImpl implements CodeRepositoryClient {
         return gitHubService.searchRepositories(query, searchOrder.value, perPage, page + ZERO_BASED_OFFSET_FIX)
                             .map(apiSearchRepositoriesResponse -> apiConverter.mapToCodeRepositoryList(apiSearchRepositoriesResponse.codeRepositories));
     }
+
+    @Override
+    public Single<CodeRepository> fetchRepository(final String repositoryName, final String username) {
+        return gitHubService.getRepositoryDetails(username, repositoryName)
+                            .map(apiConverter::mapToCodeRepository);
+    }
 }
