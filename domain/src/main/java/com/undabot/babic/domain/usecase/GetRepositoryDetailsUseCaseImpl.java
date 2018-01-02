@@ -7,17 +7,18 @@ import com.undabot.babic.domain.repository.CodeRepositoryRepository;
 import rx.Observable;
 import rx.Single;
 
-public final class GetRepositoryByIdUseCaseImpl implements GetRepositoryByIdUseCase {
+public final class GetRepositoryDetailsUseCaseImpl implements GetRepositoryDetailsUseCase {
 
     private final CodeRepositoryRepository codeRepositoryRepository;
 
-    public GetRepositoryByIdUseCaseImpl(final CodeRepositoryRepository codeRepositoryRepository) {
+    public GetRepositoryDetailsUseCaseImpl(final CodeRepositoryRepository codeRepositoryRepository) {
         this.codeRepositoryRepository = codeRepositoryRepository;
     }
 
     @Override
     public Observable<CodeRepository> execute(final Request request) {
-        return getCachedRepository(request).concatWith(fetchCodeRepository(request));
+        return getCachedRepository(request).concatWith(fetchCodeRepository(request))
+                                           .distinct();
     }
 
     private Observable<CodeRepository> getCachedRepository(final Request request) {

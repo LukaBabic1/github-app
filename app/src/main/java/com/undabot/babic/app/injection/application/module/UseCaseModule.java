@@ -2,8 +2,8 @@ package com.undabot.babic.app.injection.application.module;
 
 import com.undabot.babic.domain.repository.CodeRepositoryRepository;
 import com.undabot.babic.domain.repository.UserRepository;
-import com.undabot.babic.domain.usecase.GetRepositoryByIdUseCase;
-import com.undabot.babic.domain.usecase.GetRepositoryByIdUseCaseImpl;
+import com.undabot.babic.domain.usecase.GetRepositoryDetailsUseCase;
+import com.undabot.babic.domain.usecase.GetRepositoryDetailsUseCaseImpl;
 import com.undabot.babic.domain.usecase.GetUserDataUseCase;
 import com.undabot.babic.domain.usecase.GetUserDataUseCaseImpl;
 import com.undabot.babic.domain.usecase.SearchMoreRepositoriesUseCase;
@@ -23,8 +23,8 @@ public final class UseCaseModule {
     }
 
     @Provides
-    GetRepositoryByIdUseCase provideGetRepositoryByIdUseCase(final CodeRepositoryRepository codeRepositoryRepository) {
-        return new GetRepositoryByIdUseCaseImpl(codeRepositoryRepository);
+    GetRepositoryDetailsUseCase provideGetRepositoryByIdUseCase(final CodeRepositoryRepository codeRepositoryRepository) {
+        return new GetRepositoryDetailsUseCaseImpl(codeRepositoryRepository);
     }
 
     @Provides
@@ -41,7 +41,7 @@ public final class UseCaseModule {
 
         GetUserDataUseCase getUserDataUseCase();
 
-        GetRepositoryByIdUseCase getRepositoryByIdUseCase();
+        GetRepositoryDetailsUseCase getRepositoryByIdUseCase();
 
         SearchRepositoriesUseCase searchRepositoriesUseCase();
 

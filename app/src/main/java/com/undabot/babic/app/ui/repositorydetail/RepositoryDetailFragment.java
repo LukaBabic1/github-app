@@ -3,6 +3,7 @@ package com.undabot.babic.app.ui.repositorydetail;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import com.annimon.stream.Optional;
 import com.undabot.babic.app.R;
@@ -56,7 +57,7 @@ public final class RepositoryDetailFragment extends BaseFragment implements Repo
     }
 
     private void throwMissingArgumentsException() {
-        throw new IllegalArgumentException("Missing extras for fragment");
+        throw new IllegalArgumentException("Missing extras for fragment under \"" + KEY_EXTRA + "\" key");
     }
 
     @Override
@@ -67,6 +68,11 @@ public final class RepositoryDetailFragment extends BaseFragment implements Repo
     @Override
     public ScopedPresenter getPresenter() {
         return presenter;
+    }
+
+    @Override
+    public void render(final RepositoryDetailViewModel viewModel) {
+        System.out.println(viewModel);
     }
 
     static final class Extras implements Parcelable {

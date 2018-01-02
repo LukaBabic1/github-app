@@ -4,7 +4,7 @@ import com.undabot.babic.domain.model.CodeRepository;
 
 import rx.Observable;
 
-public interface GetRepositoryByIdUseCase {
+public interface GetRepositoryDetailsUseCase {
 
     Observable<CodeRepository> execute(Request request);
 

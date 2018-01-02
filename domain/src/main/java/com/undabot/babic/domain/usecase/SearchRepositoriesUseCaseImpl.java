@@ -17,6 +17,12 @@ public final class SearchRepositoriesUseCaseImpl implements SearchRepositoriesUs
 
     @Override
     public Single<List<CodeRepository>> execute(final Request request) {
-        return codeRepositoryRepository.searchRepositories(request.searchText, request.searchOrder);
+        return codeRepositoryRepository.searchRepositories(request.searchText, request.searchOrder)
+                                       .flatMap(this::cacheRepositories);
+    }
+
+    private Single<List<CodeRepository>> cacheRepositories(final List<CodeRepository> codeRepositories) {
+        return codeRepositoryRepository.cacheRepositories(codeRepositories)
+                                                             .andThen(Single.just(codeRepositories));
     }
 }
