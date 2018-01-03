@@ -13,6 +13,7 @@ import com.undabot.babic.app.base.ScopedPresenter;
 import com.undabot.babic.app.injection.fragment.FragmentComponent;
 import com.undabot.babic.app.utils.ui.ImageLoader;
 import com.undabot.babic.app.utils.view.ViewUtils;
+import com.undabot.babic.domain.utils.StringUtils;
 
 import javax.inject.Inject;
 
@@ -23,6 +24,8 @@ public final class UserDetailsFragment extends BaseFragment implements UserDetai
     public static final String TAG = "UserDetailsFragment";
 
     private static final String KEY_EXTRAS = "key_fragment_extras";
+
+    private static final String NOT_AVAILABLE = "n/a";
 
     @BindView(R.id.fragment_user_detail_avatar_image)
     ImageView avatarImageView;
@@ -76,6 +79,9 @@ public final class UserDetailsFragment extends BaseFragment implements UserDetai
     ImageLoader imageLoader;
 
     @Inject
+    StringUtils stringUtils;
+
+    @Inject
     ViewUtils viewUtils;
 
     public static UserDetailsFragment newInstance(final String username) {
@@ -127,16 +133,16 @@ public final class UserDetailsFragment extends BaseFragment implements UserDetai
 
         nameTextView.setText(String.format(resources.getString(R.string.user_details_name_template), viewModel.name));
         usernameTextView.setText(String.format(resources.getString(R.string.user_details_username_template), viewModel.username));
-        typeTextView.setText(String.format(resources.getString(R.string.user_details_type_template), viewModel.type));
-        companyNameTextView.setText(String.format(resources.getString(R.string.user_details_company_name_template), viewModel.companyName));
-        locationTextView.setText(String.format(resources.getString(R.string.user_details_location_template), viewModel.location));
-        emailTextView.setText(String.format(resources.getString(R.string.user_details_email_template), viewModel.email));
+        typeTextView.setText(String.format(resources.getString(R.string.user_details_type_template), stringUtils.itOrDefault(viewModel.type, NOT_AVAILABLE)));
+        companyNameTextView.setText(String.format(resources.getString(R.string.user_details_company_name_template), stringUtils.itOrDefault(viewModel.companyName, NOT_AVAILABLE)));
+        locationTextView.setText(String.format(resources.getString(R.string.user_details_location_template), stringUtils.itOrDefault(viewModel.location, NOT_AVAILABLE)));
+        emailTextView.setText(String.format(resources.getString(R.string.user_details_email_template), stringUtils.itOrDefault(viewModel.email, NOT_AVAILABLE)));
         siteAdminTextView.setText(String.format(resources.getString(R.string.user_details_site_admin), viewModel.siteAdmin));
         hireableTextView.setText(String.format(resources.getString(R.string.user_details_hireable), viewModel.hireable));
         followersTextView.setText(String.format(resources.getString(R.string.user_details_followers_template), viewModel.following));
         followingTextView.setText(String.format(resources.getString(R.string.user_details_following_template), viewModel.followers));
-        createdAtTextView.setText(String.format(resources.getString(R.string.user_details_created_at_template), viewModel.createdAt));
-        updatedAtTextView.setText(String.format(resources.getString(R.string.user_details_updated_at_template), viewModel.updatedAt));
+        createdAtTextView.setText(String.format(resources.getString(R.string.user_details_created_at_template), stringUtils.itOrDefault(viewModel.createdAt, NOT_AVAILABLE)));
+        updatedAtTextView.setText(String.format(resources.getString(R.string.user_details_updated_at_template), stringUtils.itOrDefault(viewModel.updatedAt, NOT_AVAILABLE)));
         publicReposTextView.setText(String.format(resources.getString(R.string.user_details_public_repos_template), viewModel.publicRepos));
         publicGistsTextView.setText(String.format(resources.getString(R.string.user_details_public_gists_template), viewModel.publicGists));
     }
