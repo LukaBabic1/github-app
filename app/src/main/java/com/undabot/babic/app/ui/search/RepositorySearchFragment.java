@@ -154,7 +154,7 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
     @Override
     public void render(final RepositorySearchScreenViewModel viewModel) {
         repositorySearchScreenViewModel = Optional.of(viewModel);
-        codeRepositoriesAdapter.setItems(viewModel.codeRepositoryViewModels);
+        codeRepositoriesAdapter.setItems(viewModel.repositoryViewModels);
     }
 
     @Override

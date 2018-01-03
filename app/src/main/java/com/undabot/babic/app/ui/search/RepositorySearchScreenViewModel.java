@@ -4,11 +4,11 @@ import java.util.List;
 
 public final class RepositorySearchScreenViewModel {
 
-    public final List<CodeRepositoryViewModel> codeRepositoryViewModels;
+    public final List<RepositoryViewModel> repositoryViewModels;
     public final boolean canLoadMore;
 
-    public RepositorySearchScreenViewModel(final List<CodeRepositoryViewModel> codeRepositoryViewModels, final boolean canLoadMore) {
-        this.codeRepositoryViewModels = codeRepositoryViewModels;
+    public RepositorySearchScreenViewModel(final List<RepositoryViewModel> repositoryViewModels, final boolean canLoadMore) {
+        this.repositoryViewModels = repositoryViewModels;
         this.canLoadMore = canLoadMore;
     }
 
@@ -26,12 +26,12 @@ public final class RepositorySearchScreenViewModel {
         if (canLoadMore != that.canLoadMore) {
             return false;
         }
-        return codeRepositoryViewModels != null ? codeRepositoryViewModels.equals(that.codeRepositoryViewModels) : that.codeRepositoryViewModels == null;
+        return repositoryViewModels != null ? repositoryViewModels.equals(that.repositoryViewModels) : that.repositoryViewModels == null;
     }
 
     @Override
     public int hashCode() {
-        int result = codeRepositoryViewModels != null ? codeRepositoryViewModels.hashCode() : 0;
+        int result = repositoryViewModels != null ? repositoryViewModels.hashCode() : 0;
         result = 31 * result + (canLoadMore ? 1 : 0);
         return result;
     }
@@ -39,7 +39,7 @@ public final class RepositorySearchScreenViewModel {
     @Override
     public String toString() {
         return "RepositorySearchScreenViewModel{" +
-                "codeRepositoryViewModels=" + codeRepositoryViewModels +
+                "codeRepositoryViewModels=" + repositoryViewModels +
                 ", canLoadMore=" + canLoadMore +
                 '}';
     }

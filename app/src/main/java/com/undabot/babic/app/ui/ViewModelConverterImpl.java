@@ -2,7 +2,7 @@ package com.undabot.babic.app.ui;
 
 import com.annimon.stream.Stream;
 import com.undabot.babic.app.ui.repositorydetail.RepositoryDetailViewModel;
-import com.undabot.babic.app.ui.search.CodeRepositoryViewModel;
+import com.undabot.babic.app.ui.search.RepositoryViewModel;
 import com.undabot.babic.app.ui.search.RepositoryOwnerViewModel;
 import com.undabot.babic.app.ui.userdetails.UserDetailViewModel;
 import com.undabot.babic.domain.model.CodeRepository;
@@ -28,20 +28,20 @@ public final class ViewModelConverterImpl implements ViewModelConverter {
     }
 
     @Override
-    public CodeRepositoryViewModel mapCodeRepositoryToViewModel(final CodeRepository codeRepository) {
-        return new CodeRepositoryViewModel(codeRepository.id,
-                                           codeRepository.name,
-                                           codeRepository.fullName,
-                                           mapUserToRepositoryOwnerViewModel(codeRepository.owner),
-                                           codeRepository.stargazersCount,
-                                           codeRepository.watchersCount,
-                                           codeRepository.forksCount,
-                                           codeRepository.openIssuesCount,
-                                           codeRepository.score);
+    public RepositoryViewModel mapCodeRepositoryToViewModel(final CodeRepository codeRepository) {
+        return new RepositoryViewModel(codeRepository.id,
+                                       codeRepository.name,
+                                       codeRepository.fullName,
+                                       mapUserToRepositoryOwnerViewModel(codeRepository.owner),
+                                       codeRepository.stargazersCount,
+                                       codeRepository.watchersCount,
+                                       codeRepository.forksCount,
+                                       codeRepository.openIssuesCount
+        );
     }
 
     @Override
-    public List<CodeRepositoryViewModel> mapCodeRepositoriesToViewModels(final List<CodeRepository> codeRepositories) {
+    public List<RepositoryViewModel> mapCodeRepositoriesToViewModels(final List<CodeRepository> codeRepositories) {
         return Stream.of(codeRepositories)
                      .map(this::mapCodeRepositoryToViewModel)
                      .toList();

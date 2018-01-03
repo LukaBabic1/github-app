@@ -89,10 +89,10 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
         return SEARCH_ORDER_INT_TO_SEARCH_ORDER_MAP.get(searchOrder);
     }
 
-    private Action1<RepositorySearchContract.View> mapToViewAction(final List<CodeRepositoryViewModel> codeRepositoryViewModels) {
+    private Action1<RepositorySearchContract.View> mapToViewAction(final List<RepositoryViewModel> repositoryViewModels) {
         return view -> {
             view.hideLoading();
-            view.render(new RepositorySearchScreenViewModel(codeRepositoryViewModels, true));
+            view.render(new RepositorySearchScreenViewModel(repositoryViewModels, true));
         };
     }
 

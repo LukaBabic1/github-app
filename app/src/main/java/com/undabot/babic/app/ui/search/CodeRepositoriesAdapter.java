@@ -31,7 +31,7 @@ public final class CodeRepositoriesAdapter extends RecyclerView.Adapter<CodeRepo
     private final LayoutInflater inflater;
     private final ImageLoader imageLoader;
 
-    private final List<CodeRepositoryViewModel> viewModels = new ArrayList<>();
+    private final List<RepositoryViewModel> viewModels = new ArrayList<>();
 
     private Optional<CodeRepositoriesAdapterListener> listenerOptional = Optional.empty();
 
@@ -61,7 +61,7 @@ public final class CodeRepositoriesAdapter extends RecyclerView.Adapter<CodeRepo
         notifyDataSetChanged();
     }
 
-    public void setItems(final List<CodeRepositoryViewModel> viewModels) {
+    public void setItems(final List<RepositoryViewModel> viewModels) {
         this.viewModels.clear();
         this.viewModels.addAll(viewModels);
         notifyDataSetChanged();
@@ -113,7 +113,7 @@ public final class CodeRepositoriesAdapter extends RecyclerView.Adapter<CodeRepo
 
         private final ImageLoader imageLoader;
 
-        private Optional<CodeRepositoryViewModel> viewModel = Optional.empty();
+        private Optional<RepositoryViewModel> viewModel = Optional.empty();
         private Optional<CodeRepositoriesAdapterListener> listenerOptional = Optional.empty();
 
         CodeRepositoryViewHolder(final View rootView, final ImageLoader imageLoader) {
@@ -127,7 +127,7 @@ public final class CodeRepositoriesAdapter extends RecyclerView.Adapter<CodeRepo
             this.listenerOptional = listener;
         }
 
-        void populate(final CodeRepositoryViewModel viewModel) {
+        void populate(final RepositoryViewModel viewModel) {
             this.viewModel = Optional.of(viewModel);
 
             repositoryName.setText(viewModel.name);

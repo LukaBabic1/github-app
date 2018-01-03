@@ -1,6 +1,6 @@
 package com.undabot.babic.app.ui.search;
 
-public final class CodeRepositoryViewModel {
+public final class RepositoryViewModel {
 
     public final int id;
     public final String name;
@@ -10,10 +10,9 @@ public final class CodeRepositoryViewModel {
     public final int watchersCount;
     public final int forksCount;
     public final int openIssuesCount;
-    public final float score;
 
-    public CodeRepositoryViewModel(final int id, final String name, final String fullName, final RepositoryOwnerViewModel repositoryOwnerViewModel, final int stargazersCount,
-                                   final int watchersCount, final int forksCount, final int openIssuesCount, final float score) {
+    public RepositoryViewModel(final int id, final String name, final String fullName, final RepositoryOwnerViewModel repositoryOwnerViewModel, final int stargazersCount,
+                               final int watchersCount, final int forksCount, final int openIssuesCount) {
         this.id = id;
         this.name = name;
         this.fullName = fullName;
@@ -22,7 +21,6 @@ public final class CodeRepositoryViewModel {
         this.watchersCount = watchersCount;
         this.forksCount = forksCount;
         this.openIssuesCount = openIssuesCount;
-        this.score = score;
     }
 
     @Override
@@ -34,7 +32,7 @@ public final class CodeRepositoryViewModel {
             return false;
         }
 
-        final CodeRepositoryViewModel that = (CodeRepositoryViewModel) o;
+        final RepositoryViewModel that = (RepositoryViewModel) o;
 
         if (id != that.id) {
             return false;
@@ -49,9 +47,6 @@ public final class CodeRepositoryViewModel {
             return false;
         }
         if (openIssuesCount != that.openIssuesCount) {
-            return false;
-        }
-        if (Float.compare(that.score, score) != 0) {
             return false;
         }
         if (name != null ? !name.equals(that.name) : that.name != null) {
@@ -73,7 +68,6 @@ public final class CodeRepositoryViewModel {
         result = 31 * result + watchersCount;
         result = 31 * result + forksCount;
         result = 31 * result + openIssuesCount;
-        result = 31 * result + (score != +0.0f ? Float.floatToIntBits(score) : 0);
         return result;
     }
 
@@ -88,7 +82,6 @@ public final class CodeRepositoryViewModel {
                 ", watchersCount=" + watchersCount +
                 ", forksCount=" + forksCount +
                 ", openIssuesCount=" + openIssuesCount +
-                ", score=" + score +
                 '}';
     }
 }
