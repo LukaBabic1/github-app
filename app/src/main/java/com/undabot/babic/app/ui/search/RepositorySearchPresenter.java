@@ -69,7 +69,7 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
             return;
         }
 
-        doIfViewNotNull(view -> {
+        onViewAction(view -> {
             view.hideKeyboard();
             view.showLoading();
         });

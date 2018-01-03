@@ -77,7 +77,7 @@ public abstract class BasePresenter<View extends BaseView> implements ScopedPres
         viewActionsSubscription = viewActionQueue.viewActionsObservable()
                                                  .lift(getViewActionBackPressureStrategy())
                                                  .observeOn(mainThreadScheduler)
-                                                 .subscribe(this::onViewAction);
+                                                 .subscribe(this::doIfViewNotNull);
         viewActionQueue.resume();
     }
 
@@ -85,8 +85,8 @@ public abstract class BasePresenter<View extends BaseView> implements ScopedPres
         return OperatorOnBackpressureBuffer.instance();
     }
 
-    protected void onViewAction(final Action1<View> viewAction) {
-        doIfViewNotNull(viewAction);
+    protected final void onViewAction(final Action1<View> viewAction) {
+        viewActionQueue.scheduleViewAction(viewAction);
     }
 
     @Override

@@ -43,6 +43,10 @@ public final class ViewActionQueue<View> {
         }
     }
 
+    public void scheduleViewAction(final Action1<View> action) {
+        onResult(action);
+    }
+
     public void pause() {
         isPaused = true;
     }

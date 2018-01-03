@@ -91,19 +91,38 @@ public final class RepositoryDetailFragment extends BaseFragment implements Repo
     }
 
     @Override
-    public void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        extractArguments();
-    }
-
-    @Override
     protected void inject(final FragmentComponent component) {
         component.inject(this);
     }
 
-    private void extractArguments() {
-        Optional.ofNullable(getArguments())
-                .map(bundle -> (Extras) bundle.getParcelable(KEY_EXTRA))
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.fragment_repository_details;
+    }
+
+    @Override
+    public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        if (savedInstanceState == null) {
+            viewModel.ifPresentOrElse(this::render,
+                                      this::extractFromArguments);
+        } else {
+            extractFromSavedInstanceState(savedInstanceState);
+        }
+    }
+
+    private void extractFromArguments() {
+        extractBundle(getArguments());
+    }
+
+    private void extractFromSavedInstanceState(final Bundle bundle) {
+        extractBundle(bundle);
+    }
+
+    private void extractBundle(final Bundle bundle) {
+        Optional.ofNullable(bundle)
+                .map(bundle1 -> (Extras) bundle1.getParcelable(KEY_EXTRA))
                 .ifPresentOrElse(this::initPresenter,
                                  this::throwMissingArgumentsException);
     }
@@ -117,15 +136,9 @@ public final class RepositoryDetailFragment extends BaseFragment implements Repo
     }
 
     @Override
-    protected int getLayoutResourceId() {
-        return R.layout.fragment_repository_details;
-    }
-
-    @Override
-    public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        viewModel.ifPresentOrElse(this::render,
-                                  this::extractArguments);
+    public void onSaveInstanceState(final Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(KEY_EXTRA, getArguments().getParcelable(KEY_EXTRA));
     }
 
     @Override

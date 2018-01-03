@@ -1,6 +1,8 @@
 package com.undabot.babic.app.ui.search;
 
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -34,6 +36,8 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
                                                                             CodeRepositoriesAdapter.CodeRepositoriesAdapterListener {
 
     public static final String TAG = "SearchFragment";
+
+    private static final String KEY_SEARCH_TERM = "key_search_params";
 
     private static final int UNSELECTED_RADIO_BUTTON_ID = -1;
     private static final int SPARSE_ARRAY_INIT_LENGTH = 3;
@@ -86,8 +90,25 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
 
     Optional<RepositorySearchScreenViewModel> repositorySearchScreenViewModel = Optional.empty();
 
+    private LastSearchParams lastSearchParams;
+
     public static RepositorySearchFragment newInstance() {
         return new RepositorySearchFragment();
+    }
+
+    @Override
+    public void onCreate(final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        Optional.ofNullable(savedInstanceState)
+                .map(bundle -> (LastSearchParams) bundle.getParcelable(KEY_SEARCH_TERM))
+                .filter(lastSearchParams -> !lastSearchParams.query.isEmpty())
+                .ifPresent(this::restoreSearch);
+    }
+
+    private void restoreSearch(final LastSearchParams params) {
+        this.lastSearchParams = params;
+        presenter.search(params.query, params.searchOrder);
     }
 
     @Override
@@ -114,6 +135,12 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
     private void initRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(codeRepositoriesAdapter);
+    }
+
+    @Override
+    public void onSaveInstanceState(final Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(KEY_SEARCH_TERM, lastSearchParams);
     }
 
     @Override
@@ -187,12 +214,56 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
             return;
         }
 
-        @SearchOrderInt
-        final int searchOrder = RADIO_BUTTON_ID_TO_SORT_ORDER.get(selectedRadioButtonId);
-        presenter.search(searchEditText.getText().toString(), searchOrder);
+        @SearchOrderInt final int searchOrder = RADIO_BUTTON_ID_TO_SORT_ORDER.get(selectedRadioButtonId);
+        final String searchTerm = searchEditText.getText().toString();
+
+        lastSearchParams = new LastSearchParams(searchTerm, searchOrder);
+
+        presenter.search(searchTerm, searchOrder);
     }
 
     private void showSortOrderNotSelectedPrompt() {
         showShortToast(R.string.repository_search_screen_sort_order_not_selected_text);
+    }
+
+    static final class LastSearchParams implements Parcelable {
+
+        final String query;
+
+        @SearchOrderInt final int searchOrder;
+
+        LastSearchParams(final String query, final int searchOrder) {
+            this.query = query;
+            this.searchOrder = searchOrder;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(this.query);
+            dest.writeInt(this.searchOrder);
+        }
+
+        protected LastSearchParams(Parcel in) {
+            this.query = in.readString();
+            this.searchOrder = in.readInt();
+        }
+
+        public static final Parcelable.Creator<LastSearchParams> CREATOR = new Parcelable.Creator<LastSearchParams>() {
+
+            @Override
+            public LastSearchParams createFromParcel(Parcel source) {
+                return new LastSearchParams(source);
+            }
+
+            @Override
+            public LastSearchParams[] newArray(int size) {
+                return new LastSearchParams[size];
+            }
+        };
     }
 }

@@ -120,16 +120,35 @@ public final class UserDetailsFragment extends BaseFragment implements UserDetai
     @Override
     public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        userDetailViewModel.ifPresentOrElse(this::render,
-                                            this::extractArguments);
+
+        if (savedInstanceState == null) {
+            userDetailViewModel.ifPresentOrElse(this::render,
+                                                this::extractFromArguments);
+        } else {
+            extractFromSavedInstanceState(savedInstanceState);
+        }
     }
 
-    private void extractArguments() {
-        Optional.ofNullable(getArguments())
-                .map(bundle -> (Extras) bundle.getParcelable(KEY_EXTRAS))
+    private void extractFromArguments() {
+        extractBundle(getArguments());
+    }
+
+    private void extractFromSavedInstanceState(final Bundle savedInstanceState) {
+        extractBundle(savedInstanceState);
+    }
+
+    private void extractBundle(final Bundle bundle) {
+        Optional.ofNullable(bundle)
+                .map(bundle1 -> (Extras) bundle1.getParcelable(KEY_EXTRAS))
                 .map(extras -> extras.username)
                 .ifPresentOrElse(presenter::init,
                                  this::throwArgumentsMissingException);
+    }
+
+    @Override
+    public void onSaveInstanceState(final Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(KEY_EXTRAS, getArguments().getParcelable(KEY_EXTRAS));
     }
 
     @Override
