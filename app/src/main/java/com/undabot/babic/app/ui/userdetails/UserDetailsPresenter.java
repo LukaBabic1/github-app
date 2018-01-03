@@ -54,4 +54,10 @@ public final class UserDetailsPresenter extends BasePresenter<UserDetailsContrac
         logError(throwable);
         // TODO
     }
+
+    @Override
+    public void visitBlog() {
+        user.filter(user -> !user.blog.isEmpty())
+            .ifPresent(user -> router.showPageInExternalBrowser(user.blog));
+    }
 }

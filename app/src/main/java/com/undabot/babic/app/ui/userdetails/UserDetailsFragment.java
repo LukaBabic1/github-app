@@ -3,6 +3,8 @@ package com.undabot.babic.app.ui.userdetails;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +20,7 @@ import com.undabot.babic.domain.utils.StringUtils;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public final class UserDetailsFragment extends BaseFragment implements UserDetailsContract.View {
 
@@ -71,6 +74,9 @@ public final class UserDetailsFragment extends BaseFragment implements UserDetai
 
     @BindView(R.id.fragment_user_detail_public_gists)
     TextView publicGistsTextView;
+
+    @BindView(R.id.fragment_user_detail_visit_blog_button)
+    Button visitBlogButton;
 
     @Inject
     UserDetailsContract.Presenter presenter;
@@ -145,6 +151,8 @@ public final class UserDetailsFragment extends BaseFragment implements UserDetai
         updatedAtTextView.setText(String.format(resources.getString(R.string.user_details_updated_at_template), stringUtils.itOrDefault(viewModel.updatedAt, NOT_AVAILABLE)));
         publicReposTextView.setText(String.format(resources.getString(R.string.user_details_public_repos_template), viewModel.publicRepos));
         publicGistsTextView.setText(String.format(resources.getString(R.string.user_details_public_gists_template), viewModel.publicGists));
+
+        visitBlogButton.setVisibility(viewModel.hasBlog ? View.VISIBLE : View.GONE);
     }
 
     private void loadImage(final UserDetailViewModel viewModel) {
@@ -164,6 +172,11 @@ public final class UserDetailsFragment extends BaseFragment implements UserDetai
 
     private void loadImageToMeasuredView(final String imageUrl) {
         imageLoader.loadImage(imageUrl, avatarImageView);
+    }
+
+    @OnClick(R.id.fragment_user_detail_visit_blog_button)
+    void onVisitBlogButtonClicked() {
+        presenter.visitBlog();
     }
 
     static final class Extras implements Parcelable {

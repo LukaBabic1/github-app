@@ -17,5 +17,7 @@ public final class UserDetailsContract {
     public interface Presenter extends ScopedPresenter {
 
         void init(String username);
+
+        void visitBlog();
     }
 }

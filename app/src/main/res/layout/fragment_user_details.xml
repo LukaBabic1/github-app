@@ -88,6 +88,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
+        <Button
+            android:id="@+id/fragment_user_detail_visit_blog_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            style="@style/UserDetailsVisitBlogButtonStyle"/>
+
     </LinearLayout>
 
 </ScrollView>

@@ -79,6 +79,7 @@ public final class ViewModelConverterImpl implements ViewModelConverter {
                                        user.avatarUrl,
                                        user.siteAdmin,
                                        user.hireable,
+                                       !stringUtils.isEmpty(user.blog),
                                        user.followers,
                                        user.following,
                                        dateUtils.convertToUserReadableTimestamp(user.createdAt),

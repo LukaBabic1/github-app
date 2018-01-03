@@ -151,4 +151,9 @@
         <item name="android:paddingBottom">@dimen/user_details_content_linear_layout_padding_bottom</item>
     </style>
 
+    <style name="UserDetailsVisitBlogButtonStyle">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:text">@string/user_details_visit_blog_button_text</item>
+    </style>
+
 </resources>

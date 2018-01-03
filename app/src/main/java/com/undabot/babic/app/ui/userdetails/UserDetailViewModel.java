@@ -14,6 +14,7 @@ public final class UserDetailViewModel {
 
     public final boolean siteAdmin;
     public final boolean hireable;
+    public final boolean hasBlog;
 
     public final int followers;
     public final int following;
@@ -28,8 +29,8 @@ public final class UserDetailViewModel {
     public final int ownedPrivateRepos;
 
     public UserDetailViewModel(final int id, final String username, final String name, final String type, final String companyName, final String location, final String email,
-                               final String avatarUrl, final boolean siteAdmin, final boolean hireable, final int followers, final int following, final String createdAt,
-                               final String updatedAt, final int privateGists, final int publicRepos, final int publicGists, final int totalPrivateRepos,
+                               final String avatarUrl, final boolean siteAdmin, final boolean hireable, final boolean hasBlog, final int followers, final int following,
+                               final String createdAt, final String updatedAt, final int privateGists, final int publicRepos, final int publicGists, final int totalPrivateRepos,
                                final int ownedPrivateRepos) {
         this.id = id;
         this.username = username;
@@ -41,6 +42,7 @@ public final class UserDetailViewModel {
         this.avatarUrl = avatarUrl;
         this.siteAdmin = siteAdmin;
         this.hireable = hireable;
+        this.hasBlog = hasBlog;
         this.followers = followers;
         this.following = following;
         this.createdAt = createdAt;
@@ -70,6 +72,9 @@ public final class UserDetailViewModel {
             return false;
         }
         if (hireable != that.hireable) {
+            return false;
+        }
+        if (hasBlog != that.hasBlog) {
             return false;
         }
         if (followers != that.followers) {
@@ -132,6 +137,7 @@ public final class UserDetailViewModel {
         result = 31 * result + (avatarUrl != null ? avatarUrl.hashCode() : 0);
         result = 31 * result + (siteAdmin ? 1 : 0);
         result = 31 * result + (hireable ? 1 : 0);
+        result = 31 * result + (hasBlog ? 1 : 0);
         result = 31 * result + followers;
         result = 31 * result + following;
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
@@ -157,6 +163,7 @@ public final class UserDetailViewModel {
                 ", avatarUrl='" + avatarUrl + '\'' +
                 ", siteAdmin=" + siteAdmin +
                 ", hireable=" + hireable +
+                ", hasBlog=" + hasBlog +
                 ", followers=" + followers +
                 ", following=" + following +
                 ", createdAt='" + createdAt + '\'' +
