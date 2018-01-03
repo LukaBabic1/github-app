@@ -2,6 +2,7 @@ package com.undabot.babic.app.ui.search;
 
 import com.undabot.babic.app.base.BasePresenter;
 import com.undabot.babic.app.ui.ViewModelConverter;
+import com.undabot.babic.data.repository.CodeRepositoryRepositoryImpl;
 import com.undabot.babic.domain.repository.CodeRepositoryRepository;
 import com.undabot.babic.domain.usecase.SearchRepositoriesUseCase;
 import com.undabot.babic.domain.utils.StringUtils;
@@ -18,6 +19,8 @@ import rx.functions.Action1;
 public final class RepositorySearchPresenter extends BasePresenter<RepositorySearchContract.View> implements RepositorySearchContract.Presenter {
 
     private static final Map<Integer, CodeRepositoryRepository.SearchOrder> SEARCH_ORDER_INT_TO_SEARCH_ORDER_MAP;
+
+    private static final int PER_PAGE_COUNT = CodeRepositoryRepositoryImpl.PER_PAGE_COUNT;
 
     static {
         final Map<Integer, CodeRepositoryRepository.SearchOrder> map = new HashMap<>();
@@ -50,14 +53,14 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
     }
 
     private void hideNoInternetConnection() {
-        doIfViewNotNull(view -> {
+        onViewAction(view -> {
             view.hideNoInternetConnection();
             view.enableSearchButton();
         });
     }
 
     private void showNoInternetConnection() {
-        doIfViewNotNull(view -> {
+        onViewAction(view -> {
             view.showNoInternetConnection();
             view.disableSearchButton();
         });
@@ -89,17 +92,23 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
         return SEARCH_ORDER_INT_TO_SEARCH_ORDER_MAP.get(searchOrder);
     }
 
-    private Action1<RepositorySearchContract.View> mapToViewAction(final List<RepositoryViewModel> repositoryViewModels) {
+    private Action1<RepositorySearchContract.View> mapToViewAction(final List<RepositoryViewModel> viewModels) {
         return view -> {
             view.hideLoading();
-            view.render(new RepositorySearchScreenViewModel(repositoryViewModels, true));
+            view.render(new RepositorySearchScreenViewModel(viewModels, evaluateIfMoreCanBeLoaded(viewModels)));
         };
+    }
+
+    private boolean evaluateIfMoreCanBeLoaded(final List<RepositoryViewModel> repositoryViewModels) {
+        return repositoryViewModels.size() == PER_PAGE_COUNT;
     }
 
     private void processSearchError(final Throwable throwable) {
         logError(throwable);
-        doIfViewNotNull(RepositorySearchContract.View::hideLoading);
-        doIfViewNotNull(RepositorySearchContract.View::showErrorDialog);
+        onViewAction(view -> {
+            view.hideLoading();
+            view.showErrorDialog();
+        });
     }
 
     @Override

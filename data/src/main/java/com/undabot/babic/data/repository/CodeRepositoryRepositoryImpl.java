@@ -14,7 +14,7 @@ import rx.Single;
 
 public final class CodeRepositoryRepositoryImpl implements CodeRepositoryRepository {
 
-    private static final int PER_PAGE_COUNT = 50;
+    public static final int PER_PAGE_COUNT = 50;
 
     private final CodeRepositoryClient codeRepositoryClient;
     private final CodeRepositoryCache codeRepositoryCache;
