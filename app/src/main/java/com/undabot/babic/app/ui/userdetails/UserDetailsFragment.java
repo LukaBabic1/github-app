@@ -63,20 +63,11 @@ public final class UserDetailsFragment extends BaseFragment implements UserDetai
     @BindView(R.id.fragment_user_detail_updated_at)
     TextView updatedAtTextView;
 
-    @BindView(R.id.fragment_user_detail_private_gists)
-    TextView privateGistsTextView;
-
     @BindView(R.id.fragment_user_detail_public_repos)
     TextView publicReposTextView;
 
     @BindView(R.id.fragment_user_detail_public_gists)
     TextView publicGistsTextView;
-
-    @BindView(R.id.fragment_user_detail_total_owned_repos)
-    TextView ownedReposTextView;
-
-    @BindView(R.id.fragment_user_detail_owned_private_repos)
-    TextView privateReposTextView;
 
     @Inject
     UserDetailsContract.Presenter presenter;
@@ -146,11 +137,8 @@ public final class UserDetailsFragment extends BaseFragment implements UserDetai
         followingTextView.setText(String.format(resources.getString(R.string.user_details_following_template), viewModel.followers));
         createdAtTextView.setText(String.format(resources.getString(R.string.user_details_created_at_template), viewModel.createdAt));
         updatedAtTextView.setText(String.format(resources.getString(R.string.user_details_updated_at_template), viewModel.updatedAt));
-        privateGistsTextView.setText(String.format(resources.getString(R.string.user_details_private_gists_template), viewModel.privateGists));
         publicReposTextView.setText(String.format(resources.getString(R.string.user_details_public_repos_template), viewModel.publicRepos));
         publicGistsTextView.setText(String.format(resources.getString(R.string.user_details_public_gists_template), viewModel.publicGists));
-        ownedReposTextView.setText(String.format(resources.getString(R.string.user_details_total_owned_repos_template), viewModel.totalPrivateRepos));
-        privateReposTextView.setText(String.format(resources.getString(R.string.user_details_owned_private_repos_template), viewModel.ownedPrivateRepos));
     }
 
     private void loadImage(final UserDetailViewModel viewModel) {
@@ -181,20 +169,30 @@ public final class UserDetailsFragment extends BaseFragment implements UserDetai
         }
 
         @Override
-        public int describeContents() { return 0; }
+        public int describeContents() {
+            return 0;
+        }
 
         @Override
-        public void writeToParcel(Parcel dest, int flags) {dest.writeString(this.username);}
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(this.username);
+        }
 
-        protected Extras(Parcel in) {this.username = in.readString();}
+        protected Extras(Parcel in) {
+            this.username = in.readString();
+        }
 
         public static final Creator<Extras> CREATOR = new Creator<Extras>() {
 
             @Override
-            public Extras createFromParcel(Parcel source) {return new Extras(source);}
+            public Extras createFromParcel(Parcel source) {
+                return new Extras(source);
+            }
 
             @Override
-            public Extras[] newArray(int size) {return new Extras[size];}
+            public Extras[] newArray(int size) {
+                return new Extras[size];
+            }
         };
     }
 }

@@ -79,27 +79,12 @@
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:id="@+id/fragment_user_detail_private_gists"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
             android:id="@+id/fragment_user_detail_public_repos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/fragment_user_detail_public_gists"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/fragment_user_detail_total_owned_repos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/fragment_user_detail_owned_private_repos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
