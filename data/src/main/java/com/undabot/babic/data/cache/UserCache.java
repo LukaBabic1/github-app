@@ -10,6 +10,8 @@ import rx.Single;
 
 public interface UserCache {
 
+    Completable cacheUser(User user);
+
     Completable cacheUsers(List<User> users);
 
     Single<Optional<User>> getCachedUser(String username);

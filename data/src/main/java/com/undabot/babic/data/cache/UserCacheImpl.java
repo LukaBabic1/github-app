@@ -3,6 +3,7 @@ package com.undabot.babic.data.cache;
 import com.annimon.stream.Optional;
 import com.undabot.babic.domain.model.User;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,11 @@ import rx.Single;
 public final class UserCacheImpl implements UserCache {
 
     private final Map<String, User> userMap = new HashMap<>();
+
+    @Override
+    public Completable cacheUser(final User user) {
+        return cacheUsers(Collections.singletonList(user));
+    }
 
     @Override
     public Completable cacheUsers(final List<User> users) {
