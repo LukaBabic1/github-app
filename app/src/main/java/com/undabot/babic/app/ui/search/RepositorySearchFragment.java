@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseIntArray;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -129,6 +130,7 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
         super.onViewCreated(view, savedInstanceState);
         initAdapter();
         initRecyclerView();
+        initSearchEditText();
     }
 
     private void initAdapter() {
@@ -138,6 +140,17 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
     private void initRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(codeRepositoriesAdapter);
+    }
+
+    private void initSearchEditText() {
+        searchEditText.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                searchInternal();
+                return true;
+            }
+
+            return false;
+        });
     }
 
     @Override
@@ -211,6 +224,10 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
 
     @OnClick(R.id.fragment_repository_search_search_button)
     void onSearchButtonClicked() {
+        searchInternal();
+    }
+
+    private void searchInternal() {
         final int selectedRadioButtonId = radioGroup.getCheckedRadioButtonId();
         if (selectedRadioButtonId == UNSELECTED_RADIO_BUTTON_ID) {
             showSortOrderNotSelectedPrompt();
