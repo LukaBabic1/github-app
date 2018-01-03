@@ -214,12 +214,20 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
 
     @Override
     public void onRepositoryClicked(final String repositoryName, final String username) {
-        presenter.showRepositoryDetails(repositoryName, username);
+        if (!isLoading()) {
+            presenter.showRepositoryDetails(repositoryName, username);
+        }
     }
 
     @Override
     public void onUserAvatarClicked(final String username) {
-        presenter.showUserDetails(username);
+        if (!isLoading()) {
+            presenter.showUserDetails(username);
+        }
+    }
+
+    private boolean isLoading() {
+        return progressBar.getVisibility() == View.VISIBLE;
     }
 
     @OnClick(R.id.fragment_repository_search_search_button)
