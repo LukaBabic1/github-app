@@ -68,6 +68,21 @@
     </style>
 
     <!-- Repository detail -->
+    <style name="RepositoryDetailRootContentLayoutStyle">
+        <item name="android:paddingStart">@dimen/repository_details_root_content_layout_padding_start</item>
+        <item name="android:paddingEnd">@dimen/repository_details_root_content_layout_padding_end</item>
+        <item name="android:paddingBottom">@dimen/repository_details_root_content_layout_padding_bottom</item>
+    </style>
+
+    <style name="RepositoryDetailRepositoryNameStyle">
+        <item name="android:textSize">@dimen/repository_details_repository_name_text_size</item>
+    </style>
+
+    <style name="RepositoryDetailRepositoryFullNameStyle">
+        <item name="android:layout_marginBottom">@dimen/repository_details_repository_full_name_layout_margin_bottom</item>
+        <item name="android:textSize">@dimen/repository_details_repository_full_name_text_size</item>
+    </style>
+
     <style name="RepositoryDetailLabelBaseStyle">
         <item name="android:paddingEnd">@dimen/repository_details_label_text_view_padding_end</item>
     </style>
@@ -123,6 +138,10 @@
     <style name="RepositoryDetailsAuthorLabelStyle">
         <item name="android:text">@string/repository_details_author_label_text</item>
         <item name="android:textSize">@dimen/repository_details_author_label_text_size</item>
+    </style>
+
+    <style name="RepositoryDetailsViewOnGithubButtonStyle">
+        <item name="android:text">@string/repository_details_view_on_github_button_text</item>
     </style>
 
 </resources>

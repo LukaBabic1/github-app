@@ -46,5 +46,6 @@
     <string name="repository_details_has_wiki_label_text">Has wiki:</string>
     <string name="repository_details_author_name_label">Author:</string>
     <string name="repository_details_author_label_text">@string/author</string>
+    <string name="repository_details_view_on_github_button_text">View repository on Github</string>
 
 </resources>

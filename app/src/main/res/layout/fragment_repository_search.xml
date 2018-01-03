@@ -66,6 +66,9 @@
 
     </RadioGroup>
 
+    <include
+        layout="@layout/universal_primary_color_divider_line"/>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

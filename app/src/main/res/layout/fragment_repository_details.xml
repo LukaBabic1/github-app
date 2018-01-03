@@ -7,17 +7,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        style="@style/RepositoryDetailRootContentLayoutStyle">
 
         <TextView
             android:id="@+id/fragment_repository_detail_repository_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            style="@style/RepositoryDetailRepositoryNameStyle"/>
 
         <TextView
             android:id="@+id/fragment_repository_detail_repository_full_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            style="@style/RepositoryDetailRepositoryFullNameStyle"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -251,6 +254,12 @@
                 android:layout_height="wrap_content"/>
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/fragment_repository_detail_view_repository_on_github_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/RepositoryDetailsViewOnGithubButtonStyle"/>
 
     </LinearLayout>
 

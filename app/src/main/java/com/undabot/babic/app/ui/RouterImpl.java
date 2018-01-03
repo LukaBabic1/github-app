@@ -1,6 +1,8 @@
 package com.undabot.babic.app.ui;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 
 import com.undabot.babic.app.R;
@@ -44,6 +46,10 @@ public final class RouterImpl implements Router {
     }
 
     @Override
+    public void showPageInExternalBrowser(final String url) {
+        activity.startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(url)));
+    }
+
     public void goBack() {
         if (fragmentManager.getBackStackEntryCount() == 0) {
             activity.finish();

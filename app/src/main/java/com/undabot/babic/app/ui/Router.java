@@ -9,4 +9,6 @@ public interface Router {
     void showRepositoryDetailsScreen(String repositoryName, String username);
 
     void goBack();
+
+    void showPageInExternalBrowser(String url);
 }

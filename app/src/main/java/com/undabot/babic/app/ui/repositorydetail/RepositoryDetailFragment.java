@@ -17,12 +17,19 @@ import com.undabot.babic.app.utils.ui.ImageLoader;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public final class RepositoryDetailFragment extends BaseFragment implements RepositoryDetailContract.View {
 
     public static final String TAG = "RepositoryDetailFragment";
 
     private static final String KEY_EXTRA = "key_fragment_extra";
+
+    @BindView(R.id.fragment_repository_detail_repository_name)
+    TextView repositoryName;
+
+    @BindView(R.id.fragment_repository_detail_repository_full_name)
+    TextView repositoryFullName;
 
     @BindView(R.id.fragment_repository_detail_stars_count)
     TextView starsCountTextView;
@@ -117,6 +124,8 @@ public final class RepositoryDetailFragment extends BaseFragment implements Repo
 
     @Override
     public void render(final RepositoryDetailViewModel viewModel) {
+        repositoryName.setText(viewModel.name);
+        repositoryFullName.setText(viewModel.fullName);
         starsCountTextView.setText(String.valueOf(viewModel.stargazersCount));
         watchersCountTextView.setText(String.valueOf(viewModel.watchersCount));
         forksCountTextView.setText(String.valueOf(viewModel.forksCount));
@@ -136,6 +145,11 @@ public final class RepositoryDetailFragment extends BaseFragment implements Repo
         imageLoader.loadImage(viewModel.avatarUrl, userImage);
 
         authorNameTextView.setText(viewModel.name);
+    }
+
+    @OnClick(R.id.fragment_repository_detail_view_repository_on_github_button)
+    void onViewOnGithubButtonClicked() {
+        presenter.showRepositoryOnGithub();
     }
 
     static final class Extras implements Parcelable {
