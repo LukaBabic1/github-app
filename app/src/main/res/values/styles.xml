@@ -82,6 +82,12 @@
     </style>
 
     <!-- Repository detail -->
+    <style name="RepositoryDetailRootCardViewStyle">
+        <item name="android:layout_margin">@dimen/repository_details_root_card_view_layout_margin</item>
+        <item name="cardCornerRadius">@dimen/repository_details_root_card_view_corner_radius</item>
+        <item name="cardElevation">@dimen/repository_details_root_card_view_elevation</item>
+    </style>
+
     <style name="RepositoryDetailRootContentLayoutStyle">
         <item name="android:paddingStart">@dimen/repository_details_root_content_layout_padding_start</item>
         <item name="android:paddingEnd">@dimen/repository_details_root_content_layout_padding_end</item>
@@ -159,6 +165,10 @@
     </style>
 
     <!-- User details -->
+    <style name="UserDetailRootCardViewStyle" parent="RepositoryDetailRootCardViewStyle">
+
+    </style>
+
     <style name="UserDetailsContentLinearLayoutStyle">
         <item name="android:paddingStart">@dimen/user_details_content_linear_layout_padding_start</item>
         <item name="android:paddingEnd">@dimen/user_details_content_linear_layout_padding_end</item>

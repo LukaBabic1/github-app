@@ -39,6 +39,10 @@
     <dimen name="repository_adapter_root_view_padding_bottom">@dimen/baseline_distance</dimen>
 
     <!-- Repository details -->
+    <dimen name="repository_details_root_card_view_layout_margin">@dimen/screen_edge_distance</dimen>
+    <dimen name="repository_details_root_card_view_corner_radius">8dp</dimen>
+    <dimen name="repository_details_root_card_view_elevation">12dp</dimen>
+
     <dimen name="repository_details_root_content_layout_padding_start">@dimen/screen_edge_distance</dimen>
     <dimen name="repository_details_root_content_layout_padding_end">@dimen/screen_edge_distance</dimen>
     <dimen name="repository_details_root_content_layout_padding_bottom">@dimen/screen_edge_distance</dimen>

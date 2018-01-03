@@ -4,97 +4,111 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <!-- Without this FrameLayout, card view bottom margin would be cutoff. -->
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        style="@style/UserDetailsContentLinearLayoutStyle">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/fragment_user_detail_avatar_image"
-            android:layout_width="@dimen/user_details_avatar_image_width"
-            android:layout_height="@dimen/user_details_avatar_image_height"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/user_details_avatar_image_layout_margin_top"
-            android:layout_marginBottom="@dimen/user_details_avatar_image_layout_margin_bottom"/>
-
-        <TextView
-            android:id="@+id/fragment_user_detail_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/fragment_user_detail_username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/fragment_user_detail_type"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/fragment_user_detail_company_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/fragment_user_detail_location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/fragment_user_detail_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/fragment_user_detail_site_admin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/fragment_user_detail_hireable"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/fragment_user_detail_followers"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/fragment_user_detail_following"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/fragment_user_detail_created_at"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/fragment_user_detail_updated_at"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/fragment_user_detail_public_repos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/fragment_user_detail_public_gists"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <Button
-            android:id="@+id/fragment_user_detail_visit_blog_button"
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            style="@style/UserDetailsVisitBlogButtonStyle"/>
+            style="@style/UserDetailRootCardViewStyle">
 
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                style="@style/UserDetailsContentLinearLayoutStyle">
+
+                <ImageView
+                    android:id="@+id/fragment_user_detail_avatar_image"
+                    android:layout_width="@dimen/user_details_avatar_image_width"
+                    android:layout_height="@dimen/user_details_avatar_image_height"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/user_details_avatar_image_layout_margin_top"
+                    android:layout_marginBottom="@dimen/user_details_avatar_image_layout_margin_bottom"/>
+
+                <TextView
+                    android:id="@+id/fragment_user_detail_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/fragment_user_detail_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/fragment_user_detail_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/fragment_user_detail_company_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/fragment_user_detail_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/fragment_user_detail_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/fragment_user_detail_site_admin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/fragment_user_detail_hireable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/fragment_user_detail_followers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/fragment_user_detail_following"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/fragment_user_detail_created_at"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/fragment_user_detail_updated_at"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/fragment_user_detail_public_repos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/fragment_user_detail_public_gists"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <Button
+                    android:id="@+id/fragment_user_detail_visit_blog_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    style="@style/UserDetailsVisitBlogButtonStyle"/>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </FrameLayout>
 
 </ScrollView>
