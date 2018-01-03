@@ -16,10 +16,14 @@ public final class RepositoryDetailViewModel {
     public final String language;
     public final String createdAt;
     public final String updatedAt;
+    public final boolean isPrivate;
+    public final boolean hasIssued;
+    public final boolean hasProjects;
+    public final boolean hasWiki;
 
     public RepositoryDetailViewModel(final int id, final String name, final String fullName, final RepositoryOwnerViewModel repositoryOwnerViewModel, final int stargazersCount,
                                      final int watchersCount, final int forksCount, final int openIssuesCount, final float score, final String language, final String createdAt,
-                                     final String updatedAt) {
+                                     final String updatedAt, final boolean isPrivate, final boolean hasIssued, final boolean hasProjects, final boolean hasWiki) {
         this.id = id;
         this.name = name;
         this.fullName = fullName;
@@ -32,6 +36,10 @@ public final class RepositoryDetailViewModel {
         this.language = language;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.isPrivate = isPrivate;
+        this.hasIssued = hasIssued;
+        this.hasProjects = hasProjects;
+        this.hasWiki = hasWiki;
     }
 
     @Override
@@ -61,6 +69,18 @@ public final class RepositoryDetailViewModel {
             return false;
         }
         if (Float.compare(that.score, score) != 0) {
+            return false;
+        }
+        if (isPrivate != that.isPrivate) {
+            return false;
+        }
+        if (hasIssued != that.hasIssued) {
+            return false;
+        }
+        if (hasProjects != that.hasProjects) {
+            return false;
+        }
+        if (hasWiki != that.hasWiki) {
             return false;
         }
         if (name != null ? !name.equals(that.name) : that.name != null) {
@@ -95,6 +115,10 @@ public final class RepositoryDetailViewModel {
         result = 31 * result + (language != null ? language.hashCode() : 0);
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
+        result = 31 * result + (isPrivate ? 1 : 0);
+        result = 31 * result + (hasIssued ? 1 : 0);
+        result = 31 * result + (hasProjects ? 1 : 0);
+        result = 31 * result + (hasWiki ? 1 : 0);
         return result;
     }
 }

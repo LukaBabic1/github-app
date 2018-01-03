@@ -44,7 +44,7 @@ public final class RepositoryDetailPresenter extends BasePresenter<RepositoryDet
     }
 
     private void processGetRepositoryDataError(final Throwable throwable) {
-
+        logError(throwable);
     }
 
     private static final class InitData {

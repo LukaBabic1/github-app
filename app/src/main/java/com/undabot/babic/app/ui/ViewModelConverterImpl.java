@@ -6,15 +6,18 @@ import com.undabot.babic.app.ui.search.CodeRepositoryViewModel;
 import com.undabot.babic.app.ui.search.RepositoryOwnerViewModel;
 import com.undabot.babic.domain.model.CodeRepository;
 import com.undabot.babic.domain.model.User;
+import com.undabot.babic.domain.utils.DateUtils;
 import com.undabot.babic.domain.utils.StringUtils;
 
 import java.util.List;
 
 public final class ViewModelConverterImpl implements ViewModelConverter {
 
+    private final DateUtils dateUtils;
     private final StringUtils stringUtils;
 
-    public ViewModelConverterImpl(final StringUtils stringUtils) {
+    public ViewModelConverterImpl(final DateUtils dateUtils, final StringUtils stringUtils) {
+        this.dateUtils = dateUtils;
         this.stringUtils = stringUtils;
     }
 
@@ -55,7 +58,11 @@ public final class ViewModelConverterImpl implements ViewModelConverter {
                                              codeRepository.openIssuesCount,
                                              codeRepository.score,
                                              codeRepository.language,
-                                             "",
-                                             "");
+                                             String.valueOf(codeRepository.createdAt),
+                                             String.valueOf(codeRepository.updatedAt),
+                                             codeRepository.isPrivate,
+                                             codeRepository.hasIssues,
+                                             codeRepository.hasProjects,
+                                             codeRepository.hasWiki);
     }
 }

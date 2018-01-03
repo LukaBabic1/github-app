@@ -1,13 +1,257 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Repository details"/>
+        android:orientation="vertical">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/fragment_repository_detail_repository_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/fragment_repository_detail_repository_full_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_repository_detail_stars_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/RepositoryDetailLabelBaseStyle.Stars"/>
+
+            <TextView
+                android:id="@+id/fragment_repository_detail_stars_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_repository_detail_watchers_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/RepositoryDetailLabelBaseStyle.Watchers"/>
+
+            <TextView
+                android:id="@+id/fragment_repository_detail_watchers_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_repository_detail_forks_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/RepositoryDetailLabelBaseStyle.Forks"/>
+
+            <TextView
+                android:id="@+id/fragment_repository_detail_forks_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_repository_detail_open_issues_count_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/RepositoryDetailLabelBaseStyle.OpenIssuesCount"/>
+
+            <TextView
+                android:id="@+id/fragment_repository_detail_open_issues_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_repository_detail_score_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/RepositoryDetailLabelBaseStyle.Score"/>
+
+            <TextView
+                android:id="@+id/fragment_repository_detail_score_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_repository_detail_language_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/RepositoryDetailLabelBaseStyle.Language"/>
+
+            <TextView
+                android:id="@+id/fragment_repository_detail_language_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_repository_detail_created_at"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/RepositoryDetailLabelBaseStyle.CreatedAt"/>
+
+            <TextView
+                android:id="@+id/fragment_repository_detail_created_at_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_repository_detail_updated_at"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/RepositoryDetailLabelBaseStyle.UpdatedAt"/>
+
+            <TextView
+                android:id="@+id/fragment_repository_detail_updated_at_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_repository_detail_is_private"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/RepositoryDetailLabelBaseStyle.IsPrivate"/>
+
+            <TextView
+                android:id="@+id/fragment_repository_detail_is_private_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_repository_detail_has_issues"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/RepositoryDetailLabelBaseStyle.HasIssues"/>
+
+            <TextView
+                android:id="@+id/fragment_repository_detail_has_issues_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_repository_detail_has_wiki"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/RepositoryDetailLabelBaseStyle.HasWiki"/>
+
+            <TextView
+                android:id="@+id/fragment_repository_detail_has_wiki_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <include
+            layout="@layout/universal_gray_divider_line"/>
+
+        <!-- Author details -->
+
+        <TextView
+            android:id="@+id/fragment_repository_detail_author_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/RepositoryDetailsAuthorLabelStyle"/>
+
+        <ImageView
+            android:id="@+id/fragment_repository_detail_user_image"
+            android:layout_width="@dimen/repository_details_user_image_width"
+            android:layout_height="@dimen/repository_details_user_image_height"
+            android:layout_gravity="center_horizontal"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_repository_detail_author_name_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/RepositoryDetailLabelBaseStyle.AuthorNameLabel"/>
+
+            <TextView
+                android:id="@+id/fragment_repository_detail_author_name_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

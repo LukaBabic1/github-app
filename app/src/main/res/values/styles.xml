@@ -67,4 +67,62 @@
         <item name="android:textSize">@dimen/repository_adapter_title_text_size</item>
     </style>
 
+    <!-- Repository detail -->
+    <style name="RepositoryDetailLabelBaseStyle">
+        <item name="android:paddingEnd">@dimen/repository_details_label_text_view_padding_end</item>
+    </style>
+
+    <style name="RepositoryDetailLabelBaseStyle.Stars">
+        <item name="android:text">@string/repository_details_stars_label_text</item>
+    </style>
+
+    <style name="RepositoryDetailLabelBaseStyle.Watchers">
+        <item name="android:text">@string/repository_details_watchers_label_text</item>
+    </style>
+
+    <style name="RepositoryDetailLabelBaseStyle.Forks">
+        <item name="android:text">@string/repository_details_forks_label_text</item>
+    </style>
+
+    <style name="RepositoryDetailLabelBaseStyle.OpenIssuesCount">
+        <item name="android:text">@string/repository_details_open_issues_count_label_text</item>
+    </style>
+
+    <style name="RepositoryDetailLabelBaseStyle.Score">
+        <item name="android:text">@string/repository_details_score_label_text</item>
+    </style>
+
+    <style name="RepositoryDetailLabelBaseStyle.Language">
+        <item name="android:text">@string/repository_details_language_label_text</item>
+    </style>
+
+    <style name="RepositoryDetailLabelBaseStyle.CreatedAt">
+        <item name="android:text">@string/repository_details_created_at_label_text</item>
+    </style>
+
+    <style name="RepositoryDetailLabelBaseStyle.UpdatedAt">
+        <item name="android:text">@string/repository_details_updated_at_label_text</item>
+    </style>
+
+    <style name="RepositoryDetailLabelBaseStyle.IsPrivate">
+        <item name="android:text">@string/repository_details_is_private_label_text</item>
+    </style>
+
+    <style name="RepositoryDetailLabelBaseStyle.HasIssues">
+        <item name="android:text">@string/repository_details_has_issues_label_text</item>
+    </style>
+
+    <style name="RepositoryDetailLabelBaseStyle.HasWiki">
+        <item name="android:text">@string/repository_details_has_wiki_label_text</item>
+    </style>
+
+    <style name="RepositoryDetailLabelBaseStyle.AuthorNameLabel">
+        <item name="android:text">@string/repository_details_author_name_label</item>
+    </style>
+
+    <style name="RepositoryDetailsAuthorLabelStyle">
+        <item name="android:text">@string/repository_details_author_label_text</item>
+        <item name="android:textSize">@dimen/repository_details_author_label_text_size</item>
+    </style>
+
 </resources>

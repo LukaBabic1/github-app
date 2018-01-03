@@ -13,4 +13,6 @@
     <color name="no_internet_connection_text_view_background_color">@android:color/holo_red_dark</color>
     <color name="no_internet_connection_text_view_text_color">@color/white</color>
 
+    <color name="universal_gray_divider_line_color">@android:color/darker_gray</color>
+
 </resources>

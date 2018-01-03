@@ -29,8 +29,8 @@ public final class UtilsModule {
 
     @Provides
     @Singleton
-    ViewModelConverter provideViewModelConverter(final StringUtils stringUtils) {
-        return new ViewModelConverterImpl(stringUtils);
+    ViewModelConverter provideViewModelConverter(final DateUtils dateUtils, final StringUtils stringUtils) {
+        return new ViewModelConverterImpl(dateUtils, stringUtils);
     }
 
     public interface Exposes {
