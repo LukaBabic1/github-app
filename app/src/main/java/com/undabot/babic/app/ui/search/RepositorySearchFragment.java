@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.annimon.stream.Optional;
 import com.undabot.babic.app.R;
@@ -171,7 +172,7 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
     @Override
     public void render(final RepositorySearchScreenViewModel viewModel) {
         repositorySearchScreenViewModel = Optional.of(viewModel);
-        codeRepositoriesAdapter.setItems(viewModel.repositoryViewModels);
+        codeRepositoriesAdapter.setItems(viewModel.repositoryViewModels, true);
     }
 
     @Override
@@ -229,6 +230,13 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
     public void onUserAvatarClicked(final String username) {
         if (!isLoading()) {
             presenter.showUserDetails(username);
+        }
+    }
+
+    @Override
+    public void loadMoreItems() {
+        if (!isLoading()) {
+            Toast.makeText(getContext(), "Load more items", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -44,6 +44,8 @@
     <dimen name="repository_adapter_image_width">160dp</dimen>
     <dimen name="repository_adapter_image_height">160dp</dimen>
 
+    <dimen name="repository_adapter_load_more_row_item_height">64dp</dimen>
+
     <!-- Repository details -->
     <dimen name="repository_details_root_card_view_layout_margin">@dimen/screen_edge_distance</dimen>
     <dimen name="repository_details_root_card_view_corner_radius">8dp</dimen>

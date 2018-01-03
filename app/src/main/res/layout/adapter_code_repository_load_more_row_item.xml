@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/repository_adapter_load_more_row_item_height"
+    style="@style/RepositoryAdapterLoadMoreItemCardViewStyle">
+
+    <FrameLayout
+        android:id="@+id/adapter_code_repository_load_more_row_item_root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/selectableItemBackground">
+
+        <TextView
+            android:id="@+id/adapter_code_repository_load_more_row_item_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/RepositoryAdapterLoadMoreItemTextStyle"/>
+
+    </FrameLayout>
+
+</android.support.v7.widget.CardView>

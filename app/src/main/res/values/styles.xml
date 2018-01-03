@@ -87,6 +87,15 @@
         <item name="android:textSize">@dimen/repository_adapter_title_text_size</item>
     </style>
 
+    <style name="RepositoryAdapterLoadMoreItemCardViewStyle" parent="RepositoriesAdapterRootCardViewStyle">
+
+    </style>
+
+    <style name="RepositoryAdapterLoadMoreItemTextStyle">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:text">@string/repository_adapter_load_more_item_row_text</item>
+    </style>
+
     <!-- Repository detail -->
     <style name="RepositoryDetailRootCardViewStyle">
         <item name="android:layout_margin">@dimen/repository_details_root_card_view_layout_margin</item>
