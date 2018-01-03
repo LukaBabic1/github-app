@@ -71,12 +71,21 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/fragment_repository_search_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
+
+        <FrameLayout
+            android:id="@+id/fragment_repository_search_loading_fading_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            tools:visibility="visible"
+            style="@style/RepositorySearchScreenFadingLoadingViewStyle"/>
         
         <ProgressBar
             android:id="@+id/fragment_repository_search_progress_bar"

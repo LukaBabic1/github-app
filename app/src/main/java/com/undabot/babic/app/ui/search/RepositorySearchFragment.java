@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -76,6 +77,9 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
 
     @BindView(R.id.fragment_repository_search_recycler_view)
     RecyclerView recyclerView;
+
+    @BindView(R.id.fragment_repository_search_loading_fading_view)
+    FrameLayout loadingFadingView;
 
     @BindView(R.id.fragment_repository_search_progress_bar)
     ProgressBar progressBar;
@@ -173,12 +177,14 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
     @Override
     public void showLoading() {
         searchButton.setEnabled(false);
+        loadingFadingView.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
         searchButton.setEnabled(true);
+        loadingFadingView.setVisibility(View.GONE);
         progressBar.setVisibility(View.GONE);
     }
 

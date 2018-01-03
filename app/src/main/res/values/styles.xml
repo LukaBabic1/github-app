@@ -61,6 +61,10 @@
         <item name="android:text">@string/repository_search_screen_radio_button_updated_text</item>
     </style>
 
+    <style name="RepositorySearchScreenFadingLoadingViewStyle">
+        <item name="android:background">@color/white_opacity_75</item>
+    </style>
+
     <!-- Repositories adapter -->
     <style name="RepositoriesAdapterRootCardViewStyle">
         <item name="android:layout_marginStart">@dimen/repository_adapter_root_card_view_layout_margin_start</item>
