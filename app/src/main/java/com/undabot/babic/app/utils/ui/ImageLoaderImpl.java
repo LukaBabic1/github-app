@@ -21,6 +21,7 @@ public final class ImageLoaderImpl implements ImageLoader {
         Glide.with(context)
              .load(url)
              .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+             .fitCenter()
              .crossFade()
              .into(target);
     }

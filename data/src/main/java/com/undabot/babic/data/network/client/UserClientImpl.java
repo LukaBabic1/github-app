@@ -21,7 +21,7 @@ public final class UserClientImpl implements UserClient {
 
     @Override
     public Single<User> fetchUser(final String username) {
-        return gitHubService.getUser(apiTokenProvider.getApiToken(), username)
+        return gitHubService.getUser(username)
                             .map(apiConverter::mapToUser);
     }
 }

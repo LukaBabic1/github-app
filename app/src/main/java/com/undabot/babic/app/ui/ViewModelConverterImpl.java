@@ -4,6 +4,7 @@ import com.annimon.stream.Stream;
 import com.undabot.babic.app.ui.repositorydetail.RepositoryDetailViewModel;
 import com.undabot.babic.app.ui.search.CodeRepositoryViewModel;
 import com.undabot.babic.app.ui.search.RepositoryOwnerViewModel;
+import com.undabot.babic.app.ui.userdetails.UserDetailViewModel;
 import com.undabot.babic.domain.model.CodeRepository;
 import com.undabot.babic.domain.model.User;
 import com.undabot.babic.domain.utils.DateUtils;
@@ -58,11 +59,34 @@ public final class ViewModelConverterImpl implements ViewModelConverter {
                                              codeRepository.openIssuesCount,
                                              codeRepository.score,
                                              codeRepository.language,
-                                             String.valueOf(codeRepository.createdAt),
-                                             String.valueOf(codeRepository.updatedAt),
+                                             dateUtils.convertToUserReadableTimestamp(codeRepository.createdAt),
+                                             dateUtils.convertToUserReadableTimestamp(codeRepository.updatedAt),
                                              codeRepository.isPrivate,
                                              codeRepository.hasIssues,
                                              codeRepository.hasProjects,
                                              codeRepository.hasWiki);
+    }
+
+    @Override
+    public UserDetailViewModel mapToUserDetailViewModel(final User user) {
+        return new UserDetailViewModel(user.id,
+                                       user.username,
+                                       user.name,
+                                       user.type,
+                                       user.companyName,
+                                       user.location,
+                                       user.email,
+                                       user.avatarUrl,
+                                       user.siteAdmin,
+                                       user.hireable,
+                                       user.followers,
+                                       user.following,
+                                       dateUtils.convertToUserReadableTimestamp(user.createdAt),
+                                       dateUtils.convertToUserReadableTimestamp(user.updatedAt),
+                                       user.privateGists,
+                                       user.publicRepos,
+                                       user.publicGists,
+                                       user.totalPrivateRepos,
+                                       user.ownedPrivateRepos);
     }
 }

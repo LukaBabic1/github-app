@@ -3,6 +3,7 @@ package com.undabot.babic.app.ui;
 import com.undabot.babic.app.ui.repositorydetail.RepositoryDetailViewModel;
 import com.undabot.babic.app.ui.search.CodeRepositoryViewModel;
 import com.undabot.babic.app.ui.search.RepositoryOwnerViewModel;
+import com.undabot.babic.app.ui.userdetails.UserDetailViewModel;
 import com.undabot.babic.domain.model.CodeRepository;
 import com.undabot.babic.domain.model.User;
 
@@ -17,4 +18,6 @@ public interface ViewModelConverter {
     List<CodeRepositoryViewModel> mapCodeRepositoriesToViewModels(List<CodeRepository> codeRepositories);
 
     RepositoryDetailViewModel mapToRepositoryDetailViewModel(CodeRepository codeRepository);
+
+    UserDetailViewModel mapToUserDetailViewModel(User user);
 }

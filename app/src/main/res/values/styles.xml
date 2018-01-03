@@ -144,4 +144,11 @@
         <item name="android:text">@string/repository_details_view_on_github_button_text</item>
     </style>
 
+    <!-- User details -->
+    <style name="UserDetailsContentLinearLayoutStyle">
+        <item name="android:paddingStart">@dimen/user_details_content_linear_layout_padding_start</item>
+        <item name="android:paddingEnd">@dimen/user_details_content_linear_layout_padding_end</item>
+        <item name="android:paddingBottom">@dimen/user_details_content_linear_layout_padding_bottom</item>
+    </style>
+
 </resources>

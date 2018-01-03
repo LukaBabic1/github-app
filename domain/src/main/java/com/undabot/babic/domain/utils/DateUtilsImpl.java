@@ -10,6 +10,13 @@ public final class DateUtilsImpl implements DateUtils {
 
     @Override
     public long convertISO8601ToTimestamp(final String isoISO8601DateString) {
+        // TODO
         return 0L;
+    }
+
+    @Override
+    public String convertToUserReadableTimestamp(final long timestamp) {
+        // TODO
+        return "";
     }
 }

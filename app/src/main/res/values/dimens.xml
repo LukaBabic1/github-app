@@ -44,4 +44,14 @@
     <dimen name="repository_details_user_image_width">200dp</dimen>
     <dimen name="repository_details_user_image_height">200dp</dimen>
 
+    <!-- User details -->
+    <dimen name="user_details_content_linear_layout_padding_start">@dimen/screen_edge_distance</dimen>
+    <dimen name="user_details_content_linear_layout_padding_end">@dimen/screen_edge_distance</dimen>
+    <dimen name="user_details_content_linear_layout_padding_bottom">@dimen/screen_edge_distance</dimen>
+
+    <dimen name="user_details_avatar_image_width">280dp</dimen>
+    <dimen name="user_details_avatar_image_height">@dimen/user_details_avatar_image_width</dimen>
+    <dimen name="user_details_avatar_image_layout_margin_top">48dp</dimen>
+    <dimen name="user_details_avatar_image_layout_margin_bottom">@dimen/user_details_avatar_image_layout_margin_top</dimen>
+
 </resources>
