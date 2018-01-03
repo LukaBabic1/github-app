@@ -3,6 +3,8 @@ package com.undabot.babic.app.ui.repositorydetail;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -76,6 +78,8 @@ public final class RepositoryDetailFragment extends BaseFragment implements Repo
     @Inject
     ImageLoader imageLoader;
 
+    private Optional<RepositoryDetailViewModel> viewModel = Optional.empty();
+
     public static RepositoryDetailFragment newInstance(final String repositoryName, final String username) {
         final Bundle bundle = new Bundle();
         bundle.putParcelable(KEY_EXTRA, new Extras(repositoryName, username));
@@ -118,12 +122,21 @@ public final class RepositoryDetailFragment extends BaseFragment implements Repo
     }
 
     @Override
+    public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        viewModel.ifPresentOrElse(this::render,
+                                  this::extractArguments);
+    }
+
+    @Override
     public ScopedPresenter getPresenter() {
         return presenter;
     }
 
     @Override
     public void render(final RepositoryDetailViewModel viewModel) {
+        this.viewModel = Optional.of(viewModel);
+
         repositoryName.setText(viewModel.name);
         repositoryFullName.setText(viewModel.fullName);
         starsCountTextView.setText(String.valueOf(viewModel.stargazersCount));
@@ -143,8 +156,12 @@ public final class RepositoryDetailFragment extends BaseFragment implements Repo
 
     private void renderOwnerDetails(final RepositoryOwnerViewModel viewModel) {
         imageLoader.loadImage(viewModel.avatarUrl, userImage);
-
         authorNameTextView.setText(viewModel.name);
+    }
+
+    @OnClick(R.id.fragment_repository_detail_user_image)
+    void onUserImageClicked() {
+        presenter.showUserDetails();
     }
 
     @OnClick(R.id.fragment_repository_detail_view_repository_on_github_button)

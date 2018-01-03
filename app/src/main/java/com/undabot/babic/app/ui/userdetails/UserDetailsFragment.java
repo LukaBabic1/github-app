@@ -3,6 +3,7 @@ package com.undabot.babic.app.ui.userdetails;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -90,6 +91,8 @@ public final class UserDetailsFragment extends BaseFragment implements UserDetai
     @Inject
     ViewUtils viewUtils;
 
+    private Optional<UserDetailViewModel> userDetailViewModel = Optional.empty();
+
     public static UserDetailsFragment newInstance(final String username) {
         final Bundle bundle = new Bundle();
         bundle.putParcelable(KEY_EXTRAS, new Extras(username));
@@ -98,20 +101,6 @@ public final class UserDetailsFragment extends BaseFragment implements UserDetai
         fragment.setArguments(bundle);
 
         return fragment;
-    }
-
-    @Override
-    public void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        extractArguments();
-    }
-
-    private void extractArguments() {
-        Optional.ofNullable(getArguments())
-                .map(bundle -> (Extras) bundle.getParcelable(KEY_EXTRAS))
-                .map(extras -> extras.username)
-                .ifPresentOrElse(presenter::init,
-                                 this::throwArgumentsMissingException);
     }
 
     private void throwArgumentsMissingException() {
@@ -126,6 +115,21 @@ public final class UserDetailsFragment extends BaseFragment implements UserDetai
     @Override
     protected int getLayoutResourceId() {
         return R.layout.fragment_user_details;
+    }
+
+    @Override
+    public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        userDetailViewModel.ifPresentOrElse(this::render,
+                                            this::extractArguments);
+    }
+
+    private void extractArguments() {
+        Optional.ofNullable(getArguments())
+                .map(bundle -> (Extras) bundle.getParcelable(KEY_EXTRAS))
+                .map(extras -> extras.username)
+                .ifPresentOrElse(presenter::init,
+                                 this::throwArgumentsMissingException);
     }
 
     @Override

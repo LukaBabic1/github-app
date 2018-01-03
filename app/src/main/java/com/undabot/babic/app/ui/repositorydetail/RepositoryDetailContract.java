@@ -18,6 +18,8 @@ public final class RepositoryDetailContract {
 
         void init(String repositoryName, String username);
 
+        void showUserDetails();
+
         void showRepositoryOnGithub();
     }
 }
