@@ -6,6 +6,7 @@ import com.undabot.babic.data.network.client.UserClient;
 import com.undabot.babic.domain.model.User;
 import com.undabot.babic.domain.repository.UserRepository;
 
+import rx.Completable;
 import rx.Single;
 
 public final class UserRepositoryImpl implements UserRepository {
@@ -24,7 +25,12 @@ public final class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public Single<Optional<User>> getUser(final String username) {
+    public Single<Optional<User>> getCachedUser(final String username) {
         return userCache.getCachedUser(username);
+    }
+
+    @Override
+    public Completable cacheUser(final User user) {
+        return userCache.cacheUser(user);
     }
 }

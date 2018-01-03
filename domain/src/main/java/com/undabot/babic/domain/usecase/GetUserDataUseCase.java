@@ -2,9 +2,9 @@ package com.undabot.babic.domain.usecase;
 
 import com.undabot.babic.domain.model.User;
 
-import rx.Single;
+import rx.Observable;
 
 public interface GetUserDataUseCase {
 
-    Single<User> execute(String username);
+    Observable<User> execute(String username);
 }
