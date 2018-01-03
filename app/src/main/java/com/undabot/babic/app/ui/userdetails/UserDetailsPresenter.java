@@ -52,7 +52,7 @@ public final class UserDetailsPresenter extends BasePresenter<UserDetailsContrac
 
     private void processGetUserDataError(final Throwable throwable) {
         logError(throwable);
-        // TODO
+        onViewAction(UserDetailsContract.View::showErrorMessage);
     }
 
     @Override

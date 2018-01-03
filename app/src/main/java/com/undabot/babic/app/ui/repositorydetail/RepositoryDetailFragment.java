@@ -168,6 +168,11 @@ public final class RepositoryDetailFragment extends BaseFragment implements Repo
         authorNameTextView.setText(viewModel.name);
     }
 
+    @Override
+    public void showErrorScreen() {
+        showShortToast(R.string.repository_details_toast_error_message);
+    }
+
     @OnClick(R.id.fragment_repository_detail_user_image)
     void onUserImageClicked() {
         presenter.showUserDetails();

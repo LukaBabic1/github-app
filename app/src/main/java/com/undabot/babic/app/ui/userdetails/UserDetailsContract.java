@@ -12,6 +12,8 @@ public final class UserDetailsContract {
     public interface View extends BaseView {
 
         void render(UserDetailViewModel viewModel);
+
+        void showErrorMessage();
     }
 
     public interface Presenter extends ScopedPresenter {

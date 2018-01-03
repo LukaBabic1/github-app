@@ -12,6 +12,8 @@ public final class RepositoryDetailContract {
     public interface View extends BaseView {
 
         void render(RepositoryDetailViewModel viewModel);
+
+        void showErrorScreen();
     }
 
     public interface Presenter extends ScopedPresenter {

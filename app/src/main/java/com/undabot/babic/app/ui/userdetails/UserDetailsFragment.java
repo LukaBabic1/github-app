@@ -197,6 +197,11 @@ public final class UserDetailsFragment extends BaseFragment implements UserDetai
         imageLoader.loadImage(imageUrl, avatarImageView);
     }
 
+    @Override
+    public void showErrorMessage() {
+        showShortToast(R.string.user_details_toast_error_message);
+    }
+
     @OnClick(R.id.fragment_user_detail_visit_blog_button)
     void onVisitBlogButtonClicked() {
         presenter.visitBlog();

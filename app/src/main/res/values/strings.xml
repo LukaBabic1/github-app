@@ -46,6 +46,7 @@
     <string name="repository_details_author_name_label">Author:</string>
     <string name="repository_details_author_label_text">@string/author</string>
     <string name="repository_details_view_on_github_button_text">View repository on Github</string>
+    <string name="repository_details_toast_error_message">@string/oops_something_went_wrong_try_again</string>
 
     <!-- User details -->
     <string name="user_details_name_template">User: %s</string>
@@ -63,5 +64,6 @@
     <string name="user_details_public_repos_template">Public repos: %d</string>
     <string name="user_details_public_gists_template">Gists: %d</string>
     <string name="user_details_visit_blog_button_text">Visit blog</string>
+    <string name="user_details_toast_error_message">@string/oops_something_went_wrong_try_again</string>
 
 </resources>
