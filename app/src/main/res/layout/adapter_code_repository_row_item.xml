@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     style="@style/RepositoriesAdapterRootCardViewStyle">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/adapter_code_repository_row_item_root_view"
         android:background="?attr/selectableItemBackground"
         android:layout_width="match_parent"
@@ -23,34 +23,47 @@
         <TextView
             android:id="@+id/adapter_code_repository_row_item_author_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_below="@id/adapter_code_repository_row_item_repository_name"
+            android:layout_marginBottom="@dimen/repository_adapter_author_name_layout_margin_bottom"/>
 
         <ImageView
             android:id="@+id/adapter_code_repository_row_item_owner_avatar_image"
-            android:layout_width="200dp"
-            android:layout_height="200dp"/>
+            android:layout_width="@dimen/repository_adapter_image_width"
+            android:layout_height="@dimen/repository_adapter_image_height"
+            android:layout_below="@id/adapter_code_repository_row_item_author_name"/>
 
-        <TextView
-            android:id="@+id/adapter_code_repository_row_item_stars_count"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/repository_adapter_repository_info_container_layout_margin_left"
+            android:layout_toEndOf="@id/adapter_code_repository_row_item_owner_avatar_image"
+            android:layout_below="@id/adapter_code_repository_row_item_author_name">
 
-        <TextView
-            android:id="@+id/adapter_code_repository_row_item_followers_count"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/adapter_code_repository_row_item_stars_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/adapter_code_repository_row_item_forks_count"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/adapter_code_repository_row_item_followers_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/adapter_code_repository_row_item_issues_count"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/adapter_code_repository_row_item_forks_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/adapter_code_repository_row_item_issues_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </android.support.v7.widget.CardView>
 

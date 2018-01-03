@@ -36,7 +36,13 @@
     <dimen name="repository_adapter_root_view_padding_start">@dimen/screen_edge_distance</dimen>
     <dimen name="repository_adapter_root_view_padding_top">@dimen/baseline_distance</dimen>
     <dimen name="repository_adapter_root_view_padding_end">@dimen/screen_edge_distance</dimen>
-    <dimen name="repository_adapter_root_view_padding_bottom">@dimen/baseline_distance</dimen>
+    <dimen name="repository_adapter_root_view_padding_bottom">@dimen/screen_edge_distance</dimen>
+
+    <dimen name="repository_adapter_author_name_layout_margin_bottom">@dimen/content_area_distance</dimen>
+    <dimen name="repository_adapter_repository_info_container_layout_margin_left">@dimen/content_area_distance</dimen>
+
+    <dimen name="repository_adapter_image_width">160dp</dimen>
+    <dimen name="repository_adapter_image_height">160dp</dimen>
 
     <!-- Repository details -->
     <dimen name="repository_details_root_card_view_layout_margin">@dimen/screen_edge_distance</dimen>
