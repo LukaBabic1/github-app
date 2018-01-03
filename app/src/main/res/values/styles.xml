@@ -123,10 +123,6 @@
         <item name="android:text">@string/repository_details_open_issues_count_label_text</item>
     </style>
 
-    <style name="RepositoryDetailLabelBaseStyle.Score">
-        <item name="android:text">@string/repository_details_score_label_text</item>
-    </style>
-
     <style name="RepositoryDetailLabelBaseStyle.Language">
         <item name="android:text">@string/repository_details_language_label_text</item>
     </style>

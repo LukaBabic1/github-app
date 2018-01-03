@@ -45,9 +45,6 @@ public final class RepositoryDetailFragment extends BaseFragment implements Repo
     @BindView(R.id.fragment_repository_detail_open_issues_count)
     TextView openIssuesCountTextView;
 
-    @BindView(R.id.fragment_repository_detail_score_value)
-    TextView scoreValueTextView;
-
     @BindView(R.id.fragment_repository_detail_language_value)
     TextView languageTextView;
 
@@ -156,7 +153,6 @@ public final class RepositoryDetailFragment extends BaseFragment implements Repo
         watchersCountTextView.setText(String.valueOf(viewModel.watchersCount));
         forksCountTextView.setText(String.valueOf(viewModel.forksCount));
         openIssuesCountTextView.setText(String.valueOf(viewModel.openIssuesCount));
-        scoreValueTextView.setText(String.valueOf(viewModel.score));
         languageTextView.setText(viewModel.language);
         createdAtTextView.setText(viewModel.createdAt);
         updatedAtTextView.setText(viewModel.updatedAt);

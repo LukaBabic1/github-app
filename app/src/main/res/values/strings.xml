@@ -37,7 +37,6 @@
     <string name="repository_details_watchers_label_text">Watchers:</string>
     <string name="repository_details_forks_label_text">Forks:</string>
     <string name="repository_details_open_issues_count_label_text">Open issues count:</string>
-    <string name="repository_details_score_label_text">Score:</string>
     <string name="repository_details_language_label_text">Language:</string>
     <string name="repository_details_created_at_label_text">Created at:</string>
     <string name="repository_details_updated_at_label_text">Updated at:</string>

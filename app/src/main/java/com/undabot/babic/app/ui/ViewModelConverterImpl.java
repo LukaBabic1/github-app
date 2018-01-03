@@ -57,7 +57,6 @@ public final class ViewModelConverterImpl implements ViewModelConverter {
                                              codeRepository.watchersCount,
                                              codeRepository.forksCount,
                                              codeRepository.openIssuesCount,
-                                             codeRepository.score,
                                              codeRepository.language,
                                              dateUtils.convertToUserReadableTimestamp(codeRepository.createdAt),
                                              dateUtils.convertToUserReadableTimestamp(codeRepository.updatedAt),

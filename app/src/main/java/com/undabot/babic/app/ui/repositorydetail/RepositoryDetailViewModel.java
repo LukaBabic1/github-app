@@ -12,7 +12,6 @@ public final class RepositoryDetailViewModel {
     public final int watchersCount;
     public final int forksCount;
     public final int openIssuesCount;
-    public final float score;
     public final String language;
     public final String createdAt;
     public final String updatedAt;
@@ -22,7 +21,7 @@ public final class RepositoryDetailViewModel {
     public final boolean hasWiki;
 
     public RepositoryDetailViewModel(final int id, final String name, final String fullName, final RepositoryOwnerViewModel repositoryOwnerViewModel, final int stargazersCount,
-                                     final int watchersCount, final int forksCount, final int openIssuesCount, final float score, final String language, final String createdAt,
+                                     final int watchersCount, final int forksCount, final int openIssuesCount, final String language, final String createdAt,
                                      final String updatedAt, final boolean isPrivate, final boolean hasIssued, final boolean hasProjects, final boolean hasWiki) {
         this.id = id;
         this.name = name;
@@ -32,7 +31,6 @@ public final class RepositoryDetailViewModel {
         this.watchersCount = watchersCount;
         this.forksCount = forksCount;
         this.openIssuesCount = openIssuesCount;
-        this.score = score;
         this.language = language;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -66,9 +64,6 @@ public final class RepositoryDetailViewModel {
             return false;
         }
         if (openIssuesCount != that.openIssuesCount) {
-            return false;
-        }
-        if (Float.compare(that.score, score) != 0) {
             return false;
         }
         if (isPrivate != that.isPrivate) {
@@ -111,7 +106,6 @@ public final class RepositoryDetailViewModel {
         result = 31 * result + watchersCount;
         result = 31 * result + forksCount;
         result = 31 * result + openIssuesCount;
-        result = 31 * result + (score != +0.0f ? Float.floatToIntBits(score) : 0);
         result = 31 * result + (language != null ? language.hashCode() : 0);
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
