@@ -64,6 +64,11 @@ public final class UserDetailsFragment extends BaseFragment implements UserDetai
         return presenter;
     }
 
+    @Override
+    public void render(final UserDetailViewModel viewModel) {
+
+    }
+
     static final class Extras implements Parcelable {
 
         final String username;
