@@ -99,7 +99,10 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        restoreFromStateIfPresent(savedInstanceState);
+    }
 
+    private void restoreFromStateIfPresent(final Bundle savedInstanceState) {
         Optional.ofNullable(savedInstanceState)
                 .map(bundle -> (LastSearchParams) bundle.getParcelable(KEY_SEARCH_TERM))
                 .filter(lastSearchParams -> !lastSearchParams.query.isEmpty())
