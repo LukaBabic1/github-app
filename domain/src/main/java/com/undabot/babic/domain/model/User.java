@@ -2,7 +2,7 @@ package com.undabot.babic.domain.model;
 
 public final class User {
 
-    public static final User EMPTY = new User(0, "", "", "", "", "", "", "", "", false, false, 0, 0, 0L, 0L, 0, 0, 0, 0, 0);
+    public static final User EMPTY = new User(0, "", "", "", "", "", "", "", "", "", false, false, 0, 0, 0L, 0L, 0, 0, 0, 0, 0);
 
     public final int id;
     public final String username;
@@ -13,6 +13,7 @@ public final class User {
     public final String companyName;
     public final String location;
     public final String email;
+    public final String blog;
     public final boolean siteAdmin;
     public final boolean hireable;
     public final int followers;
@@ -26,8 +27,9 @@ public final class User {
     public final int ownedPrivateRepos;
 
     public User(final int id, final String username, final String avatarUrl, final String siteHtmlUrl, final String name, final String type, final String companyName,
-                final String location, final String email, final boolean siteAdmin, final boolean hireable, final int followers, final int following, final long createdAt,
-                final long updatedAt, final int privateGists, final int publicRepos, final int publicGists, final int totalPrivateRepos, final int ownedPrivateRepos) {
+                final String location, final String email, final String blog, final boolean siteAdmin, final boolean hireable, final int followers, final int following,
+                final long createdAt, final long updatedAt, final int privateGists, final int publicRepos, final int publicGists, final int totalPrivateRepos,
+                final int ownedPrivateRepos) {
 
         this.id = id;
         this.username = username;
@@ -38,6 +40,7 @@ public final class User {
         this.companyName = companyName;
         this.location = location;
         this.email = email;
+        this.blog = blog;
         this.siteAdmin = siteAdmin;
         this.hireable = hireable;
         this.followers = followers;
@@ -119,7 +122,10 @@ public final class User {
         if (location != null ? !location.equals(user.location) : user.location != null) {
             return false;
         }
-        return email != null ? email.equals(user.email) : user.email == null;
+        if (email != null ? !email.equals(user.email) : user.email != null) {
+            return false;
+        }
+        return blog != null ? blog.equals(user.blog) : user.blog == null;
     }
 
     @Override
@@ -133,6 +139,7 @@ public final class User {
         result = 31 * result + (companyName != null ? companyName.hashCode() : 0);
         result = 31 * result + (location != null ? location.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (blog != null ? blog.hashCode() : 0);
         result = 31 * result + (siteAdmin ? 1 : 0);
         result = 31 * result + (hireable ? 1 : 0);
         result = 31 * result + followers;
@@ -159,6 +166,7 @@ public final class User {
                 ", companyName='" + companyName + '\'' +
                 ", location='" + location + '\'' +
                 ", email='" + email + '\'' +
+                ", blog='" + blog + '\'' +
                 ", siteAdmin=" + siteAdmin +
                 ", hireable=" + hireable +
                 ", followers=" + followers +

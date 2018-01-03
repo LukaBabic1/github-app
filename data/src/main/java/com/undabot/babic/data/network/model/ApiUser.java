@@ -31,6 +31,9 @@ public final class ApiUser {
     @SerializedName("email")
     public String email;
 
+    @SerializedName("blog")
+    public String blog;
+
     @SerializedName("site_admin")
     public boolean siteAdmin;
 
