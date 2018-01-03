@@ -63,12 +63,12 @@ public final class CodeRepositoriesAdapter extends RecyclerView.Adapter<Recycler
         if (getItemViewType(position) == TYPE_REPOSITORY_ITEM) {
             populateAsRepositoryItem((CodeRepositoryViewHolder) holder, position);
         } else {
-            populateAsLoadMoreItem();
+            populateAsLoadMoreItem((LoadMoreItemsViewHolder) holder);
         }
     }
 
-    private void populateAsLoadMoreItem() {
-        // NO-OP
+    private void populateAsLoadMoreItem(final LoadMoreItemsViewHolder holder) {
+        holder.setListener(listenerOptional);
     }
 
     private void populateAsRepositoryItem(final CodeRepositoryViewHolder holder, final int position) {
@@ -96,8 +96,12 @@ public final class CodeRepositoriesAdapter extends RecyclerView.Adapter<Recycler
     }
 
     void setItems(final List<RepositoryViewModel> viewModels, final boolean canLoadMore) {
-        this.canLoadMore = canLoadMore;
         this.viewModels.clear();
+        setMoreItems(viewModels, canLoadMore);
+    }
+
+    void setMoreItems(final List<RepositoryViewModel> viewModels, final boolean canLoadMore) {
+        this.canLoadMore = canLoadMore;
         this.viewModels.addAll(viewModels);
 
         notifyDataSetChanged();
@@ -203,6 +207,10 @@ public final class CodeRepositoriesAdapter extends RecyclerView.Adapter<Recycler
 
         private void bindViews(final View rootView) {
             ButterKnife.bind(this, rootView);
+        }
+
+        void setListener(final Optional<CodeRepositoriesAdapterListener> listener) {
+            this.listener = listener;
         }
 
         @OnClick(R.id.adapter_code_repository_load_more_row_item_root_layout)

@@ -16,7 +16,6 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.annimon.stream.Optional;
 import com.undabot.babic.app.R;
@@ -176,6 +175,12 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
     }
 
     @Override
+    public void renderMoreItems(final RepositorySearchScreenViewModel viewModel) {
+        repositorySearchScreenViewModel = Optional.of(viewModel);
+        codeRepositoriesAdapter.setMoreItems(viewModel.repositoryViewModels, viewModel.canLoadMore);
+    }
+
+    @Override
     public void showLoading() {
         searchButton.setEnabled(false);
         loadingFadingView.setVisibility(View.VISIBLE);
@@ -195,7 +200,7 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
     }
 
     @Override
-    public void showErrorDialog() {
+    public void showErrorMessage() {
         showShortToast(R.string.repository_search_screen_data_fetch_error_message);
     }
 
@@ -235,9 +240,11 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
 
     @Override
     public void loadMoreItems() {
-        if (!isLoading()) {
-            Toast.makeText(getContext(), "Load more items", Toast.LENGTH_SHORT).show();
+        if (isLoading()) {
+            return;
         }
+
+        repositorySearchScreenViewModel.ifPresent(viewModel -> presenter.searchMoreItems(viewModel.searchTerm, viewModel.searchModeInt, viewModel.lastLoadedPage));
     }
 
     private boolean isLoading() {
@@ -258,9 +265,7 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
 
         @SearchOrderInt final int searchOrder = RADIO_BUTTON_ID_TO_SORT_ORDER.get(selectedRadioButtonId);
         final String searchTerm = searchEditText.getText().toString();
-
         lastSearchParams = new LastSearchParams(searchTerm, searchOrder);
-
         presenter.search(searchTerm, searchOrder);
     }
 

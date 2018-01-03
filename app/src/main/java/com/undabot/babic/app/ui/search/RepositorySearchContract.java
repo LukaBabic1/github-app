@@ -15,13 +15,15 @@ public final class RepositorySearchContract {
 
         void render(RepositorySearchScreenViewModel viewModel);
 
+        void renderMoreItems(RepositorySearchScreenViewModel viewModel);
+
         void showLoading();
 
         void hideLoading();
 
         void hideKeyboard();
 
-        void showErrorDialog();
+        void showErrorMessage();
 
         void showNoInternetConnection();
 
@@ -42,6 +44,8 @@ public final class RepositorySearchContract {
         int UPDATED_SORT = 3000;
 
         void search(String queryText, @SearchOrderInt int searchOrder);
+
+        void searchMoreItems(String searchTerm, @SearchOrderInt int searchOrder, int lastLoadedPage);
 
         void showRepositoryDetails(String repositoryName, String username);
 

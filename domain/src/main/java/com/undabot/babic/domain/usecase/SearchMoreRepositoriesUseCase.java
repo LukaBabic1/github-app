@@ -17,10 +17,10 @@ public interface SearchMoreRepositoriesUseCase {
         public final CodeRepositoryRepository.SearchOrder searchOrder;
         public final int page;
 
-        public Request(final String searchText, final CodeRepositoryRepository.SearchOrder searchOrder, final int page, final int page1) {
+        public Request(final String searchText, final CodeRepositoryRepository.SearchOrder searchOrder, final int page) {
             this.searchText = searchText;
             this.searchOrder = searchOrder;
-            this.page = page1;
+            this.page = page;
         }
     }
 }

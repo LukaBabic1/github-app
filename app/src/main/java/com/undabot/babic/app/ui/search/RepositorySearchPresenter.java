@@ -4,6 +4,7 @@ import com.undabot.babic.app.base.BasePresenter;
 import com.undabot.babic.app.ui.ViewModelConverter;
 import com.undabot.babic.data.repository.CodeRepositoryRepositoryImpl;
 import com.undabot.babic.domain.repository.CodeRepositoryRepository;
+import com.undabot.babic.domain.usecase.SearchMoreRepositoriesUseCase;
 import com.undabot.babic.domain.usecase.SearchRepositoriesUseCase;
 import com.undabot.babic.domain.utils.StringUtils;
 
@@ -22,6 +23,9 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
 
     private static final int PER_PAGE_COUNT = CodeRepositoryRepositoryImpl.PER_PAGE_COUNT;
 
+    private static final int DEFAULT_PAGE_INDEX = 0;
+    private static final int NEXT_PAGE_INDEX_OFFSET = 1;
+
     static {
         final Map<Integer, CodeRepositoryRepository.SearchOrder> map = new HashMap<>();
 
@@ -34,6 +38,9 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
 
     @Inject
     SearchRepositoriesUseCase searchRepositoriesUseCase;
+
+    @Inject
+    SearchMoreRepositoriesUseCase searchMoreRepositoriesUseCase;
 
     @Inject
     ViewModelConverter viewModelConverter;
@@ -67,7 +74,7 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
     }
 
     @Override
-    public void search(final String queryText, @SearchOrderInt final int searchOrder) {
+    public void search(final String queryText, @SearchOrderInt final int searchOrderInt) {
         if (stringUtils.isEmpty(queryText)) {
             return;
         }
@@ -77,13 +84,13 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
             view.showLoading();
         });
 
-        searchInternal(queryText, searchOrder);
+        searchInternal(queryText, searchOrderInt);
     }
 
     private void searchInternal(final String queryText, @SearchOrderInt final int searchOrderInt) {
         viewActionQueue.subscribeTo(searchRepositoriesUseCase.execute(new SearchRepositoriesUseCase.Request(queryText, mapSearchOrder(searchOrderInt)))
                                                              .map(viewModelConverter::mapCodeRepositoriesToViewModels)
-                                                             .map(this::mapToViewAction)
+                                                             .map(viewModels -> mapToViewAction(viewModels, DEFAULT_PAGE_INDEX, queryText, searchOrderInt))
                                                              .subscribeOn(backgroundScheduler),
                                     this::processSearchError);
     }
@@ -92,10 +99,11 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
         return SEARCH_ORDER_INT_TO_SEARCH_ORDER_MAP.get(searchOrder);
     }
 
-    private Action1<RepositorySearchContract.View> mapToViewAction(final List<RepositoryViewModel> viewModels) {
+    private Action1<RepositorySearchContract.View> mapToViewAction(final List<RepositoryViewModel> viewModels, final int lastLoadedPage, final String searchTerm,
+                                                                   final int searchOrderInt) {
         return view -> {
             view.hideLoading();
-            view.render(new RepositorySearchScreenViewModel(viewModels, evaluateIfMoreCanBeLoaded(viewModels)));
+            view.render(new RepositorySearchScreenViewModel(viewModels, lastLoadedPage, searchTerm, searchOrderInt, evaluateIfMoreCanBeLoaded(viewModels)));
         };
     }
 
@@ -107,7 +115,41 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
         logError(throwable);
         onViewAction(view -> {
             view.hideLoading();
-            view.showErrorDialog();
+            view.showErrorMessage();
+        });
+    }
+
+    @Override
+    public void searchMoreItems(final String searchTerm, final int searchOrderInt, final int lastLoadedPage) {
+        onViewAction(view -> {
+            view.hideKeyboard();
+            view.showLoading();
+        });
+
+        searchMoreItemsInternal(searchTerm, searchOrderInt, lastLoadedPage + NEXT_PAGE_INDEX_OFFSET);
+    }
+
+    private void searchMoreItemsInternal(final String searchTerm, final int searchOrderInt, final int nextPage) {
+        viewActionQueue.subscribeTo(searchMoreRepositoriesUseCase.execute(new SearchMoreRepositoriesUseCase.Request(searchTerm, mapSearchOrder(searchOrderInt), nextPage))
+                                                                 .map(viewModelConverter::mapCodeRepositoriesToViewModels)
+                                                                 .map(viewModels -> mapToViewActionForMoreItemsLoaded(viewModels, nextPage, searchTerm, searchOrderInt))
+                                                                 .subscribeOn(backgroundScheduler),
+                                    this::processSearchMoreItemsError);
+    }
+
+    private Action1<RepositorySearchContract.View> mapToViewActionForMoreItemsLoaded(final List<RepositoryViewModel> viewModels, final int lastLoadedPage, final String searchTerm,
+                                                                                     final int searchOrderInt) {
+        return view -> {
+            view.hideLoading();
+            view.renderMoreItems(new RepositorySearchScreenViewModel(viewModels, lastLoadedPage, searchTerm, searchOrderInt, evaluateIfMoreCanBeLoaded(viewModels)));
+        };
+    }
+
+    private void processSearchMoreItemsError(final Throwable throwable) {
+        logError(throwable);
+        onViewAction(view -> {
+            view.hideLoading();
+            view.showErrorMessage();
         });
     }
 
