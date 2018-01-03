@@ -13,6 +13,14 @@
     <dimen name="universal_gray_divider_height">1dp</dimen>
 
     <!-- Repository search screen -->
+    <dimen name="repository_search_screen_edit_text_container_height">48dp</dimen>
+    <dimen name="repository_search_screen_edit_text_container_padding_start">@dimen/screen_edge_distance</dimen>
+    <dimen name="repository_search_screen_edit_text_container_padding_end">@dimen/screen_edge_distance</dimen>
+
+    <dimen name="repository_search_screen_sort_by_label_padding_start">@dimen/screen_edge_distance</dimen>
+    <dimen name="repository_search_screen_radio_group_padding_start">@dimen/screen_edge_distance</dimen>
+    <dimen name="repository_search_screen_radio_group_padding_end">@dimen/screen_edge_distance</dimen>
+
     <dimen name="repository_search_screen_radio_group_height">@dimen/min_touchable_height</dimen>
 
     <!-- Repository adapter -->

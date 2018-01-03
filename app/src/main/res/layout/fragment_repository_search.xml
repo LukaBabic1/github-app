@@ -14,7 +14,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="@dimen/repository_search_screen_edit_text_container_height"
+        style="@style/RepositorySearchScreenEditTextContainer">
 
         <EditText
             android:id="@+id/fragment_repository_search_edit_text"
@@ -40,8 +41,7 @@
         android:id="@+id/fragment_repository_search_radio_group"
         android:layout_width="match_parent"
         android:layout_height="@dimen/repository_search_screen_radio_group_height"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        style="@style/RepositorySearchScreenRadioGroupStyle">
 
         <RadioButton
             android:id="@+id/fragment_repository_search_stars_sort"

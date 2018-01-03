@@ -17,6 +17,12 @@
     </style>
 
     <!-- Repository search screen -->
+    <style name="RepositorySearchScreenEditTextContainer">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">@dimen/repository_search_screen_edit_text_container_padding_start</item>
+        <item name="android:paddingEnd">@dimen/repository_search_screen_edit_text_container_padding_end</item>
+    </style>
+
     <style name="RepositorySearchScreenEditTextStyle">
         <item name="android:hint">@string/repository_search_screen_edit_text_hint</item>
     </style>
@@ -26,7 +32,15 @@
     </style>
 
     <style name="RepositorySearchScreenRadioGroupLabel">
+        <item name="android:paddingStart">@dimen/repository_search_screen_sort_by_label_padding_start</item>
         <item name="android:text">@string/repository_search_screen_sort_by_label</item>
+    </style>
+
+    <style name="RepositorySearchScreenRadioGroupStyle">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingStart">@dimen/repository_search_screen_radio_group_padding_start</item>
+        <item name="android:paddingEnd">@dimen/repository_search_screen_radio_group_padding_end</item>
     </style>
 
     <style name="RepositorySearchScreenRadioButtonBaseStyle">
