@@ -10,5 +10,5 @@ public interface Router {
 
     void goBack();
 
-    void showPageInExternalBrowser(String url);
+    boolean showPageInExternalBrowser(String url);
 }

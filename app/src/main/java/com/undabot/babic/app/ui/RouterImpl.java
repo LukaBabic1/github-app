@@ -9,6 +9,7 @@ import com.undabot.babic.app.R;
 import com.undabot.babic.app.ui.repositorydetail.RepositoryDetailFragment;
 import com.undabot.babic.app.ui.search.RepositorySearchFragment;
 import com.undabot.babic.app.ui.userdetails.UserDetailsFragment;
+import com.undabot.babic.domain.utils.ListUtils;
 
 public final class RouterImpl implements Router {
 
@@ -16,10 +17,12 @@ public final class RouterImpl implements Router {
 
     private final Activity activity;
     private final FragmentManager fragmentManager;
+    private final ListUtils listUtils;
 
-    public RouterImpl(final Activity activity, final FragmentManager fragmentManager) {
+    public RouterImpl(final Activity activity, final FragmentManager fragmentManager, final ListUtils listUtils) {
         this.activity = activity;
         this.fragmentManager = fragmentManager;
+        this.listUtils = listUtils;
     }
 
     @Override
@@ -46,8 +49,18 @@ public final class RouterImpl implements Router {
     }
 
     @Override
-    public void showPageInExternalBrowser(final String url) {
-        activity.startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(url)));
+    public boolean showPageInExternalBrowser(final String url) {
+        final Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(url));
+
+        if (canIntentBeResolved(intent)) {
+            activity.startActivity(intent);
+        }
+
+        return false;
+    }
+
+    private boolean canIntentBeResolved(final Intent intent) {
+        return !listUtils.isEmpty(activity.getPackageManager().queryIntentActivities(intent, 0));
     }
 
     public void goBack() {
