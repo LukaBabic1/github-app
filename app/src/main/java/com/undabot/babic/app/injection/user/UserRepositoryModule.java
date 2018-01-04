@@ -1,7 +1,8 @@
-package com.undabot.babic.app.injection.application.module;
+package com.undabot.babic.app.injection.user;
 
 import android.content.res.Resources;
 
+import com.undabot.babic.app.injection.scope.UserScope;
 import com.undabot.babic.data.cache.CodeRepositoryCache;
 import com.undabot.babic.data.cache.UserCache;
 import com.undabot.babic.data.network.client.AuthorizationClient;
@@ -15,28 +16,26 @@ import com.undabot.babic.domain.repository.AuthorizationRepository;
 import com.undabot.babic.domain.repository.CodeRepositoryRepository;
 import com.undabot.babic.domain.repository.UserRepository;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 
 @Module
-public final class RepositoryModule {
+public final class UserRepositoryModule {
 
     @Provides
-    @Singleton
+    @UserScope
     AuthorizationRepository provideAuthorizationRepository(final AuthorizationClient authorizationClient, final Resources resources) {
         return new AuthorizationRepositoryImpl(authorizationClient, resources);
     }
 
     @Provides
-    @Singleton
+    @UserScope
     CodeRepositoryRepository provideCodeRepositoryRepository(final CodeRepositoryClient codeRepositoryClient, final CodeRepositoryCache codeRepositoryCache) {
         return new CodeRepositoryRepositoryImpl(codeRepositoryClient, codeRepositoryCache);
     }
 
     @Provides
-    @Singleton
+    @UserScope
     UserRepository provideUserRepository(final UserClient userClient, final UserCache userCache, final UserSharedPrefs userSharedPrefs) {
         return new UserRepositoryImpl(userClient, userCache, userSharedPrefs);
     }

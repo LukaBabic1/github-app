@@ -6,10 +6,6 @@ import com.google.gson.Gson;
 import com.undabot.babic.app.BuildConfig;
 import com.undabot.babic.data.network.client.AuthorizationClient;
 import com.undabot.babic.data.network.client.AuthorizationClientImpl;
-import com.undabot.babic.data.network.client.CodeRepositoryClient;
-import com.undabot.babic.data.network.client.CodeRepositoryClientImpl;
-import com.undabot.babic.data.network.client.UserClient;
-import com.undabot.babic.data.network.client.UserClientImpl;
 import com.undabot.babic.data.network.configuration.Urls;
 import com.undabot.babic.data.network.configuration.UrlsImpl;
 import com.undabot.babic.data.network.converter.ApiConverter;
@@ -88,23 +84,18 @@ public final class ApiModule {
 
     @Provides
     @Singleton
-    CodeRepositoryClient provideCodeRepositoryClient(final ApiConverter apiConverter, final GitHubService gitHubService) {
-        return new CodeRepositoryClientImpl(apiConverter, gitHubService);
-    }
-
-    @Provides
-    @Singleton
-    UserClient provideUserClient(final ApiConverter apiConverter, final ApiTokenProvider apiTokenProvider, final GitHubService gitHubService) {
-        return new UserClientImpl(apiConverter, apiTokenProvider, gitHubService);
-    }
-
-    @Provides
-    @Singleton
     ApiConverter provideApiConverter(final DateUtils dateUtils, final StringUtils stringUtils) {
         return new ApiConverterImpl(dateUtils, stringUtils);
     }
 
     public interface Exposes {
 
+        ApiTokenProvider apiTokenProvider();
+
+        GitHubService gitHubService();
+
+        AuthorizationClient authorizationClient();
+
+        ApiConverter apiConverter();
     }
 }

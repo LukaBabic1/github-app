@@ -44,6 +44,8 @@ public final class DataModule {
 
     public interface Exposes {
 
+        UserSharedPrefs userSharedPrefs();
+
         CodeRepositoryCache repositoriesCache();
 
         UserCache userCache();

@@ -18,7 +18,7 @@ public final class UserSharedPrefsImpl implements UserSharedPrefs {
         return new UserSharedPrefsImpl(context.getSharedPreferences(PREFS_FILE_NAME, Context.MODE_PRIVATE));
     }
 
-    public UserSharedPrefsImpl(final SharedPreferences preferences) {
+    private UserSharedPrefsImpl(final SharedPreferences preferences) {
         this.preferences = preferences;
     }
 

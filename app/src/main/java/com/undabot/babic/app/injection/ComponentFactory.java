@@ -14,6 +14,10 @@ import com.undabot.babic.app.injection.fragment.DaggerFragment;
 import com.undabot.babic.app.injection.fragment.DaggerFragmentComponent;
 import com.undabot.babic.app.injection.fragment.FragmentComponent;
 import com.undabot.babic.app.injection.fragment.module.FragmentPresenterModule;
+import com.undabot.babic.app.injection.user.DaggerUserComponent;
+import com.undabot.babic.app.injection.user.UserApiClientModule;
+import com.undabot.babic.app.injection.user.UserComponent;
+import com.undabot.babic.domain.model.AuthToken;
 
 public final class ComponentFactory {
 
@@ -23,9 +27,15 @@ public final class ComponentFactory {
                                          .build();
     }
 
+    public static UserComponent createUserComponent(final ApplicationComponent applicationComponent, final AuthToken authToken) {
+        return DaggerUserComponent.builder().applicationComponent(applicationComponent)
+                                  .userApiClientModule(new UserApiClientModule(authToken))
+                                  .build();
+    }
+
     public static ActivityComponent createActivityComponent(final DaggerActivity activity, final GithubApplication application) {
         return DaggerActivityComponent.builder()
-                                      .applicationComponent(application.getApplicationComponent())
+                                      .userComponent(application.getUserComponent())
                                       .activityModule(new ActivityModule(activity))
                                       .activityPresenterModule(new ActivityPresenterModule(activity))
                                       .useCaseModule(new UseCaseModule())

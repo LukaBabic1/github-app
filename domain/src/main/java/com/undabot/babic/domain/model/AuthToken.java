@@ -2,6 +2,8 @@ package com.undabot.babic.domain.model;
 
 public final class AuthToken {
 
+    public static final AuthToken EMPTY = new AuthToken("");
+
     public final String value;
 
     public AuthToken(final String value) {

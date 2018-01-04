@@ -19,12 +19,15 @@ public interface GitHubService {
     Single<ApiUser> getUser(@Header("Authorization") String authorization, @Path("username") String username);
 
     @GET("/search/repositories")
+    Single<ApiSearchRepositoriesResponse> searchRepositories(@Query("q") String query, @Query("sort") String sort, @Query("per_page") int perPage, @Query("page") int page);
+
+    @GET("/search/repositories")
     Single<ApiSearchRepositoriesResponse> searchRepositories(@Header("Authorization") String authorization, @Query("q") String query, @Query("sort") String sort,
                                                              @Query("page") int page, @Query("per_page") int perPage);
 
-    @GET("/search/repositories")
-    Single<ApiSearchRepositoriesResponse> searchRepositories(@Query("q") String query, @Query("sort") String sort, @Query("per_page") int perPage, @Query("page") int page);
-
     @GET("/repos/{username}/{repositoryName}")
     Single<ApiCodeRepository> getRepositoryDetails(@Path("username") String username, @Path("repositoryName") String repositoryName);
+
+    @GET("/repos/{username}/{repositoryName}")
+    Single<ApiCodeRepository> getRepositoryDetails(@Header("Authorization") String authorization, @Path("username") String username, @Path("repositoryName") String repositoryName);
 }
