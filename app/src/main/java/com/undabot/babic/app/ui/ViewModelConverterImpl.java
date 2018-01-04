@@ -1,10 +1,12 @@
 package com.undabot.babic.app.ui;
 
 import com.annimon.stream.Stream;
+import com.undabot.babic.app.ui.login.LoginViewModel;
 import com.undabot.babic.app.ui.repositorydetail.RepositoryDetailViewModel;
 import com.undabot.babic.app.ui.search.RepositoryViewModel;
 import com.undabot.babic.app.ui.search.RepositoryOwnerViewModel;
 import com.undabot.babic.app.ui.userdetails.UserDetailViewModel;
+import com.undabot.babic.domain.model.AuthorizationUrl;
 import com.undabot.babic.domain.model.CodeRepository;
 import com.undabot.babic.domain.model.User;
 import com.undabot.babic.domain.utils.DateUtils;
@@ -20,6 +22,11 @@ public final class ViewModelConverterImpl implements ViewModelConverter {
     public ViewModelConverterImpl(final DateUtils dateUtils, final StringUtils stringUtils) {
         this.dateUtils = dateUtils;
         this.stringUtils = stringUtils;
+    }
+
+    @Override
+    public LoginViewModel mapToLoginViewModel(final AuthorizationUrl authorizationUrl) {
+        return new LoginViewModel(authorizationUrl.value);
     }
 
     @Override
