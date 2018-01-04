@@ -29,6 +29,11 @@ public final class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public Single<User> getCurrentUser() {
+        return userClient.fetchCurrentUser();
+    }
+
+    @Override
     public Single<User> fetchUser(final String username) {
         return userClient.fetchUser(username);
     }
@@ -41,6 +46,11 @@ public final class UserRepositoryImpl implements UserRepository {
     @Override
     public Completable cacheUser(final User user) {
         return userCache.cacheUser(user);
+    }
+
+    @Override
+    public Completable saveCurrentUserUsername(final String username) {
+        return Completable.fromAction(() -> userSharedPrefs.saveCurrentUserUsername(username));
     }
 
     @Override

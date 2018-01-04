@@ -55,6 +55,8 @@ public final class RepositorySearchContract {
 
         void showUserDetails(String username);
 
+        void showCurrentUserDetails();
+
         void logOut();
     }
 }

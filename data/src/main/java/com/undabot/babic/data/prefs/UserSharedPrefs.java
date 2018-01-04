@@ -8,4 +8,8 @@ public interface UserSharedPrefs {
     void saveAuthToken(AuthToken authToken);
 
     Optional<AuthToken> getAuthToken();
+
+    void saveCurrentUserUsername(String username);
+
+    String getCurrentUserUsername();
 }

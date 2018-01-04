@@ -18,6 +18,11 @@ public final class UserClientImpl implements UserClient {
     }
 
     @Override
+    public Single<User> fetchCurrentUser() {
+        return Single.error(new UnauthorizedLogOutApiCallException());
+    }
+
+    @Override
     public Single<User> fetchUser(final String username) {
         return gitHubService.getUser(username)
                             .map(apiConverter::mapToUser);

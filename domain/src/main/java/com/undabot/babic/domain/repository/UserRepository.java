@@ -11,11 +11,15 @@ public interface UserRepository {
 
     Completable saveAuthToken(AuthToken authToken);
 
+    Single<User> getCurrentUser();
+
     Single<User> fetchUser(String username);
 
     Single<Optional<User>> getCachedUser(String username);
 
     Completable cacheUser(User user);
+
+    Completable saveCurrentUserUsername(String username);
 
     Single<Optional<AuthToken>> getUserAuthToken();
 

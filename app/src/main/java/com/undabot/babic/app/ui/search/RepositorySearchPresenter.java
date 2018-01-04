@@ -5,8 +5,10 @@ import com.undabot.babic.app.ui.ViewModelConverter;
 import com.undabot.babic.app.utils.Actions;
 import com.undabot.babic.data.repository.CodeRepositoryRepositoryImpl;
 import com.undabot.babic.domain.model.AuthToken;
+import com.undabot.babic.domain.model.User;
 import com.undabot.babic.domain.repository.CodeRepositoryRepository;
 import com.undabot.babic.domain.usecase.ClearAccessTokenUseCase;
+import com.undabot.babic.domain.usecase.GetCurrentUserData;
 import com.undabot.babic.domain.usecase.InitUserComponentUseCase;
 import com.undabot.babic.domain.usecase.IsUserSignedInUseCase;
 import com.undabot.babic.domain.usecase.LogOutUserUseCase;
@@ -59,6 +61,9 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
 
     @Inject
     IsUserSignedInUseCase isUserSignedInUseCase;
+
+    @Inject
+    GetCurrentUserData getCurrentUserData;
 
     @Inject
     ViewModelConverter viewModelConverter;
@@ -195,6 +200,18 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
     @Override
     public void showUserDetails(final String username) {
         router.showUserDetailsScreen(username);
+    }
+
+    @Override
+    public void showCurrentUserDetails() {
+        viewActionQueue.subscribeTo(getCurrentUserData.execute()
+                                                      .map(this::mapToGetCurrentUserViewAction)
+                                                      .subscribeOn(backgroundScheduler),
+                                    this::logError);
+    }
+
+    private Action1<RepositorySearchContract.View> mapToGetCurrentUserViewAction(final User user) {
+        return view -> router.showUserDetailsScreen(user.username);
     }
 
     @Override

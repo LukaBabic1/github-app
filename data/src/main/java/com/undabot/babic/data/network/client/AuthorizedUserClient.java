@@ -33,6 +33,12 @@ public final class AuthorizedUserClient implements UserClient {
     }
 
     @Override
+    public Single<User> fetchCurrentUser() {
+        return gitHubService.getCurrentUser(getTokenFormatted())
+                            .map(apiConverter::mapToUser);
+    }
+
+    @Override
     public Single<User> fetchUser(final String username) {
         return gitHubService.getUser(getTokenFormatted(), username)
                             .map(apiConverter::mapToUser);

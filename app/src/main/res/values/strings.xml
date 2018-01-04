@@ -17,6 +17,7 @@
     <string name="internet_browser_not_available_could_not_open_page">Internet browser not available, could not open page.</string>
     <string name="no_results_found">No results found</string>
     <string name="log_out">Log out</string>
+    <string name="user_details">User details</string>
 
     <!-- Login screen -->
     <string name="login_screen_menu_item_skip_text">@string/skip</string>
@@ -32,6 +33,7 @@
     <string name="repository_search_screen_data_fetch_error_message">@string/oops_something_went_wrong_try_again</string>
     <string name="repository_search_screen_sort_order_not_selected_text">@string/please_select_search_sort</string>
     <string name="repository_search_screen_no_results_found_text">@string/no_results_found</string>
+    <string name="repository_search_screen_user_details_menu_item_text">@string/user_details</string>
     <string name="repository_search_screen_log_out_menu_item_text">@string/log_out</string>
 
     <!-- Repository adapter -->
@@ -62,7 +64,7 @@
     <string name="repository_details_browser_not_available_error_message">@string/internet_browser_not_available_could_not_open_page</string>
 
     <!-- User details -->
-    <string name="user_details_toolbar_title">User details</string>
+    <string name="user_details_toolbar_title">@string/user_details</string>
     <string name="user_details_name_template">User: %s</string>
     <string name="user_details_username_template">Username: %s</string>
     <string name="user_details_type_template">Type: %s</string>

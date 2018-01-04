@@ -3,6 +3,12 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/fragment_repository_search_user_details_menu_item"
+        android:title="@string/repository_search_screen_user_details_menu_item_text"
+        android:icon="@drawable/ic_account_box_white_48dp"
+        app:showAsAction="always"/>
+
+    <item
         android:id="@+id/fragment_repository_search_log_out_menu_item"
         android:title="@string/repository_search_screen_log_out_menu_item_text"
         app:showAsAction="never"/>

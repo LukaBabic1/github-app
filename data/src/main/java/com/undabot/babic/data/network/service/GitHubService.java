@@ -14,6 +14,9 @@ import rx.Single;
 
 public interface GitHubService {
 
+    @GET("/user")
+    Single<ApiUser> getCurrentUser(@Header("Authorization") String authorization);
+
     @GET("/users/{username}")
     Single<ApiUser> getUser(@Path("username") String username);
 

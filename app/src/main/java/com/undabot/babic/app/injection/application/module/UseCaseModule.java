@@ -6,8 +6,12 @@ import com.undabot.babic.domain.repository.CodeRepositoryRepository;
 import com.undabot.babic.domain.repository.UserRepository;
 import com.undabot.babic.domain.usecase.ClearAccessTokenUseCase;
 import com.undabot.babic.domain.usecase.ClearAccessTokenUseCaseImpl;
+import com.undabot.babic.domain.usecase.FetchAndStoreCurrentUserUsername;
+import com.undabot.babic.domain.usecase.FetchAndStoreCurrentUserUsernameImpl;
 import com.undabot.babic.domain.usecase.GetAuthTokenUseCase;
 import com.undabot.babic.domain.usecase.GetAuthTokenUseCaseImpl;
+import com.undabot.babic.domain.usecase.GetCurrentUserData;
+import com.undabot.babic.domain.usecase.GetCurrentUserDataImpl;
 import com.undabot.babic.domain.usecase.GetGithubAuthorizeUrl;
 import com.undabot.babic.domain.usecase.GetGithubAuthorizeUrlImpl;
 import com.undabot.babic.domain.usecase.GetRepositoryDetailsUseCase;
@@ -88,6 +92,16 @@ public final class UseCaseModule {
         return new InitUserComponentUseCaseImpl(userComponentDelegate);
     }
 
+    @Provides
+    GetCurrentUserData provideGetCurrentUserData(final UserRepository userRepository) {
+        return new GetCurrentUserDataImpl(userRepository);
+    }
+
+    @Provides
+    FetchAndStoreCurrentUserUsername provideFetchAndStoreCurrentUserUsername(final GetCurrentUserData getCurrentUserData, final UserRepository userRepository) {
+        return new FetchAndStoreCurrentUserUsernameImpl(getCurrentUserData, userRepository);
+    }
+
     public interface Exposes {
 
         GetGithubAuthorizeUrl getGithubAuthorizeUrl();
@@ -111,5 +125,9 @@ public final class UseCaseModule {
         SearchMoreRepositoriesUseCase searchMoreRepositoriesUseCase();
 
         InitUserComponentUseCase initUserComponentUseCase();
+
+        GetCurrentUserData getCurrentUserData();
+
+        FetchAndStoreCurrentUserUsername fetchAndStoreCurrentUserUsername();
     }
 }

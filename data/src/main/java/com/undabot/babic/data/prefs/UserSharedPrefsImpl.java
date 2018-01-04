@@ -11,6 +11,7 @@ public final class UserSharedPrefsImpl implements UserSharedPrefs {
     private static final String PREFS_FILE_NAME = "user_shared_preferences";
 
     private static final String KEY_ACCESS_TOKEN = "key_access_token";
+    private static final String KEY_CURRENT_USER_USRENAME = "key_current_user_username";
 
     private final SharedPreferences preferences;
 
@@ -34,5 +35,17 @@ public final class UserSharedPrefsImpl implements UserSharedPrefs {
         return Optional.ofNullable(preferences.getString(KEY_ACCESS_TOKEN, null))
                        .filter(value -> !AuthToken.EMPTY.value.equals(value))
                        .map(AuthToken::new);
+    }
+
+    @Override
+    public void saveCurrentUserUsername(final String username) {
+        preferences.edit()
+                   .putString(KEY_CURRENT_USER_USRENAME, username)
+                   .apply();
+    }
+
+    @Override
+    public String getCurrentUserUsername() {
+        return preferences.getString(KEY_CURRENT_USER_USRENAME, "");
     }
 }
