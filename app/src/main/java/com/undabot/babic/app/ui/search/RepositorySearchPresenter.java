@@ -203,6 +203,11 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
     }
 
     private void logOutInternal() {
+        onViewAction(view -> {
+            view.showLoading();
+            view.hideKeyboard();
+        });
+
         viewActionQueue.subscribeTo(logOutUserUseCase.execute()
                                                      .andThen(clearAccessTokenUseCase.execute())
                                                      .andThen(initUserComponentUseCase.execute(AuthToken.EMPTY))

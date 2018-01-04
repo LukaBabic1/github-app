@@ -112,7 +112,6 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         restoreFromStateIfPresent(savedInstanceState);
-        presenter.init();
     }
 
     private void restoreFromStateIfPresent(final Bundle savedInstanceState) {
@@ -145,11 +144,11 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
         initAdapter();
         initRecyclerView();
         initSearchEditText();
+        presenter.init();
     }
 
     private void initToolbar() {
         toolbar.setTitle(R.string.repository_search_screen_toolbar_title);
-
         toolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.fragment_repository_search_log_out_menu_item) {
                 presenter.logOut();
