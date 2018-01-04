@@ -3,6 +3,7 @@ package com.undabot.babic.app.ui.login;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
 import android.webkit.WebView;
 
 import com.undabot.babic.app.R;
@@ -18,6 +19,9 @@ import butterknife.ButterKnife;
 public final class LoginActivity extends BaseActivity implements LoginContract.View,
                                                                  LoginWebViewClient.CodeRedeemListener {
 
+    @BindView(R.id.activity_login_toolbar)
+    Toolbar toolbar;
+
     @BindView(R.id.activity_login_web_view)
     WebView webView;
 
@@ -29,9 +33,22 @@ public final class LoginActivity extends BaseActivity implements LoginContract.V
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         bindViews();
+        initToolbar();
         initWebView();
 
         presenter.init();
+    }
+
+    private void initToolbar() {
+        toolbar.inflateMenu(R.menu.activity_login_menu);
+        toolbar.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.activity_main_menu_item_skip) {
+                presenter.skipLogin();
+                return true;
+            }
+
+            return false;
+        });
     }
 
     @SuppressLint("SetJavaScriptEnabled")

@@ -66,4 +66,9 @@ public final class LoginPresenter extends BasePresenter<LoginContract.View> impl
     private void getAuthTokenUseCaseError(final Throwable throwable) {
         logError(throwable);
     }
+
+    @Override
+    public void skipLogin() {
+        router.showMainScreen();
+    }
 }

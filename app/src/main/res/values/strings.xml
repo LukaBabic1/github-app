@@ -3,6 +3,7 @@
     <string name="app_name">GitHub app</string>
 
     <!--Common texts -->
+    <string name="skip">Skip</string>
     <string name="search">Search</string>
     <string name="enter_search_text">Enter search text</string>
     <string name="sort_by">Sort by:</string>
@@ -15,6 +16,9 @@
     <string name="author">Author</string>
     <string name="internet_browser_not_available_could_not_open_page">Internet browser not available, could not open page.</string>
     <string name="no_results_found">No results found</string>
+
+    <!-- Login screen -->
+    <string name="login_screen_menu_item_skip_text">@string/skip</string>
 
     <!--Repository search screen-->
     <string name="repository_search_screen_toolbar_title">Search repositories</string>

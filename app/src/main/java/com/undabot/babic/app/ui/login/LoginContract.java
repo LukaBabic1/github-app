@@ -19,5 +19,7 @@ public final class LoginContract {
         void init();
 
         void exchangeCodeForOAuthToken(String code);
+
+        void skipLogin();
     }
 }
