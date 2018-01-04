@@ -160,8 +160,8 @@ public final class UserDetailsFragment extends BaseFragment implements UserDetai
     public void render(final UserDetailViewModel viewModel) {
         loadImage(viewModel);
 
-        nameTextView.setText(String.format(resources.getString(R.string.user_details_name_template), viewModel.name));
-        usernameTextView.setText(String.format(resources.getString(R.string.user_details_username_template), viewModel.username));
+        nameTextView.setText(String.format(resources.getString(R.string.user_details_name_template), stringUtils.itOrDefault(viewModel.name, NOT_AVAILABLE)));
+        usernameTextView.setText(String.format(resources.getString(R.string.user_details_username_template), stringUtils.itOrDefault(viewModel.username, NOT_AVAILABLE)));
         typeTextView.setText(String.format(resources.getString(R.string.user_details_type_template), stringUtils.itOrDefault(viewModel.type, NOT_AVAILABLE)));
         companyNameTextView.setText(String.format(resources.getString(R.string.user_details_company_name_template), stringUtils.itOrDefault(viewModel.companyName, NOT_AVAILABLE)));
         locationTextView.setText(String.format(resources.getString(R.string.user_details_location_template), stringUtils.itOrDefault(viewModel.location, NOT_AVAILABLE)));
@@ -182,10 +182,7 @@ public final class UserDetailsFragment extends BaseFragment implements UserDetai
         if (isImageMeasured()) {
             loadImageToMeasuredView(viewModel.avatarUrl);
         } else {
-            viewUtils.doOnPreDraw(avatarImageView, () -> {
-                loadImageToMeasuredView(viewModel.avatarUrl);
-                avatarImageView.requestLayout();
-            }, true);
+            loadImageAfterDrawn(viewModel);
         }
     }
 
@@ -197,9 +194,21 @@ public final class UserDetailsFragment extends BaseFragment implements UserDetai
         imageLoader.loadImage(imageUrl, avatarImageView);
     }
 
+    private void loadImageAfterDrawn(final UserDetailViewModel viewModel) {
+        viewUtils.doOnPreDraw(avatarImageView, () -> {
+            loadImageToMeasuredView(viewModel.avatarUrl);
+            avatarImageView.requestLayout();
+        }, true);
+    }
+
     @Override
     public void showErrorMessage() {
         showShortToast(R.string.user_details_toast_error_message);
+    }
+
+    @Override
+    public void showBrowserNotAvailableErrorMessage() {
+        showShortToast(R.string.user_details_browser_not_available_error_message);
     }
 
     @OnClick(R.id.fragment_user_detail_visit_blog_button)

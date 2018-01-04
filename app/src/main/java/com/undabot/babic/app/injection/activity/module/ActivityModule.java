@@ -16,6 +16,7 @@ import com.undabot.babic.app.utils.ui.ImageLoader;
 import com.undabot.babic.app.utils.ui.ImageLoaderImpl;
 import com.undabot.babic.app.utils.ui.KeyboardUtils;
 import com.undabot.babic.app.utils.ui.KeyboardUtilsImpl;
+import com.undabot.babic.domain.utils.ListUtils;
 
 import dagger.Module;
 import dagger.Provides;
@@ -73,8 +74,8 @@ public final class ActivityModule {
 
     @Provides
     @ActivityScope
-    Router provideRouter(final FragmentManager fragmentManager) {
-        return new RouterImpl(activity, fragmentManager);
+    Router provideRouter(final FragmentManager fragmentManager, final ListUtils listUtils) {
+        return new RouterImpl(activity, fragmentManager, listUtils);
     }
 
     public interface Exposes {

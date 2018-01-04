@@ -14,6 +14,8 @@ public final class UserDetailsContract {
         void render(UserDetailViewModel viewModel);
 
         void showErrorMessage();
+
+        void showBrowserNotAvailableErrorMessage();
     }
 
     public interface Presenter extends ScopedPresenter {

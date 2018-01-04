@@ -60,6 +60,12 @@ public final class RepositoryDetailPresenter extends BasePresenter<RepositoryDet
 
     @Override
     public void showRepositoryOnGithub() {
-        codeRepository.ifPresent(codeRepository -> router.showPageInExternalBrowser(codeRepository.homepageUrl));
+        codeRepository.ifPresent(this::showRepositoryInBrowser);
+    }
+
+    private void showRepositoryInBrowser(final CodeRepository codeRepository) {
+        if (!router.showPageInExternalBrowser(codeRepository.homepageUrl)) {
+            doIfViewNotNull(RepositoryDetailContract.View::showBrowserNotAvailableErrorMessage);
+        }
     }
 }

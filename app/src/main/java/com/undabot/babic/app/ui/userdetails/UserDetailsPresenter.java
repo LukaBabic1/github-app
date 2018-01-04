@@ -58,6 +58,12 @@ public final class UserDetailsPresenter extends BasePresenter<UserDetailsContrac
     @Override
     public void visitBlog() {
         user.filter(user -> !user.blog.isEmpty())
-            .ifPresent(user -> router.showPageInExternalBrowser(user.blog));
+            .ifPresent(this::showUserBlogInBrowser);
+    }
+
+    private void showUserBlogInBrowser(final User user) {
+        if (!router.showPageInExternalBrowser(user.blog)) {
+            doIfViewNotNull(view -> view.showBrowserNotAvailableErrorMessage());
+        }
     }
 }

@@ -173,6 +173,11 @@ public final class RepositoryDetailFragment extends BaseFragment implements Repo
         showShortToast(R.string.repository_details_toast_error_message);
     }
 
+    @Override
+    public void showBrowserNotAvailableErrorMessage() {
+        showShortToast(R.string.repository_details_browser_not_available_error_message);
+    }
+
     @OnClick(R.id.fragment_repository_detail_user_image)
     void onUserImageClicked() {
         presenter.showUserDetails();
@@ -194,7 +199,9 @@ public final class RepositoryDetailFragment extends BaseFragment implements Repo
         }
 
         @Override
-        public int describeContents() { return 0; }
+        public int describeContents() {
+            return 0;
+        }
 
         @Override
         public void writeToParcel(Parcel dest, int flags) {
@@ -207,13 +214,17 @@ public final class RepositoryDetailFragment extends BaseFragment implements Repo
             this.username = in.readString();
         }
 
-        public static final Parcelable.Creator<Extras> CREATOR = new Parcelable.Creator<Extras>() {
+        public static final Creator<Extras> CREATOR = new Creator<Extras>() {
 
             @Override
-            public Extras createFromParcel(Parcel source) {return new Extras(source);}
+            public Extras createFromParcel(Parcel source) {
+                return new Extras(source);
+            }
 
             @Override
-            public Extras[] newArray(int size) {return new Extras[size];}
+            public Extras[] newArray(int size) {
+                return new Extras[size];
+            }
         };
     }
 }

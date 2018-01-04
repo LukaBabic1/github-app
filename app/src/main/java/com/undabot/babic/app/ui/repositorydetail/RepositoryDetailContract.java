@@ -14,6 +14,8 @@ public final class RepositoryDetailContract {
         void render(RepositoryDetailViewModel viewModel);
 
         void showErrorScreen();
+
+        void showBrowserNotAvailableErrorMessage();
     }
 
     public interface Presenter extends ScopedPresenter {
