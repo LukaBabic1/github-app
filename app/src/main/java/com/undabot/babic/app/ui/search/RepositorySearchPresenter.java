@@ -4,7 +4,11 @@ import com.undabot.babic.app.base.BasePresenter;
 import com.undabot.babic.app.ui.ViewModelConverter;
 import com.undabot.babic.app.utils.Actions;
 import com.undabot.babic.data.repository.CodeRepositoryRepositoryImpl;
+import com.undabot.babic.domain.model.AuthToken;
 import com.undabot.babic.domain.repository.CodeRepositoryRepository;
+import com.undabot.babic.domain.usecase.ClearAccessTokenUseCase;
+import com.undabot.babic.domain.usecase.InitUserComponentUseCase;
+import com.undabot.babic.domain.usecase.IsUserSignedInUseCase;
 import com.undabot.babic.domain.usecase.LogOutUserUseCase;
 import com.undabot.babic.domain.usecase.SearchMoreRepositoriesUseCase;
 import com.undabot.babic.domain.usecase.SearchRepositoriesUseCase;
@@ -48,6 +52,15 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
     LogOutUserUseCase logOutUserUseCase;
 
     @Inject
+    ClearAccessTokenUseCase clearAccessTokenUseCase;
+
+    @Inject
+    InitUserComponentUseCase initUserComponentUseCase;
+
+    @Inject
+    IsUserSignedInUseCase isUserSignedInUseCase;
+
+    @Inject
     ViewModelConverter viewModelConverter;
 
     @Inject
@@ -55,6 +68,22 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
 
     public RepositorySearchPresenter(final RepositorySearchContract.View view) {
         super(view);
+    }
+
+    @Override
+    public void init() {
+        viewActionQueue.subscribeTo(isUserSignedInUseCase.execute()
+                                                         .map(this::mapToSignedInAction)
+                                                         .subscribeOn(backgroundScheduler),
+                                    this::logError);
+    }
+
+    private Action1<RepositorySearchContract.View> mapToSignedInAction(final boolean isSignedIn) {
+        return view -> {
+            if (isSignedIn) {
+                view.showMenuInToolbar();
+            }
+        };
     }
 
     @Override
@@ -175,6 +204,8 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
 
     private void logOutInternal() {
         viewActionQueue.subscribeTo(logOutUserUseCase.execute()
+                                                     .andThen(clearAccessTokenUseCase.execute())
+                                                     .andThen(initUserComponentUseCase.execute(AuthToken.EMPTY))
                                                      .subscribeOn(backgroundScheduler),
                                     view -> router.showLoginScreen(),
                                     this::processLogOutError);

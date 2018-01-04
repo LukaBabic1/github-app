@@ -5,6 +5,7 @@ import android.content.res.Resources;
 
 import com.undabot.babic.app.application.GithubApplication;
 import com.undabot.babic.app.injection.ForApplication;
+import com.undabot.babic.domain.delegate.UserComponentDelegate;
 
 import javax.inject.Singleton;
 
@@ -32,11 +33,19 @@ public final class ApplicationModule {
         return githubApplication.getResources();
     }
 
+    @Provides
+    @Singleton
+    UserComponentDelegate userComponentDelegate() {
+        return githubApplication;
+    }
+
     public interface Exposes {
 
         @ForApplication
         Context context();
 
         Resources resources();
+
+        UserComponentDelegate userComponentDelegate();
     }
 }

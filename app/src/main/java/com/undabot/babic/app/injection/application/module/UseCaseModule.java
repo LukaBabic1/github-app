@@ -1,8 +1,11 @@
 package com.undabot.babic.app.injection.application.module;
 
+import com.undabot.babic.domain.delegate.UserComponentDelegate;
 import com.undabot.babic.domain.repository.AuthorizationRepository;
 import com.undabot.babic.domain.repository.CodeRepositoryRepository;
 import com.undabot.babic.domain.repository.UserRepository;
+import com.undabot.babic.domain.usecase.ClearAccessTokenUseCase;
+import com.undabot.babic.domain.usecase.ClearAccessTokenUseCaseImpl;
 import com.undabot.babic.domain.usecase.GetAuthTokenUseCase;
 import com.undabot.babic.domain.usecase.GetAuthTokenUseCaseImpl;
 import com.undabot.babic.domain.usecase.GetGithubAuthorizeUrl;
@@ -11,6 +14,8 @@ import com.undabot.babic.domain.usecase.GetRepositoryDetailsUseCase;
 import com.undabot.babic.domain.usecase.GetRepositoryDetailsUseCaseImpl;
 import com.undabot.babic.domain.usecase.GetUserDataUseCase;
 import com.undabot.babic.domain.usecase.GetUserDataUseCaseImpl;
+import com.undabot.babic.domain.usecase.InitUserComponentUseCase;
+import com.undabot.babic.domain.usecase.InitUserComponentUseCaseImpl;
 import com.undabot.babic.domain.usecase.IsUserSignedInUseCase;
 import com.undabot.babic.domain.usecase.IsUserSignedInUseCaseImpl;
 import com.undabot.babic.domain.usecase.LogOutUserUseCase;
@@ -44,6 +49,11 @@ public final class UseCaseModule {
     }
 
     @Provides
+    ClearAccessTokenUseCase provideClearAccessTokenUseCase(final StoreAuthTokenUseCase storeAuthTokenUseCase) {
+        return new ClearAccessTokenUseCaseImpl(storeAuthTokenUseCase);
+    }
+
+    @Provides
     IsUserSignedInUseCase provideIsUserSignedInUseCase(final UserRepository userRepository) {
         return new IsUserSignedInUseCaseImpl(userRepository);
     }
@@ -73,6 +83,11 @@ public final class UseCaseModule {
         return new SearchMoreRepositoriesUseCaseImpl(codeRepositoryRepository);
     }
 
+    @Provides
+    InitUserComponentUseCase provideInitUserComponentUseCase(final UserComponentDelegate userComponentDelegate) {
+        return new InitUserComponentUseCaseImpl(userComponentDelegate);
+    }
+
     public interface Exposes {
 
         GetGithubAuthorizeUrl getGithubAuthorizeUrl();
@@ -80,6 +95,8 @@ public final class UseCaseModule {
         GetAuthTokenUseCase getAuthTokenUseCase();
 
         StoreAuthTokenUseCase storeAuthTokenUseCase();
+
+        ClearAccessTokenUseCase clearAccessTokenUseCase();
 
         IsUserSignedInUseCase isUserSignedInUseCase();
 
@@ -92,5 +109,7 @@ public final class UseCaseModule {
         SearchRepositoriesUseCase searchRepositoriesUseCase();
 
         SearchMoreRepositoriesUseCase searchMoreRepositoriesUseCase();
+
+        InitUserComponentUseCase initUserComponentUseCase();
     }
 }

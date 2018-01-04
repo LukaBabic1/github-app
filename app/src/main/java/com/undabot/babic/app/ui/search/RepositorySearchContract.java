@@ -32,6 +32,8 @@ public final class RepositorySearchContract {
         void enableSearchButton();
 
         void disableSearchButton();
+
+        void showMenuInToolbar();
     }
 
     public interface Presenter extends ScopedPresenter {
@@ -42,6 +44,8 @@ public final class RepositorySearchContract {
         int STARS_SORT = 1000;
         int FORKS_SORT = 2000;
         int UPDATED_SORT = 3000;
+
+        void init();
 
         void search(String queryText, @SearchOrderInt int searchOrder);
 

@@ -12,6 +12,8 @@ import rx.Single;
 
 public final class AuthorizedCodeRepositoryClient implements CodeRepositoryClient {
 
+    private static final String AUTHORIZATION_TEMPLATE = "Token %s";
+
     private static final int DEFAULT_PAGE = 0;
     private static final int ZERO_BASED_OFFSET_FIX = 1;
 
@@ -32,13 +34,17 @@ public final class AuthorizedCodeRepositoryClient implements CodeRepositoryClien
 
     @Override
     public Single<List<CodeRepository>> searchRepositories(final String query, final CodeRepositoryRepository.SearchOrder searchOrder, final int perPage, final int page) {
-        return gitHubService.searchRepositories(authToken.value, query, searchOrder.value, perPage, page + ZERO_BASED_OFFSET_FIX)
+        return gitHubService.searchRepositories(getTokenFormatted(), query, searchOrder.value, page + ZERO_BASED_OFFSET_FIX, perPage)
                             .map(apiSearchRepositoriesResponse -> apiConverter.mapToCodeRepositoryList(apiSearchRepositoriesResponse.codeRepositories));
     }
 
     @Override
     public Single<CodeRepository> fetchRepository(final String repositoryName, final String username) {
-        return gitHubService.getRepositoryDetails(authToken.value, username, repositoryName)
+        return gitHubService.getRepositoryDetails(getTokenFormatted(), username, repositoryName)
                             .map(apiConverter::mapToCodeRepository);
+    }
+
+    private String getTokenFormatted() {
+        return String.format(AUTHORIZATION_TEMPLATE, authToken.value);
     }
 }

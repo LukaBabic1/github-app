@@ -17,6 +17,7 @@ import rx.Single;
 public final class AuthorizedUserClient implements UserClient {
 
     private static final String BASIC_AUTHORIZATION_TEMPLATE = "Basic %s";
+    private static final String AUTHORIZATION_TEMPLATE = "Token %s";
 
     private final ApiConverter apiConverter;
     private final GitHubService gitHubService;
@@ -33,8 +34,12 @@ public final class AuthorizedUserClient implements UserClient {
 
     @Override
     public Single<User> fetchUser(final String username) {
-        return gitHubService.getUser(authToken.value, username)
+        return gitHubService.getUser(getTokenFormatted(), username)
                             .map(apiConverter::mapToUser);
+    }
+
+    private String getTokenFormatted() {
+        return String.format(AUTHORIZATION_TEMPLATE, authToken.value);
     }
 
     @Override

@@ -9,9 +9,10 @@ import com.undabot.babic.app.injection.application.ApplicationComponent;
 import com.undabot.babic.app.injection.user.UserComponent;
 import com.undabot.babic.data.prefs.UserSharedPrefs;
 import com.undabot.babic.data.prefs.UserSharedPrefsImpl;
+import com.undabot.babic.domain.delegate.UserComponentDelegate;
 import com.undabot.babic.domain.model.AuthToken;
 
-public final class GithubApplication extends Application {
+public final class GithubApplication extends Application implements UserComponentDelegate {
 
     private ApplicationComponent applicationComponent;
     private UserComponent userComponent;
@@ -45,5 +46,10 @@ public final class GithubApplication extends Application {
 
     public UserComponent getUserComponent() {
         return userComponent;
+    }
+
+    @Override
+    public void initUserComponent(final AuthToken authToken) {
+        initUserComponent(Optional.ofNullable(authToken));
     }
 }

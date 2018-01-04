@@ -4,6 +4,7 @@ import com.undabot.babic.app.base.BasePresenter;
 import com.undabot.babic.app.ui.ViewModelConverter;
 import com.undabot.babic.domain.usecase.GetAuthTokenUseCase;
 import com.undabot.babic.domain.usecase.GetGithubAuthorizeUrl;
+import com.undabot.babic.domain.usecase.InitUserComponentUseCase;
 import com.undabot.babic.domain.usecase.StoreAuthTokenUseCase;
 
 import javax.inject.Inject;
@@ -21,6 +22,9 @@ public final class LoginPresenter extends BasePresenter<LoginContract.View> impl
 
     @Inject
     StoreAuthTokenUseCase storeAuthTokenUseCase;
+
+    @Inject
+    InitUserComponentUseCase initUserComponentUseCase;
 
     @Inject
     ViewModelConverter viewModelConverter;
@@ -53,7 +57,9 @@ public final class LoginPresenter extends BasePresenter<LoginContract.View> impl
     @Override
     public void exchangeCodeForOAuthToken(final String code) {
         viewActionQueue.subscribeTo(getAuthTokenUseCase.execute(code)
-                                                       .flatMapCompletable(storeAuthTokenUseCase::execute)
+                                                       .flatMap(authToken -> storeAuthTokenUseCase.execute(authToken)
+                                                                                                  .andThen(Single.just(authToken)))
+                                                       .flatMapCompletable(initUserComponentUseCase::execute)
                                                        .andThen(Single.fromCallable(this::mapToViewAction))
                                                        .subscribeOn(backgroundScheduler),
                                     this::getAuthTokenUseCaseError);
