@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -30,6 +31,9 @@ public final class UserDetailsFragment extends BaseFragment implements UserDetai
     private static final String KEY_EXTRAS = "key_fragment_extras";
 
     private static final String NOT_AVAILABLE = "n/a";
+
+    @BindView(R.id.fragment_user_detail_toolbar)
+    Toolbar toolbar;
 
     @BindView(R.id.fragment_user_detail_avatar_image)
     ImageView avatarImageView;
@@ -121,12 +125,17 @@ public final class UserDetailsFragment extends BaseFragment implements UserDetai
     public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        initToolbar();
         if (savedInstanceState == null) {
             userDetailViewModel.ifPresentOrElse(this::render,
                                                 this::extractFromArguments);
         } else {
             extractFromSavedInstanceState(savedInstanceState);
         }
+    }
+
+    private void initToolbar() {
+        toolbar.setTitle(R.string.user_details_toolbar_title);
     }
 
     private void extractFromArguments() {

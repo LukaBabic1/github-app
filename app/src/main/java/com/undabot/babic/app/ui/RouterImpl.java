@@ -54,6 +54,7 @@ public final class RouterImpl implements Router {
 
         if (canIntentBeResolved(intent)) {
             activity.startActivity(intent);
+            return true;
         }
 
         return false;

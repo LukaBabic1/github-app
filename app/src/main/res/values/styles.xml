@@ -1,7 +1,7 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -14,6 +14,14 @@
         <item name="android:gravity">center</item>
         <item name="android:text">@string/no_internet_connection</item>
         <item name="android:textColor">@color/no_internet_connection_text_view_text_color</item>
+    </style>
+
+    <!-- Toolbar -->
+    <style name="CommonToolbarStyle">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:elevation" tools:ignore="NewApi">@dimen/toolbar_elevation</item>
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.ActionBar</item>
+        <item name="titleTextColor">@color/white</item>
     </style>
 
     <!-- Repository search screen -->

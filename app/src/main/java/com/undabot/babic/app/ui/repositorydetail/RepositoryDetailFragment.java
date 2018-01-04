@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,6 +27,9 @@ public final class RepositoryDetailFragment extends BaseFragment implements Repo
     public static final String TAG = "RepositoryDetailFragment";
 
     private static final String KEY_EXTRA = "key_fragment_extra";
+
+    @BindView(R.id.fragment_repository_detail_toolbar)
+    Toolbar toolbar;
 
     @BindView(R.id.fragment_repository_detail_repository_name)
     TextView repositoryName;
@@ -101,12 +105,17 @@ public final class RepositoryDetailFragment extends BaseFragment implements Repo
     public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        initToolbar();
         if (savedInstanceState == null) {
             viewModel.ifPresentOrElse(this::render,
                                       this::extractFromArguments);
         } else {
             extractFromSavedInstanceState(savedInstanceState);
         }
+    }
+
+    private void initToolbar() {
+        toolbar.setTitle(R.string.repository_details_toolbar_title);
     }
 
     private void extractFromArguments() {

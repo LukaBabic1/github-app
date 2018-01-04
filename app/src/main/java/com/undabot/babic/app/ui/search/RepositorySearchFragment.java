@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.SparseIntArray;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -53,6 +54,9 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
         RADIO_BUTTON_ID_TO_SORT_ORDER.put(R.id.fragment_repository_search_forks_sort, FORKS_SORT);
         RADIO_BUTTON_ID_TO_SORT_ORDER.put(R.id.fragment_repository_search_updated_sort, UPDATED_SORT);
     }
+
+    @BindView(R.id.fragment_repository_search_toolbar)
+    Toolbar toolbar;
 
     @BindView(R.id.fragment_repository_search_no_internet_connection_text_view)
     TextView noInternetConnectionTextView;
@@ -135,9 +139,14 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
     @Override
     public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initToolbar();
         initAdapter();
         initRecyclerView();
         initSearchEditText();
+    }
+
+    private void initToolbar() {
+        toolbar.setTitle(R.string.repository_search_screen_toolbar_title);
     }
 
     private void initAdapter() {

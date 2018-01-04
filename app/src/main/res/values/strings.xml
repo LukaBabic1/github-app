@@ -17,6 +17,7 @@
     <string name="no_results_found">No results found</string>
 
     <!--Repository search screen-->
+    <string name="repository_search_screen_toolbar_title">Search repositories</string>
     <string name="repository_search_screen_edit_text_hint">@string/enter_search_text</string>
     <string name="repository_search_screen_search_button_text">@string/search</string>
     <string name="repository_search_screen_sort_by_label">@string/sort_by</string>
@@ -37,6 +38,7 @@
     <string name="repository_adapter_load_more_item_row_text">Load more</string>
 
     <!-- Repository details -->
+    <string name="repository_details_toolbar_title">Repository details</string>
     <string name="repository_details_stars_label_text">Stars:</string>
     <string name="repository_details_watchers_label_text">Watchers:</string>
     <string name="repository_details_forks_label_text">Forks:</string>
@@ -54,6 +56,7 @@
     <string name="repository_details_browser_not_available_error_message">@string/internet_browser_not_available_could_not_open_page</string>
 
     <!-- User details -->
+    <string name="user_details_toolbar_title">User details</string>
     <string name="user_details_name_template">User: %s</string>
     <string name="user_details_username_template">Username: %s</string>
     <string name="user_details_type_template">Type: %s</string>
