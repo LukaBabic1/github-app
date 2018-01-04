@@ -84,6 +84,9 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
     @BindView(R.id.fragment_repository_search_progress_bar)
     ProgressBar progressBar;
 
+    @BindView(R.id.fragment_repository_search_no_results_text_view)
+    TextView noResultsTextView;
+
     @Inject
     RepositorySearchContract.Presenter presenter;
 
@@ -172,6 +175,7 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
     public void render(final RepositorySearchScreenViewModel viewModel) {
         repositorySearchScreenViewModel = Optional.of(viewModel);
         codeRepositoriesAdapter.setItems(viewModel.repositoryViewModels, viewModel.canLoadMore);
+        noResultsTextView.setVisibility(viewModel.showEmptyScreen ? View.VISIBLE : View.GONE);
     }
 
     @Override

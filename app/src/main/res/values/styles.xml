@@ -65,6 +65,10 @@
         <item name="android:background">@color/white_opacity_75</item>
     </style>
 
+    <style name="RepositorySearchScreenNoResultsTextStyle">
+        <item name="android:text">@string/repository_search_screen_no_results_found_text</item>
+    </style>
+
     <!-- Repositories adapter -->
     <style name="RepositoriesAdapterRootCardViewStyle">
         <item name="android:layout_marginStart">@dimen/repository_adapter_root_card_view_layout_margin_start</item>

@@ -103,7 +103,7 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
                                                                    final int searchOrderInt) {
         return view -> {
             view.hideLoading();
-            view.render(new RepositorySearchScreenViewModel(viewModels, lastLoadedPage, searchTerm, searchOrderInt, evaluateIfMoreCanBeLoaded(viewModels)));
+            view.render(new RepositorySearchScreenViewModel(viewModels, lastLoadedPage, searchTerm, searchOrderInt, evaluateIfMoreCanBeLoaded(viewModels), viewModels.isEmpty()));
         };
     }
 
@@ -141,7 +141,7 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
                                                                                      final int searchOrderInt) {
         return view -> {
             view.hideLoading();
-            view.renderMoreItems(new RepositorySearchScreenViewModel(viewModels, lastLoadedPage, searchTerm, searchOrderInt, evaluateIfMoreCanBeLoaded(viewModels)));
+            view.renderMoreItems(new RepositorySearchScreenViewModel(viewModels, lastLoadedPage, searchTerm, searchOrderInt, evaluateIfMoreCanBeLoaded(viewModels), false));
         };
     }
 

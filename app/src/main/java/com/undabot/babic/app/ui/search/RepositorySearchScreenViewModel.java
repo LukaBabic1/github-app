@@ -14,14 +14,16 @@ public final class RepositorySearchScreenViewModel {
     public final int searchModeInt;
 
     public final boolean canLoadMore;
+    public final boolean showEmptyScreen;
 
-    public RepositorySearchScreenViewModel(final List<RepositoryViewModel> repositoryViewModels, final int lastLoadedPage, final String searchTerm,
-                                           final int searchModeInt, final boolean canLoadMore) {
+    public RepositorySearchScreenViewModel(final List<RepositoryViewModel> repositoryViewModels, final int lastLoadedPage, final String searchTerm, final int searchModeInt,
+                                           final boolean canLoadMore, final boolean showEmptyScreen) {
         this.repositoryViewModels = repositoryViewModels;
         this.lastLoadedPage = lastLoadedPage;
         this.searchTerm = searchTerm;
         this.searchModeInt = searchModeInt;
         this.canLoadMore = canLoadMore;
+        this.showEmptyScreen = showEmptyScreen;
     }
 
     @Override
@@ -44,6 +46,9 @@ public final class RepositorySearchScreenViewModel {
         if (canLoadMore != that.canLoadMore) {
             return false;
         }
+        if (showEmptyScreen != that.showEmptyScreen) {
+            return false;
+        }
         if (repositoryViewModels != null ? !repositoryViewModels.equals(that.repositoryViewModels) : that.repositoryViewModels != null) {
             return false;
         }
@@ -57,6 +62,7 @@ public final class RepositorySearchScreenViewModel {
         result = 31 * result + (searchTerm != null ? searchTerm.hashCode() : 0);
         result = 31 * result + searchModeInt;
         result = 31 * result + (canLoadMore ? 1 : 0);
+        result = 31 * result + (showEmptyScreen ? 1 : 0);
         return result;
     }
 
@@ -68,6 +74,7 @@ public final class RepositorySearchScreenViewModel {
                 ", searchTerm='" + searchTerm + '\'' +
                 ", searchModeInt=" + searchModeInt +
                 ", canLoadMore=" + canLoadMore +
+                ", showEmptyScreen=" + showEmptyScreen +
                 '}';
     }
 }

@@ -14,6 +14,7 @@
     <string name="no_internet_connection">No internet connection</string>
     <string name="author">Author</string>
     <string name="internet_browser_not_available_could_not_open_page">Internet browser not available, could not open page.</string>
+    <string name="no_results_found">No results found</string>
 
     <!--Repository search screen-->
     <string name="repository_search_screen_edit_text_hint">@string/enter_search_text</string>
@@ -24,6 +25,7 @@
     <string name="repository_search_screen_radio_button_updated_text">@string/updated</string>
     <string name="repository_search_screen_data_fetch_error_message">@string/oops_something_went_wrong_try_again</string>
     <string name="repository_search_screen_sort_order_not_selected_text">@string/please_select_search_sort</string>
+    <string name="repository_search_screen_no_results_found_text">@string/no_results_found</string>
 
     <!-- Repository adapter -->
     <string name="repository_adapter_author_name_template">Author: %s</string>
