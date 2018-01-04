@@ -148,6 +148,16 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
 
     private void initToolbar() {
         toolbar.setTitle(R.string.repository_search_screen_toolbar_title);
+        toolbar.inflateMenu(R.menu.fragment_repository_search_menu);
+
+        toolbar.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.fragment_repository_search_log_out_menu_item) {
+                presenter.logOut();
+                return true;
+            }
+
+            return false;
+        });
     }
 
     private void initAdapter() {

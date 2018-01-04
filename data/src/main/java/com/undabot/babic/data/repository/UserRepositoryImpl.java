@@ -47,4 +47,9 @@ public final class UserRepositoryImpl implements UserRepository {
     public Single<Optional<AuthToken>> getUserAuthToken() {
         return Single.fromCallable(userSharedPrefs::getAuthToken);
     }
+
+    @Override
+    public Completable logOutUser() {
+        return userClient.logOut();
+    }
 }

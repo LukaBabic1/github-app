@@ -2,8 +2,10 @@ package com.undabot.babic.app.ui.search;
 
 import com.undabot.babic.app.base.BasePresenter;
 import com.undabot.babic.app.ui.ViewModelConverter;
+import com.undabot.babic.app.utils.Actions;
 import com.undabot.babic.data.repository.CodeRepositoryRepositoryImpl;
 import com.undabot.babic.domain.repository.CodeRepositoryRepository;
+import com.undabot.babic.domain.usecase.LogOutUserUseCase;
 import com.undabot.babic.domain.usecase.SearchMoreRepositoriesUseCase;
 import com.undabot.babic.domain.usecase.SearchRepositoriesUseCase;
 import com.undabot.babic.domain.utils.StringUtils;
@@ -41,6 +43,9 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
 
     @Inject
     SearchMoreRepositoriesUseCase searchMoreRepositoriesUseCase;
+
+    @Inject
+    LogOutUserUseCase logOutUserUseCase;
 
     @Inject
     ViewModelConverter viewModelConverter;
@@ -161,5 +166,22 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
     @Override
     public void showUserDetails(final String username) {
         router.showUserDetailsScreen(username);
+    }
+
+    @Override
+    public void logOut() {
+        doIfConnectedToInternet(this::logOutInternal, Actions.noOpAction0());
+    }
+
+    private void logOutInternal() {
+        viewActionQueue.subscribeTo(logOutUserUseCase.execute()
+                                                     .subscribeOn(backgroundScheduler),
+                                    view -> router.showLoginScreen(),
+                                    this::processLogOutError);
+    }
+
+    private void processLogOutError(final Throwable throwable) {
+        logError(throwable);
+        onViewAction(RepositorySearchContract.View::hideLoading);
     }
 }

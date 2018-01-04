@@ -18,4 +18,6 @@ public interface UserRepository {
     Completable cacheUser(User user);
 
     Single<Optional<AuthToken>> getUserAuthToken();
+
+    Completable logOutUser();
 }

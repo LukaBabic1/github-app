@@ -32,6 +32,7 @@ public final class UserSharedPrefsImpl implements UserSharedPrefs {
     @Override
     public Optional<AuthToken> getAuthToken() {
         return Optional.ofNullable(preferences.getString(KEY_ACCESS_TOKEN, null))
+                       .filter(value -> !AuthToken.EMPTY.value.equals(value))
                        .map(AuthToken::new);
     }
 }

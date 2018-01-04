@@ -1,9 +1,11 @@
 package com.undabot.babic.data.network.service;
 
 import com.undabot.babic.data.network.model.ApiCodeRepository;
+import com.undabot.babic.data.network.model.ApiRevokeTokenResponse;
 import com.undabot.babic.data.network.model.ApiSearchRepositoriesResponse;
 import com.undabot.babic.data.network.model.ApiUser;
 
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Path;
@@ -30,4 +32,7 @@ public interface GitHubService {
 
     @GET("/repos/{username}/{repositoryName}")
     Single<ApiCodeRepository> getRepositoryDetails(@Header("Authorization") String authorization, @Path("username") String username, @Path("repositoryName") String repositoryName);
+
+    @DELETE("/applications/{client_id}/grants/{auth_token}")
+    Single<ApiRevokeTokenResponse> logOut(@Header("Authorization") String basicAuthorization, @Path("client_id") String clientId, @Path("auth_token") String authToken);
 }

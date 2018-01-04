@@ -3,7 +3,6 @@ package com.undabot.babic.app.injection.activity;
 import com.undabot.babic.app.injection.activity.module.ActivityModule;
 import com.undabot.babic.app.injection.activity.module.ActivityPresenterModule;
 import com.undabot.babic.app.injection.activity.module.UiAdapterModule;
-import com.undabot.babic.app.injection.application.module.UseCaseModule;
 import com.undabot.babic.app.injection.scope.ActivityScope;
 import com.undabot.babic.app.injection.user.UserComponent;
 
@@ -17,8 +16,8 @@ import dagger.Component;
         modules = {
                 ActivityModule.class,
                 ActivityPresenterModule.class,
-                UiAdapterModule.class,
-                UseCaseModule.class
+                UiAdapterModule.class
         }
 )
-public interface ActivityComponent extends ActivityComponentInjects, ActivityComponentExposes {}
+public interface ActivityComponent extends ActivityComponentInjects,
+                                           ActivityComponentExposes {}

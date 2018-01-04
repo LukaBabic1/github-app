@@ -1,5 +1,7 @@
 package com.undabot.babic.app.injection.user;
 
+import android.content.res.Resources;
+
 import com.undabot.babic.app.injection.scope.UserScope;
 import com.undabot.babic.data.network.client.AuthorizedCodeRepositoryClient;
 import com.undabot.babic.data.network.client.AuthorizedUserClient;
@@ -8,7 +10,6 @@ import com.undabot.babic.data.network.client.CodeRepositoryClientImpl;
 import com.undabot.babic.data.network.client.UserClient;
 import com.undabot.babic.data.network.client.UserClientImpl;
 import com.undabot.babic.data.network.converter.ApiConverter;
-import com.undabot.babic.data.network.service.ApiTokenProvider;
 import com.undabot.babic.data.network.service.GitHubService;
 import com.undabot.babic.domain.model.AuthToken;
 
@@ -36,11 +37,11 @@ public final class UserApiClientModule {
 
     @Provides
     @UserScope
-    UserClient provideUserClient(final ApiConverter apiConverter, final ApiTokenProvider apiTokenProvider, final GitHubService gitHubService) {
+    UserClient provideUserClient(final ApiConverter apiConverter, final Resources resources, final GitHubService gitHubService) {
         if (AuthToken.EMPTY.equals(authToken)) {
-            return new UserClientImpl(apiConverter, apiTokenProvider, gitHubService);
+            return new UserClientImpl(apiConverter, gitHubService);
         } else {
-            return new AuthorizedUserClient(apiConverter, apiTokenProvider, gitHubService, authToken);
+            return new AuthorizedUserClient(apiConverter, gitHubService, resources, authToken);
         }
     }
 

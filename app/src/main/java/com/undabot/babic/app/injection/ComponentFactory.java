@@ -9,7 +9,6 @@ import com.undabot.babic.app.injection.activity.module.ActivityPresenterModule;
 import com.undabot.babic.app.injection.application.ApplicationComponent;
 import com.undabot.babic.app.injection.application.ApplicationModule;
 import com.undabot.babic.app.injection.application.DaggerApplicationComponent;
-import com.undabot.babic.app.injection.application.module.UseCaseModule;
 import com.undabot.babic.app.injection.fragment.DaggerFragment;
 import com.undabot.babic.app.injection.fragment.DaggerFragmentComponent;
 import com.undabot.babic.app.injection.fragment.FragmentComponent;
@@ -38,7 +37,6 @@ public final class ComponentFactory {
                                       .userComponent(application.getUserComponent())
                                       .activityModule(new ActivityModule(activity))
                                       .activityPresenterModule(new ActivityPresenterModule(activity))
-                                      .useCaseModule(new UseCaseModule())
                                       .build();
     }
 
