@@ -115,6 +115,7 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
     }
 
     private void restoreFromStateIfPresent(final Bundle savedInstanceState) {
+        // If search was paged multiple times, we'll load only first page of search. Instagram works the same way.
         Optional.ofNullable(savedInstanceState)
                 .map(bundle -> (LastSearchParams) bundle.getParcelable(KEY_SEARCH_TERM))
                 .filter(lastSearchParams -> !lastSearchParams.query.isEmpty())
