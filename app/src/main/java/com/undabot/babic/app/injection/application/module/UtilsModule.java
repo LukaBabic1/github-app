@@ -6,6 +6,8 @@ import com.undabot.babic.app.utils.view.ViewUtils;
 import com.undabot.babic.app.utils.view.ViewUtilsImpl;
 import com.undabot.babic.domain.utils.DateUtils;
 import com.undabot.babic.domain.utils.DateUtilsImpl;
+import com.undabot.babic.domain.utils.ListUtils;
+import com.undabot.babic.domain.utils.ListUtilsImpl;
 import com.undabot.babic.domain.utils.StringUtils;
 import com.undabot.babic.domain.utils.StringUtilsImpl;
 
@@ -21,6 +23,12 @@ public final class UtilsModule {
     @Singleton
     DateUtils provideDateUtils(final StringUtils stringUtils) {
         return new DateUtilsImpl(stringUtils);
+    }
+
+    @Provides
+    @Singleton
+    ListUtils provideListUtils() {
+        return new ListUtilsImpl();
     }
 
     @Provides
@@ -44,6 +52,8 @@ public final class UtilsModule {
     public interface Exposes {
 
         DateUtils dateUtils();
+
+        ListUtils listUtils();
 
         StringUtils stringUtils();
 
