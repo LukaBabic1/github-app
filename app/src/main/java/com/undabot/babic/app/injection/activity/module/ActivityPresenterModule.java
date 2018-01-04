@@ -1,6 +1,8 @@
 package com.undabot.babic.app.injection.activity.module;
 
 import com.undabot.babic.app.injection.activity.DaggerActivity;
+import com.undabot.babic.app.ui.login.LoginContract;
+import com.undabot.babic.app.ui.login.LoginPresenter;
 import com.undabot.babic.app.ui.main.MainContract;
 import com.undabot.babic.app.ui.main.MainPresenter;
 import com.undabot.babic.app.ui.splash.SplashContract;
@@ -21,6 +23,14 @@ public final class ActivityPresenterModule {
     @Provides
     SplashContract.Presenter provideSplashPresenter() {
         final SplashPresenter presenter = new SplashPresenter((SplashContract.View) daggerActivity);
+        daggerActivity.getActivityComponent().inject(presenter);
+
+        return presenter;
+    }
+
+    @Provides
+    LoginContract.Presenter provideLoginPresenter() {
+        final LoginPresenter presenter = new LoginPresenter((LoginContract.View) daggerActivity);
         daggerActivity.getActivityComponent().inject(presenter);
 
         return presenter;
