@@ -1,7 +1,10 @@
 package com.undabot.babic.app.injection.application.module;
 
+import com.undabot.babic.domain.repository.AuthorizationRepository;
 import com.undabot.babic.domain.repository.CodeRepositoryRepository;
 import com.undabot.babic.domain.repository.UserRepository;
+import com.undabot.babic.domain.usecase.GetGithubAuthorizeUrl;
+import com.undabot.babic.domain.usecase.GetGithubAuthorizeUrlImpl;
 import com.undabot.babic.domain.usecase.GetRepositoryDetailsUseCase;
 import com.undabot.babic.domain.usecase.GetRepositoryDetailsUseCaseImpl;
 import com.undabot.babic.domain.usecase.GetUserDataUseCase;
@@ -16,6 +19,11 @@ import dagger.Provides;
 
 @Module
 public final class UseCaseModule {
+
+    @Provides
+    GetGithubAuthorizeUrl provideGetGithubAuthorizeUrl(final AuthorizationRepository authorizationRepository) {
+        return new GetGithubAuthorizeUrlImpl(authorizationRepository);
+    }
 
     @Provides
     GetUserDataUseCase provideGetUserDataUseCase(final UserRepository userRepository) {
@@ -38,6 +46,8 @@ public final class UseCaseModule {
     }
 
     public interface Exposes {
+
+        GetGithubAuthorizeUrl getGithubAuthorizeUrl();
 
         GetUserDataUseCase getUserDataUseCase();
 
