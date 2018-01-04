@@ -11,6 +11,8 @@ import com.undabot.babic.domain.usecase.GetRepositoryDetailsUseCase;
 import com.undabot.babic.domain.usecase.GetRepositoryDetailsUseCaseImpl;
 import com.undabot.babic.domain.usecase.GetUserDataUseCase;
 import com.undabot.babic.domain.usecase.GetUserDataUseCaseImpl;
+import com.undabot.babic.domain.usecase.IsUserSignedInUseCase;
+import com.undabot.babic.domain.usecase.IsUserSignedInUseCaseImpl;
 import com.undabot.babic.domain.usecase.SearchMoreRepositoriesUseCase;
 import com.undabot.babic.domain.usecase.SearchMoreRepositoriesUseCaseImpl;
 import com.undabot.babic.domain.usecase.SearchRepositoriesUseCase;
@@ -35,8 +37,13 @@ public final class UseCaseModule {
     }
 
     @Provides
-    StoreAuthTokenUseCase provideStoreAuthTokenUseCase() {
-        return new StoreAuthTokenUseCaseImpl();
+    StoreAuthTokenUseCase provideStoreAuthTokenUseCase(final UserRepository userRepository) {
+        return new StoreAuthTokenUseCaseImpl(userRepository);
+    }
+
+    @Provides
+    IsUserSignedInUseCase provideIsUserSignedInUseCase(final UserRepository userRepository) {
+        return new IsUserSignedInUseCaseImpl(userRepository);
     }
 
     @Provides
@@ -66,6 +73,8 @@ public final class UseCaseModule {
         GetAuthTokenUseCase getAuthTokenUseCase();
 
         StoreAuthTokenUseCase storeAuthTokenUseCase();
+
+        IsUserSignedInUseCase isUserSignedInUseCase();
 
         GetUserDataUseCase getUserDataUseCase();
 

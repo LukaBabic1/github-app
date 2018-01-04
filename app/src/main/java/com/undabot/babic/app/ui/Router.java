@@ -2,6 +2,8 @@ package com.undabot.babic.app.ui;
 
 public interface Router {
 
+    void showLoginScreen();
+
     void showMainScreen();
 
     void showRepositorySearchScreen();

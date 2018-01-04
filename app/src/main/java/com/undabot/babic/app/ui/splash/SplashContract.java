@@ -15,5 +15,6 @@ public final class SplashContract {
 
     public interface Presenter extends ScopedPresenter {
 
+        void init();
     }
 }

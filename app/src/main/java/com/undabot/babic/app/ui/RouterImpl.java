@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 
 import com.undabot.babic.app.R;
+import com.undabot.babic.app.ui.login.LoginActivity;
 import com.undabot.babic.app.ui.main.MainActivity;
 import com.undabot.babic.app.ui.repositorydetail.RepositoryDetailFragment;
 import com.undabot.babic.app.ui.search.RepositorySearchFragment;
@@ -27,8 +28,17 @@ public final class RouterImpl implements Router {
     }
 
     @Override
+    public void showLoginScreen() {
+        startActivityAndFinishCurrent(LoginActivity.class);
+    }
+
+    @Override
     public void showMainScreen() {
-        activity.startActivity(new Intent(activity, MainActivity.class));
+        startActivityAndFinishCurrent(MainActivity.class);
+    }
+
+    private void startActivityAndFinishCurrent(final Class<?> clazz) {
+        activity.startActivity(new Intent(activity, clazz));
         activity.finish();
     }
 

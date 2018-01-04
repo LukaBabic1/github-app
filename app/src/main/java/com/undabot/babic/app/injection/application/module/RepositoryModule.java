@@ -7,6 +7,7 @@ import com.undabot.babic.data.cache.UserCache;
 import com.undabot.babic.data.network.client.AuthorizationClient;
 import com.undabot.babic.data.network.client.CodeRepositoryClient;
 import com.undabot.babic.data.network.client.UserClient;
+import com.undabot.babic.data.prefs.UserSharedPrefs;
 import com.undabot.babic.data.repository.AuthorizationRepositoryImpl;
 import com.undabot.babic.data.repository.CodeRepositoryRepositoryImpl;
 import com.undabot.babic.data.repository.UserRepositoryImpl;
@@ -23,6 +24,7 @@ import dagger.Provides;
 public final class RepositoryModule {
 
     @Provides
+    @Singleton
     AuthorizationRepository provideAuthorizationRepository(final AuthorizationClient authorizationClient, final Resources resources) {
         return new AuthorizationRepositoryImpl(authorizationClient, resources);
     }
@@ -35,8 +37,8 @@ public final class RepositoryModule {
 
     @Provides
     @Singleton
-    UserRepository provideUserRepository(final UserClient userClient, final UserCache userCache) {
-        return new UserRepositoryImpl(userClient, userCache);
+    UserRepository provideUserRepository(final UserClient userClient, final UserCache userCache, final UserSharedPrefs userSharedPrefs) {
+        return new UserRepositoryImpl(userClient, userCache, userSharedPrefs);
     }
 
     public interface Exposes {
