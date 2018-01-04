@@ -263,8 +263,10 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
             return;
         }
 
-        @SearchOrderInt final int searchOrder = RADIO_BUTTON_ID_TO_SORT_ORDER.get(selectedRadioButtonId);
+        @SearchOrderInt
+        final int searchOrder = RADIO_BUTTON_ID_TO_SORT_ORDER.get(selectedRadioButtonId);
         final String searchTerm = searchEditText.getText().toString();
+
         lastSearchParams = new LastSearchParams(searchTerm, searchOrder);
         presenter.search(searchTerm, searchOrder);
     }
@@ -277,9 +279,10 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
 
         final String query;
 
-        @SearchOrderInt final int searchOrder;
+        @SearchOrderInt
+        final int searchOrder;
 
-        LastSearchParams(final String query, final int searchOrder) {
+        LastSearchParams(final String query, @SearchOrderInt final int searchOrder) {
             this.query = query;
             this.searchOrder = searchOrder;
         }
