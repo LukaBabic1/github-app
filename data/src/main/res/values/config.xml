@@ -6,6 +6,7 @@
     <string name="github_authorization_url_template">https://github.com/login/oauth/authorize?client_id=%s</string>
     <string name="github_authorize_url">https://github.com/login/oauth/authorize</string>
 
+    <string name="github_oauth_url_template">https://github.com/login/oauth/access_token?client_id=%s&amp;client_secret=%s&amp;code=%s</string>
     <string name="github_oauth_url">https://github.com/login/oauth/access_token</string>
     <string name="github_client_id">2d188d03234fced95f76</string>
     <string name="github_secret">2e7c1c32edcb6c733839019ad306409f28c5e4af</string>

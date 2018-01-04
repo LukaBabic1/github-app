@@ -17,5 +17,7 @@ public final class LoginContract {
     public interface Presenter extends ScopedPresenter {
 
         void init();
+
+        void exchangeCodeForOAuthToken(String code);
     }
 }

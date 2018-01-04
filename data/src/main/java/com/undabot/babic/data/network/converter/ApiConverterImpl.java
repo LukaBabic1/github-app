@@ -1,8 +1,10 @@
 package com.undabot.babic.data.network.converter;
 
 import com.annimon.stream.Stream;
+import com.undabot.babic.data.network.model.ApiAccessTokenResponse;
 import com.undabot.babic.data.network.model.ApiCodeRepository;
 import com.undabot.babic.data.network.model.ApiUser;
+import com.undabot.babic.domain.model.AuthToken;
 import com.undabot.babic.domain.model.CodeRepository;
 import com.undabot.babic.domain.model.User;
 import com.undabot.babic.domain.utils.DateUtils;
@@ -21,6 +23,15 @@ public final class ApiConverterImpl implements ApiConverter {
     public ApiConverterImpl(final DateUtils dateUtils, final StringUtils stringUtils) {
         this.dateUtils = dateUtils;
         this.stringUtils = stringUtils;
+    }
+
+    @Override
+    public AuthToken mapToAuthToken(final ApiAccessTokenResponse apiAccessTokenResponse) {
+        if (apiAccessTokenResponse == null || stringUtils.isEmpty(apiAccessTokenResponse.accessToken)) {
+            throw new InvalidAuthTokenException();
+        }
+
+        return new AuthToken(apiAccessTokenResponse.accessToken);
     }
 
     @Override

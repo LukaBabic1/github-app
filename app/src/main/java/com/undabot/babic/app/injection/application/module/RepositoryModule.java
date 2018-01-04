@@ -4,6 +4,7 @@ import android.content.res.Resources;
 
 import com.undabot.babic.data.cache.CodeRepositoryCache;
 import com.undabot.babic.data.cache.UserCache;
+import com.undabot.babic.data.network.client.AuthorizationClient;
 import com.undabot.babic.data.network.client.CodeRepositoryClient;
 import com.undabot.babic.data.network.client.UserClient;
 import com.undabot.babic.data.repository.AuthorizationRepositoryImpl;
@@ -22,8 +23,8 @@ import dagger.Provides;
 public final class RepositoryModule {
 
     @Provides
-    AuthorizationRepository provideAuthorizationRepository(final Resources resources) {
-        return new AuthorizationRepositoryImpl(resources);
+    AuthorizationRepository provideAuthorizationRepository(final AuthorizationClient authorizationClient, final Resources resources) {
+        return new AuthorizationRepositoryImpl(authorizationClient, resources);
     }
 
     @Provides

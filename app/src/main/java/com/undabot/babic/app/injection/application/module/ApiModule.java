@@ -2,7 +2,10 @@ package com.undabot.babic.app.injection.application.module;
 
 import android.content.res.Resources;
 
+import com.google.gson.Gson;
 import com.undabot.babic.app.BuildConfig;
+import com.undabot.babic.data.network.client.AuthorizationClient;
+import com.undabot.babic.data.network.client.AuthorizationClientImpl;
 import com.undabot.babic.data.network.client.CodeRepositoryClient;
 import com.undabot.babic.data.network.client.CodeRepositoryClientImpl;
 import com.undabot.babic.data.network.client.UserClient;
@@ -76,6 +79,11 @@ public final class ApiModule {
     @Singleton
     GitHubService provideGitHubService(final Retrofit retrofit) {
         return retrofit.create(GitHubService.class);
+    }
+
+    @Provides
+    AuthorizationClient provideAuthorizationClient(final ApiConverter apiConverter, final Gson gson, final OkHttpClient okHttpClient, final Resources resources) {
+        return new AuthorizationClientImpl(apiConverter, gson, okHttpClient, resources);
     }
 
     @Provides
