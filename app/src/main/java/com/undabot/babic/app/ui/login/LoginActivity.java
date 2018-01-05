@@ -39,6 +39,15 @@ public final class LoginActivity extends BaseActivity implements LoginContract.V
         presenter.init();
     }
 
+    private void bindViews() {
+        ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void inject(final ActivityComponent component) {
+        component.inject(this);
+    }
+
     private void initToolbar() {
         toolbar.inflateMenu(R.menu.activity_login_menu);
         toolbar.setTitle(R.string.login_screen_toolbar_title);
@@ -56,15 +65,6 @@ public final class LoginActivity extends BaseActivity implements LoginContract.V
     private void initWebView() {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new LoginWebViewClient(this));
-    }
-
-    private void bindViews() {
-        ButterKnife.bind(this);
-    }
-
-    @Override
-    protected void inject(final ActivityComponent component) {
-        component.inject(this);
     }
 
     @Override
