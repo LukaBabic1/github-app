@@ -19,7 +19,7 @@ public final class UserClientImpl implements UserClient {
 
     @Override
     public Single<User> fetchCurrentUser() {
-        return Single.error(new UnauthorizedLogOutApiCallException());
+        return Single.error(new UnauthorizedApiCallException());
     }
 
     @Override

@@ -13,6 +13,10 @@ public interface UserClient {
 
     Completable logOut();
 
+    final class UnauthorizedApiCallException extends RuntimeException {
+
+    }
+
     final class UnauthorizedLogOutApiCallException extends RuntimeException {
 
     }
