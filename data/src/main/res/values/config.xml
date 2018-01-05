@@ -9,7 +9,7 @@
     <string name="github_oauth_url_template">https://github.com/login/oauth/access_token?client_id=%s&amp;client_secret=%s&amp;code=%s</string>
     <string name="github_oauth_url">https://github.com/login/oauth/access_token</string>
 
-
+    <!--TODO-->
     <string name="github_client_id"></string>
     <string name="github_secret"></string>
 
