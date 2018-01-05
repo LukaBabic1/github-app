@@ -7,8 +7,8 @@ import com.undabot.babic.data.repository.CodeRepositoryRepositoryImpl;
 import com.undabot.babic.domain.model.AuthToken;
 import com.undabot.babic.domain.repository.CodeRepositoryRepository;
 import com.undabot.babic.domain.usecase.ClearAccessTokenUseCase;
-import com.undabot.babic.domain.usecase.FetchAndStoreCurrentUserUsername;
-import com.undabot.babic.domain.usecase.GetCurrentUserData;
+import com.undabot.babic.domain.usecase.FetchAndStoreCurrentUserUsernameUseCase;
+import com.undabot.babic.domain.usecase.GetCurrentUserDataUseCase;
 import com.undabot.babic.domain.usecase.GetCurrentUserUsernameUseCase;
 import com.undabot.babic.domain.usecase.InitUserComponentUseCase;
 import com.undabot.babic.domain.usecase.IsUserSignedInUseCase;
@@ -25,6 +25,7 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import rx.Completable;
+import rx.Single;
 import rx.functions.Action1;
 
 public final class RepositorySearchPresenter extends BasePresenter<RepositorySearchContract.View> implements RepositorySearchContract.Presenter {
@@ -65,10 +66,10 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
     IsUserSignedInUseCase isUserSignedInUseCase;
 
     @Inject
-    GetCurrentUserData getCurrentUserData;
+    GetCurrentUserDataUseCase getCurrentUserDataUseCaseUseCase;
 
     @Inject
-    FetchAndStoreCurrentUserUsername fetchAndStoreCurrentUserUsername;
+    FetchAndStoreCurrentUserUsernameUseCase fetchAndStoreCurrentUserUsernameUseCase;
 
     @Inject
     GetCurrentUserUsernameUseCase getCurrentUserUsernameUseCase;
@@ -108,12 +109,14 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
     }
 
     private void getCurrentUserData() {
-        addSubscription(isUserSignedInUseCase.execute()
-                                             .flatMapCompletable(isSignedIn -> isSignedIn ? fetchAndStoreCurrentUserUsername.execute() : Completable.complete())
-                                             .subscribeOn(backgroundScheduler)
-                                             .observeOn(mainThreadScheduler)
-                                             .subscribe(Actions.noOpAction0(),
-                                                        this::logError));
+        addSubscription(Single.zip(isUserSignedInUseCase.execute(), getCurrentUserUsernameUseCase.execute()
+                                                                                                 .map(String::isEmpty),
+                                   (isSigned, isUsernameEmpty) -> isSigned && isUsernameEmpty)
+                              .flatMapCompletable(shouldFetchUserData -> shouldFetchUserData ? fetchAndStoreCurrentUserUsernameUseCase.execute() : Completable.complete())
+                              .subscribeOn(backgroundScheduler)
+                              .observeOn(mainThreadScheduler)
+                              .subscribe(Actions.noOpAction0(),
+                                         this::logError));
     }
 
     private void hideNoInternetConnection() {

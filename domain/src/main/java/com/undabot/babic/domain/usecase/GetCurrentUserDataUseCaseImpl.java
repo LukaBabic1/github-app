@@ -5,11 +5,11 @@ import com.undabot.babic.domain.repository.UserRepository;
 
 import rx.Single;
 
-public final class GetCurrentUserDataImpl implements GetCurrentUserData {
+public final class GetCurrentUserDataUseCaseImpl implements GetCurrentUserDataUseCase {
 
     private final UserRepository userRepository;
 
-    public GetCurrentUserDataImpl(final UserRepository userRepository) {
+    public GetCurrentUserDataUseCaseImpl(final UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

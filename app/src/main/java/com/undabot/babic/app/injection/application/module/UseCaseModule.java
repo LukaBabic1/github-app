@@ -8,12 +8,12 @@ import com.undabot.babic.domain.usecase.ClearAccessTokenUseCase;
 import com.undabot.babic.domain.usecase.ClearAccessTokenUseCaseImpl;
 import com.undabot.babic.domain.usecase.ClearCurrentUserUsernameUseCase;
 import com.undabot.babic.domain.usecase.ClearCurrentUserUsernameUseCaseImpl;
-import com.undabot.babic.domain.usecase.FetchAndStoreCurrentUserUsername;
-import com.undabot.babic.domain.usecase.FetchAndStoreCurrentUserUsernameImpl;
+import com.undabot.babic.domain.usecase.FetchAndStoreCurrentUserUsernameUseCase;
+import com.undabot.babic.domain.usecase.FetchAndStoreCurrentUserUsernameUseCaseImpl;
 import com.undabot.babic.domain.usecase.GetAuthTokenUseCase;
 import com.undabot.babic.domain.usecase.GetAuthTokenUseCaseImpl;
-import com.undabot.babic.domain.usecase.GetCurrentUserData;
-import com.undabot.babic.domain.usecase.GetCurrentUserDataImpl;
+import com.undabot.babic.domain.usecase.GetCurrentUserDataUseCase;
+import com.undabot.babic.domain.usecase.GetCurrentUserDataUseCaseImpl;
 import com.undabot.babic.domain.usecase.GetCurrentUserUsernameUseCaseImpl;
 import com.undabot.babic.domain.usecase.GetCurrentUserUsernameUseCase;
 import com.undabot.babic.domain.usecase.GetGithubAuthorizeUrl;
@@ -97,13 +97,13 @@ public final class UseCaseModule {
     }
 
     @Provides
-    GetCurrentUserData provideGetCurrentUserData(final UserRepository userRepository) {
-        return new GetCurrentUserDataImpl(userRepository);
+    GetCurrentUserDataUseCase provideGetCurrentUserDataUseCase(final UserRepository userRepository) {
+        return new GetCurrentUserDataUseCaseImpl(userRepository);
     }
 
     @Provides
-    FetchAndStoreCurrentUserUsername provideFetchAndStoreCurrentUserUsername(final GetCurrentUserData getCurrentUserData, final UserRepository userRepository) {
-        return new FetchAndStoreCurrentUserUsernameImpl(getCurrentUserData, userRepository);
+    FetchAndStoreCurrentUserUsernameUseCase provideFetchAndStoreCurrentUserUsernameUseCase(final GetCurrentUserDataUseCase getCurrentUserDataUseCase, final UserRepository userRepository) {
+        return new FetchAndStoreCurrentUserUsernameUseCaseImpl(getCurrentUserDataUseCase, userRepository);
     }
 
     @Provides
@@ -140,9 +140,9 @@ public final class UseCaseModule {
 
         InitUserComponentUseCase initUserComponentUseCase();
 
-        GetCurrentUserData getCurrentUserData();
+        GetCurrentUserDataUseCase getCurrentUserDataUseCase();
 
-        FetchAndStoreCurrentUserUsername fetchAndStoreCurrentUserUsername();
+        FetchAndStoreCurrentUserUsernameUseCase fetchAndStoreCurrentUserUsernameUseCase();
 
         GetCurrentUserUsernameUseCase getCurrentUserUsernameUseCase();
 

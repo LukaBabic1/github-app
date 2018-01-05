@@ -4,7 +4,7 @@ import com.undabot.babic.domain.model.User;
 
 import rx.Single;
 
-public interface GetCurrentUserData {
+public interface GetCurrentUserDataUseCase {
 
     Single<User> execute();
 }
