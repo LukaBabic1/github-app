@@ -55,6 +55,8 @@ ext {
 
     $testRunnerVersion = "1.0.1"
     $espressoCoreVersion = "3.0.1"
+
+    $mockitoVersion = "2.6.3"
 }
 
 allprojects {

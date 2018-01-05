@@ -21,6 +21,7 @@ dependencies {
     api 'io.reactivex:rxjava:' + $rxJavaVersion
 
     testImplementation "junit:junit:" + $jUnitVersion
+    testImplementation 'org.mockito:mockito-core:' + $mockitoVersion
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
