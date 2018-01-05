@@ -6,12 +6,16 @@ import com.undabot.babic.domain.repository.CodeRepositoryRepository;
 import com.undabot.babic.domain.repository.UserRepository;
 import com.undabot.babic.domain.usecase.ClearAccessTokenUseCase;
 import com.undabot.babic.domain.usecase.ClearAccessTokenUseCaseImpl;
+import com.undabot.babic.domain.usecase.ClearCurrentUserUsernameUseCase;
+import com.undabot.babic.domain.usecase.ClearCurrentUserUsernameUseCaseImpl;
 import com.undabot.babic.domain.usecase.FetchAndStoreCurrentUserUsername;
 import com.undabot.babic.domain.usecase.FetchAndStoreCurrentUserUsernameImpl;
 import com.undabot.babic.domain.usecase.GetAuthTokenUseCase;
 import com.undabot.babic.domain.usecase.GetAuthTokenUseCaseImpl;
 import com.undabot.babic.domain.usecase.GetCurrentUserData;
 import com.undabot.babic.domain.usecase.GetCurrentUserDataImpl;
+import com.undabot.babic.domain.usecase.GetCurrentUserUsernameUseCaseImpl;
+import com.undabot.babic.domain.usecase.GetCurrentUserUsernameUseCase;
 import com.undabot.babic.domain.usecase.GetGithubAuthorizeUrl;
 import com.undabot.babic.domain.usecase.GetGithubAuthorizeUrlImpl;
 import com.undabot.babic.domain.usecase.GetRepositoryDetailsUseCase;
@@ -102,6 +106,16 @@ public final class UseCaseModule {
         return new FetchAndStoreCurrentUserUsernameImpl(getCurrentUserData, userRepository);
     }
 
+    @Provides
+    GetCurrentUserUsernameUseCase provideGetCurrentUserUsernameUseCase(final UserRepository userRepository) {
+        return new GetCurrentUserUsernameUseCaseImpl(userRepository);
+    }
+
+    @Provides
+    ClearCurrentUserUsernameUseCase provideClearCurrentUserUsernameUseCase(final UserRepository userRepository) {
+        return new ClearCurrentUserUsernameUseCaseImpl(userRepository);
+    }
+
     public interface Exposes {
 
         GetGithubAuthorizeUrl getGithubAuthorizeUrl();
@@ -129,5 +143,9 @@ public final class UseCaseModule {
         GetCurrentUserData getCurrentUserData();
 
         FetchAndStoreCurrentUserUsername fetchAndStoreCurrentUserUsername();
+
+        GetCurrentUserUsernameUseCase getCurrentUserUsernameUseCase();
+
+        ClearCurrentUserUsernameUseCase clearCurrentUserUsernameUseCase();
     }
 }

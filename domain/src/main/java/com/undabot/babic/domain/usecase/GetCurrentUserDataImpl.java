@@ -15,6 +15,6 @@ public final class GetCurrentUserDataImpl implements GetCurrentUserData {
 
     @Override
     public Single<User> execute() {
-        return userRepository.getCurrentUser();
+        return userRepository.fetchCurrentUser();
     }
 }

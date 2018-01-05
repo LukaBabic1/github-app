@@ -5,10 +5,11 @@ import com.undabot.babic.app.ui.ViewModelConverter;
 import com.undabot.babic.app.utils.Actions;
 import com.undabot.babic.data.repository.CodeRepositoryRepositoryImpl;
 import com.undabot.babic.domain.model.AuthToken;
-import com.undabot.babic.domain.model.User;
 import com.undabot.babic.domain.repository.CodeRepositoryRepository;
 import com.undabot.babic.domain.usecase.ClearAccessTokenUseCase;
+import com.undabot.babic.domain.usecase.FetchAndStoreCurrentUserUsername;
 import com.undabot.babic.domain.usecase.GetCurrentUserData;
+import com.undabot.babic.domain.usecase.GetCurrentUserUsernameUseCase;
 import com.undabot.babic.domain.usecase.InitUserComponentUseCase;
 import com.undabot.babic.domain.usecase.IsUserSignedInUseCase;
 import com.undabot.babic.domain.usecase.LogOutUserUseCase;
@@ -23,6 +24,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import rx.Completable;
 import rx.functions.Action1;
 
 public final class RepositorySearchPresenter extends BasePresenter<RepositorySearchContract.View> implements RepositorySearchContract.Presenter {
@@ -66,6 +68,12 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
     GetCurrentUserData getCurrentUserData;
 
     @Inject
+    FetchAndStoreCurrentUserUsername fetchAndStoreCurrentUserUsername;
+
+    @Inject
+    GetCurrentUserUsernameUseCase getCurrentUserUsernameUseCase;
+
+    @Inject
     ViewModelConverter viewModelConverter;
 
     @Inject
@@ -94,8 +102,18 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
     @Override
     public void activate() {
         super.activate();
+        getCurrentUserData();
         observeInternetConnection(this::hideNoInternetConnection,
                                   this::showNoInternetConnection);
+    }
+
+    private void getCurrentUserData() {
+        addSubscription(isUserSignedInUseCase.execute()
+                                             .flatMapCompletable(isSignedIn -> isSignedIn ? fetchAndStoreCurrentUserUsername.execute() : Completable.complete())
+                                             .subscribeOn(backgroundScheduler)
+                                             .observeOn(mainThreadScheduler)
+                                             .subscribe(Actions.noOpAction0(),
+                                                        this::logError));
     }
 
     private void hideNoInternetConnection() {
@@ -204,14 +222,14 @@ public final class RepositorySearchPresenter extends BasePresenter<RepositorySea
 
     @Override
     public void showCurrentUserDetails() {
-        viewActionQueue.subscribeTo(getCurrentUserData.execute()
-                                                      .map(this::mapToGetCurrentUserViewAction)
-                                                      .subscribeOn(backgroundScheduler),
+        viewActionQueue.subscribeTo(getCurrentUserUsernameUseCase.execute()
+                                                                 .map(this::mapToGetCurrentUserViewAction)
+                                                                 .subscribeOn(backgroundScheduler),
                                     this::logError);
     }
 
-    private Action1<RepositorySearchContract.View> mapToGetCurrentUserViewAction(final User user) {
-        return view -> router.showUserDetailsScreen(user.username);
+    private Action1<RepositorySearchContract.View> mapToGetCurrentUserViewAction(final String username) {
+        return view -> router.showUserDetailsScreen(username);
     }
 
     @Override

@@ -11,7 +11,9 @@ public interface UserRepository {
 
     Completable saveAuthToken(AuthToken authToken);
 
-    Single<User> getCurrentUser();
+    Single<User> fetchCurrentUser();
+
+    Single<String> getCurrentUserUsername();
 
     Single<User> fetchUser(String username);
 

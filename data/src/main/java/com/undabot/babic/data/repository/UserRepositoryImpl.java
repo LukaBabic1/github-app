@@ -29,8 +29,13 @@ public final class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public Single<User> getCurrentUser() {
+    public Single<User> fetchCurrentUser() {
         return userClient.fetchCurrentUser();
+    }
+
+    @Override
+    public Single<String> getCurrentUserUsername() {
+        return Single.fromCallable(userSharedPrefs::getCurrentUserUsername);
     }
 
     @Override
