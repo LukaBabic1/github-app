@@ -5,13 +5,13 @@ import android.webkit.WebViewClient;
 
 import java.util.Objects;
 
-public final class LoginWebViewClient extends WebViewClient {
+final class LoginWebViewClient extends WebViewClient {
 
     public interface CodeRedeemListener {
 
         void onCodeRedeemed(String code);
-
     }
+
     private final CodeRedeemListener listener;
 
     public LoginWebViewClient(final CodeRedeemListener listener) {

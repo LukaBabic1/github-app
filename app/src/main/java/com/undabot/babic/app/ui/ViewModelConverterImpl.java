@@ -43,8 +43,7 @@ public final class ViewModelConverterImpl implements ViewModelConverter {
                                        codeRepository.stargazersCount,
                                        codeRepository.watchersCount,
                                        codeRepository.forksCount,
-                                       codeRepository.openIssuesCount
-        );
+                                       codeRepository.openIssuesCount);
     }
 
     @Override

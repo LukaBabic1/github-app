@@ -3,6 +3,7 @@
     <string name="app_name">GitHub app</string>
 
     <!--Common texts -->
+    <string name="log_in">Log in</string>
     <string name="skip">Skip</string>
     <string name="search">Search</string>
     <string name="enter_search_text">Enter search text</string>
@@ -20,6 +21,7 @@
     <string name="user_details">User details</string>
 
     <!-- Login screen -->
+    <string name="login_screen_toolbar_title">@string/log_in</string>
     <string name="login_screen_menu_item_skip_text">@string/skip</string>
 
     <!--Repository search screen-->

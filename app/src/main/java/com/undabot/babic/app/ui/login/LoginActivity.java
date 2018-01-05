@@ -41,6 +41,7 @@ public final class LoginActivity extends BaseActivity implements LoginContract.V
 
     private void initToolbar() {
         toolbar.inflateMenu(R.menu.activity_login_menu);
+        toolbar.setTitle(R.string.login_screen_toolbar_title);
         toolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.activity_main_menu_item_skip) {
                 presenter.skipLogin();
