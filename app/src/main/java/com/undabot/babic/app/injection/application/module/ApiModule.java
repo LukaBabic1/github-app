@@ -10,6 +10,7 @@ import com.undabot.babic.data.network.configuration.Urls;
 import com.undabot.babic.data.network.configuration.UrlsImpl;
 import com.undabot.babic.data.network.converter.ApiConverter;
 import com.undabot.babic.data.network.converter.ApiConverterImpl;
+import com.undabot.babic.data.network.interceptor.AcceptV3ApiRequestInterceptor;
 import com.undabot.babic.data.network.service.ApiTokenProvider;
 import com.undabot.babic.data.network.service.ApiTokenProviderImpl;
 import com.undabot.babic.data.network.service.GitHubService;
@@ -38,9 +39,16 @@ public final class ApiModule {
     }
 
     @Provides
+    AcceptV3ApiRequestInterceptor provideAcceptV3ApiRequestInterceptor() {
+        return new AcceptV3ApiRequestInterceptor();
+    }
+
+    @Provides
     @Singleton
-    OkHttpClient provideOkHttpClient(final HttpLoggingInterceptor interceptor) {
+    OkHttpClient provideOkHttpClient(final HttpLoggingInterceptor interceptor, final AcceptV3ApiRequestInterceptor acceptV3ApiRequestInterceptor) {
         final OkHttpClient.Builder builder = new OkHttpClient.Builder();
+
+        builder.addInterceptor(acceptV3ApiRequestInterceptor);
 
         if (BuildConfig.DEBUG) {
             builder.addNetworkInterceptor(interceptor);
