@@ -44,6 +44,7 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
 
     private static final int UNSELECTED_RADIO_BUTTON_ID = -1;
     private static final int SPARSE_ARRAY_INIT_LENGTH = 3;
+    private static final int DEFAULT_RECYCLER_VEW_POSITION = 0;
 
     private static final SparseIntArray RADIO_BUTTON_ID_TO_SORT_ORDER;
 
@@ -196,6 +197,7 @@ public final class RepositorySearchFragment extends BaseFragment implements Repo
 
     @Override
     public void render(final RepositorySearchScreenViewModel viewModel) {
+        recyclerView.scrollToPosition(DEFAULT_RECYCLER_VEW_POSITION);
         repositorySearchScreenViewModel = Optional.of(viewModel);
         codeRepositoriesAdapter.setItems(viewModel.repositoryViewModels, viewModel.canLoadMore);
         noResultsTextView.setVisibility(viewModel.showEmptyScreen ? View.VISIBLE : View.GONE);
